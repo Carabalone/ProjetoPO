@@ -5,6 +5,5 @@ public abstract class Transaction{
     private int quantity;
 
     public boolean isPaid(){
-        system.out.println("teste git");
     }
 }
