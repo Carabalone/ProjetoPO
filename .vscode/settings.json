@@ -1,0 +1,10 @@
+{
+    "java.project.sourcePaths": [
+        "ggc-skeleton",
+        "."
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "ggc-skeleton\\po-uilib.jar"
+    ]
+}

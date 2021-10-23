@@ -15,6 +15,8 @@ public class Warehouse implements Serializable {
   private static final long serialVersionUID = 202109192006L;
 
   // FIXME define attributes
+  private Date _date = Date.now();
+  private int _nextTransactionId = 0;
   // FIXME define contructor(s)
   // FIXME define methods
 
