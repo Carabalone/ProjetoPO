@@ -1,25 +1,37 @@
 package ggc.core;
 
-public class Batch {
-    private Partner _partner;
-    private Product _product;
-    private double _price;
-    private int _quantity;
+public class Batch{
 
-    public Batch(Partner partner, Product product, double price, int quantity){
-        _partner = partner;
-        _product = product;
-        _price = price;
-        _quantity = quantity;
-    }
+	private double _unitPrice;
+	private int _quantity;
+	private Product _product;
+	private Partner _supplier;
 
-    //TODO
-    public String toString(){
-        return "TODO";
-    }
-    
-    protected Batch makeCopy(){
-        return new Batch(_partner, _product, _price, _quantity);
-    }
-    
+	public Batch(double unitPrice, int quantity, Product product, Partner supplier){
+		_unitPrice = unitPrice;
+		_quantity = quantity;
+		_product = product;
+		_supplier = supplier;
+	}
+
+	public double getUnitPrice(){
+		return _unitPrice;
+	} 
+
+	public int getAvailableQuantity(){
+		return _quantity;
+	}
+
+	public Product getProduct(){
+		return _product;
+	}
+
+	public Partner getSupplier(){
+		return _supplier;
+	}
+
+	public int removeUnits(int ammount){
+		_quantity -= ammount;
+		return _quantity;
+	}
 }
