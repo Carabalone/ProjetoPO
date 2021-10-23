@@ -4,10 +4,16 @@ public abstract class Transaction{
     private Date _paymentDate;
             double _baseValue;
     private int _quantity;
+    private Product _product;
 
-    protected Transaction(int quantity, Date paymentDate){
+    protected Transaction(int quantity, Date paymentDate, Product product){
         _quantity = quantity;
         _paymentDate = paymentDate;
+        _product = product;
+    }
+    protected Transaction(int quantity, Product product){
+        _quantity = quantity;
+        _product = product;
     }
     //TODO
     public boolean isPaid(){
