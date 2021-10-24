@@ -17,7 +17,7 @@ public class WarehouseManager {
   /** Name of file storing current warehouse. */
   private String _filename = "";
 
-  /** The wharehouse itself. */
+  /** The warehouse itself. */
   private Warehouse _warehouse = new Warehouse();
 
   //FIXME define other attributes

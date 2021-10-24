@@ -12,4 +12,7 @@ public class Partner{
     private List<Sale> _sales;
     private List<Batch> _batches;
 
+    public String getId(){
+        return _id;
+    }
 }

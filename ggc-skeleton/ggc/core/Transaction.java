@@ -2,7 +2,7 @@ package ggc.core;
 public abstract class Transaction{
     private int _id;
     private Date _paymentDate;
-            double _baseValue;
+    protected double _baseValue;
     private int _quantity;
     private Product _product;
 
