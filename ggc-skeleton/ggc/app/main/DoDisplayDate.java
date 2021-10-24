@@ -15,7 +15,8 @@ class DoDisplayDate extends Command<WarehouseManager> {
 
   @Override
   public final void execute() throws CommandException {
-    //FIXME implement command
+    _display.addLine(_receiver.displayDate());
+    _display.display();
   }
 
 }

@@ -23,6 +23,9 @@ public class WarehouseManager {
   //FIXME define other attributes
   //FIXME define constructor(s)
   //FIXME define other methods
+  public Date displayDate(){
+    return Date.now();
+  }
 
   /**
    * @@throws IOException

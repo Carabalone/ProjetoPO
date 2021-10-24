@@ -20,4 +20,7 @@ public class Date{
         return new Date(_now);
     }
     public int getDay(){ return _days;}
+    public String toString(){
+        return "Data: " + Date._now + " dias.";
+    }
 }
