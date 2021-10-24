@@ -34,4 +34,8 @@ public class Batch{
 		_quantity -= ammount;
 		return _quantity;
 	}
+
+	protected Batch makeCopy(){
+        return new Batch(_unitPrice, _quantity, _product, _supplier);
+    }
 }
