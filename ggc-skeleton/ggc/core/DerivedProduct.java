@@ -1,5 +1,7 @@
 package ggc.core;
 
+import java.util.*;
+
 public class DerivedProduct extends Product {
 
 	private Recipe _recipe;
@@ -16,10 +18,15 @@ public class DerivedProduct extends Product {
 	@Override
 	public boolean checkQuantity(int qNeeded){
 		int qAvailable = 0;
-		for(Batch batch : super._batches){
+		for(Batch batch : super.getBatches()){
 			qAvailable += batch.getAvailableQuantity();
 		}
 		return qAvailable < qNeeded;
+	}
+	//TODO
+	@Override
+	public double gatherUnits(int quantity){
+		return 0;
 	}
 	
 }

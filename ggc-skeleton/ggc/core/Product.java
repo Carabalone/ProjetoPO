@@ -16,6 +16,10 @@ public abstract class Product {
 		_batches = new ArrayList();
 	}
 
+	public ArrayList<Batch> getBatches(){
+		return _batches;
+	}
+
 	public String getId() {
 		return _id;
 	}

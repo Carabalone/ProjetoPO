@@ -1,5 +1,6 @@
 package ggc.core;
 
+import java.util.*;
 public class SimpleProduct extends Product {
 
 	public SimpleProduct(String id) {
@@ -9,7 +10,7 @@ public class SimpleProduct extends Product {
 	@Override
 	public boolean checkQuantity(int qNeeded){
 		int qAvailable = 0;
-		for(Batch batch : super._batches){
+		for(Batch batch : super.getBatches()){
 			qAvailable += batch.getAvailableQuantity();
 		}
 		return qAvailable < qNeeded;
@@ -18,7 +19,7 @@ public class SimpleProduct extends Product {
 	@Override
 	public double gatherUnits(int quantity){
 		double price = 0;
-		Iterator it = super._batches.iterator();
+		Iterator<Batch> it = super.getBatches().iterator();
 		Partner supplier;
 
 		if (!this.checkQuantity(quantity)){
