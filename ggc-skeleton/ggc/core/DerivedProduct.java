@@ -12,5 +12,14 @@ public class DerivedProduct extends Product {
 	public Recipe getRecipe() {
 		return _recipe;
 	}
+
+	@Override
+	public boolean checkQuantity(int qNeeded){
+		int qAvailable = 0;
+		for(Batch batch : super._batches){
+			qAvailable += batch.getAvailableQuantity();
+		}
+		return qAvailable < qNeeded;
+	}
 	
 }
