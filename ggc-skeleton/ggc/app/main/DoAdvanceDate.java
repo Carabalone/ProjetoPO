@@ -12,12 +12,17 @@ class DoAdvanceDate extends Command<WarehouseManager> {
 
   DoAdvanceDate(WarehouseManager receiver) {
     super(Label.ADVANCE_DATE, receiver);
-    //FIXME add command fields
+    addIntegerField("number", "Quantos dias pretendes avançar ? ");
+
   }
 
+  //TODO exceptions
   @Override
   public final void execute() throws CommandException {
-    //FIXME implement command
+    Integer number = integerField("number");
+    String message = String.format("A data foi avançada em %d dias.", number);
+    _receiver.advanceDate(number);
+    _display.popup(message);
   }
 
 }

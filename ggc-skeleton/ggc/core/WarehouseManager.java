@@ -26,6 +26,9 @@ public class WarehouseManager {
   public Date displayDate(){
     return Date.now();
   }
+  public void advanceDate(int days){
+    Date.addNow(days);
+  }
 
   /**
    * @@throws IOException
