@@ -12,12 +12,15 @@ class DoRegisterPartner extends Command<WarehouseManager> {
 
   DoRegisterPartner(WarehouseManager receiver) {
     super(Label.REGISTER_PARTNER, receiver);
-    //FIXME add command fields
+    addStringField("name", Message.requestPartnerName());
+    addStringField("adress", Message.requestPartnerAddress()); 
   }
 
   @Override
   public void execute() throws CommandException {
-    //FIXME implement command
+    String name = stringField("name");
+    String adress = stringField("adress");
+    _receiver.addPartner(name, adress);
   }
 
 }

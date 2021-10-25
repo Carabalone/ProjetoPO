@@ -21,12 +21,34 @@ public class Warehouse implements Serializable {
   private List<Product> _products;
   private List<Partner> _partners;
   private List<Transaction> _transactions;
+  private double _balance;
+
+
   // FIXME define contructor(s)
+  protected Warehouse(){
+    _products = new ArrayList();
+    _partners = new ArrayList();
+    _transactions = new ArrayList();
+    _balance = 0;
+  }
+
+  protected void addPartner(Partner partner){
+    _partners.add(partner);
+  }
+
+  protected void addProduct(Product product){
+    _products.add(product);
+  }
+
+  protected void addTransaction(Transaction transaction){
+    _transactions.add(transaction);
+  }
+
   // FIXME define methods
   //TODO define exception
   protected Partner getPartner(String id){
     for (Partner partner: _partners){
-      if(partner.getId() == id){
+      if(partner.getId().equals(id)){
         return partner;
       }
     }
@@ -37,6 +59,9 @@ public class Warehouse implements Serializable {
     return new ArrayList(_partners);
   }
 
+  protected int getBalance(){
+    return (int) Math.round(_balance);
+  }
   /**
    * @param txtfile filename to be loaded.
    * @throws IOException

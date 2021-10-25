@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
+import java.util.*;
+
 import ggc.core.exception.BadEntryException;
 import ggc.core.exception.ImportFileException;
 import ggc.core.exception.UnavailableFileException;
@@ -28,6 +30,17 @@ public class WarehouseManager {
   }
   public void advanceDate(int days){
     Date.addNow(days);
+  }
+  public int displayGlobalBalance(){
+    return _warehouse.getBalance();
+  }
+  public void addPartner(String name, String adress){
+    Partner partner = new Partner(name, adress);
+    _warehouse.addPartner(partner);
+  }
+
+  public String showPartner(String id){
+    return _warehouse.getPartner(id).toString();
   }
 
   /**

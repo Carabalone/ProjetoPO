@@ -3,6 +3,8 @@ package ggc.app.partners;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import ggc.core.WarehouseManager;
+
+import java.util.*;
 //FIXME import classes
 
 /**
@@ -16,7 +18,7 @@ class DoShowAllPartners extends Command<WarehouseManager> {
 
   @Override
   public void execute() throws CommandException {
-    //FIXME implement command
+    
   }
 
 }
