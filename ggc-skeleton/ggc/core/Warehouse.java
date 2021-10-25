@@ -34,7 +34,7 @@ public class Warehouse implements Serializable {
     return null;
   }
   protected List<Partner> getPartners(){
-    return _partners;
+    return new ArrayList(_partners);
   }
 
   /**

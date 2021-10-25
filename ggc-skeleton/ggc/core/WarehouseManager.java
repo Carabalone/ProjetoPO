@@ -23,8 +23,8 @@ public class WarehouseManager {
   //FIXME define other attributes
   //FIXME define constructor(s)
   //FIXME define other methods
-  public Date displayDate(){
-    return Date.now();
+  public int displayDate(){
+    return Date.showNow();
   }
   public void advanceDate(int days){
     Date.addNow(days);

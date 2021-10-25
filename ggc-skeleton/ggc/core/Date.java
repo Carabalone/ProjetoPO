@@ -19,6 +19,9 @@ public class Date{
     public static Date now(){
         return new Date(_now);
     }
+    public static int showNow(){
+        return Date._now;
+    }
     public int getDay(){ return _days;}
     public String toString(){
         return "Data: " + Date._now + " dias.";
