@@ -16,9 +16,13 @@ class DoShowAllPartners extends Command<WarehouseManager> {
     super(Label.SHOW_ALL_PARTNERS, receiver);
   }
 
+  //TODO exceptions
   @Override
   public void execute() throws CommandException {
-    
+    for (String partner: _receiver.showPartners()) {
+      _display.addLine(partner);
+    }
+    _display.display();
   }
 
 }

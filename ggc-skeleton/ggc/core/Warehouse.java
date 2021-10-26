@@ -55,6 +55,7 @@ public class Warehouse implements Serializable {
     //FIXME must throw exception instead of returning null;
     return null;
   }
+
   protected List<Partner> getPartners(){
     return new ArrayList(_partners);
   }

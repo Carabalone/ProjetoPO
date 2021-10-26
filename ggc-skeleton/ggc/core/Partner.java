@@ -34,6 +34,7 @@ public class Partner{
     }
     
     //TODO round up last values
+    @Override
     public String toString(){
         return String.format("%s|%s|%s|%f|%s|%d|%d|%d", _id,_name,_address,_points,_status,_acquisitionsValue,_salesValue,_paidSalesValue);
     }

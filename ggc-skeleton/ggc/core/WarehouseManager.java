@@ -43,6 +43,14 @@ public class WarehouseManager {
     return _warehouse.getPartner(id).toString();
   }
 
+  public List<String> showPartners(){
+    List partnerStrings = new ArrayList();
+    for (Partner partner : _warehouse.getPartners()) {
+      partnerStrings.add(partner.toString());
+    };
+    return partnerStrings;
+  }
+
   /**
    * @@throws IOException
    * @@throws FileNotFoundException
