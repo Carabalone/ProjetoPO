@@ -48,7 +48,7 @@ public abstract class Product {
 	// returns number of units available
 	public int checkQuantity(){
 		int qAvailable = 0;
-		for(Batch batch : super.getBatches()){
+		for(Batch batch : _batches){
 			qAvailable += batch.getAvailableQuantity();
 		}
 		return qAvailable;

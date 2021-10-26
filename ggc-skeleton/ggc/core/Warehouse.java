@@ -60,7 +60,7 @@ public class Warehouse implements Serializable {
     return new ArrayList(_partners);
   }
 
-  protected List<Products> getProducts(){
+  protected List<Product> getProducts(){
     return new ArrayList(_products);
   }
 
