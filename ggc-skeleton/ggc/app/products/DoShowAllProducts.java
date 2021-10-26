@@ -16,7 +16,10 @@ class DoShowAllProducts extends Command<WarehouseManager> {
 
   @Override
   public final void execute() throws CommandException {
-    //FIXME implement command
+    for (String product: _receiver.showAllProducts()) {
+      _display.addLine(product);
+    }
+    _display.display();
   }
 
 }

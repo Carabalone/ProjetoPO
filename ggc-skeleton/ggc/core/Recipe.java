@@ -23,4 +23,12 @@ public class Recipe{
 	public double getCommission() {
 		return _commission;
 	}
+
+	public String toString() {
+		String recipeStr = "#";
+		for (Component cmp : _components) {
+			recipeStr += cmp.toString() + "#";
+		}
+		return recipeStr.substring(0, recipeStr.length() - 1);
+	}
 }

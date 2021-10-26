@@ -17,7 +17,7 @@ public abstract class Product {
 	}
 
 	public ArrayList<Batch> getBatches(){
-		return _batches;
+		return new ArrayList(_batches);
 	}
 
 	public String getId() {
@@ -45,9 +45,19 @@ public abstract class Product {
 		_batches.remove(emptyBatch);
 	}
 
-	// returns True if there are at least "quantity" units
-	abstract boolean checkQuantity(int quantity);
+	// returns number of units available
+	public int checkQuantity(){
+		int qAvailable = 0;
+		for(Batch batch : super.getBatches()){
+			qAvailable += batch.getAvailableQuantity();
+		}
+		return qAvailable;
+	}
 
 	// returns price of units gathered (0 if not enough units)
 	abstract double gatherUnits(int quantity);
+
+	public String toString(){
+		return String.format("%s|%d|%d", _id, Math.round(_maxPrice), this.checkQuantity());
+	}
 }

@@ -8,21 +8,12 @@ public class SimpleProduct extends Product {
 	}
 
 	@Override
-	public boolean checkQuantity(int qNeeded){
-		int qAvailable = 0;
-		for(Batch batch : super.getBatches()){
-			qAvailable += batch.getAvailableQuantity();
-		}
-		return qAvailable < qNeeded;
-	}
-
-	@Override
 	public double gatherUnits(int quantity){
 		double price = 0;
 		Iterator<Batch> it = super.getBatches().iterator();
 		Partner supplier;
 
-		if (!this.checkQuantity(quantity)){
+		if (this.checkQuantity() == 0){
 			return 0;
 		}
 
@@ -44,5 +35,4 @@ public class SimpleProduct extends Product {
 
 		return price;
 	}
-
 }

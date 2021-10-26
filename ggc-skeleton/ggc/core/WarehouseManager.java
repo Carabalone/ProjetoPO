@@ -51,6 +51,14 @@ public class WarehouseManager {
     return partnerStrings;
   }
 
+  public List<String> showAllProducts(){
+    List stringProducts = new ArrayList();
+    for (Product pro : _warehouse.getProducts()) {
+      stringProducts.add(pro.toString());
+    }
+    return stringProducts;
+  }
+
   /**
    * @@throws IOException
    * @@throws FileNotFoundException

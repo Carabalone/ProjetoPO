@@ -60,6 +60,10 @@ public class Warehouse implements Serializable {
     return new ArrayList(_partners);
   }
 
+  protected List<Products> getProducts(){
+    return new ArrayList(_products);
+  }
+
   protected int getBalance(){
     return (int) Math.round(_balance);
   }

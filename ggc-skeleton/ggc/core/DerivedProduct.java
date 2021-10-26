@@ -15,18 +15,16 @@ public class DerivedProduct extends Product {
 		return _recipe;
 	}
 
-	@Override
-	public boolean checkQuantity(int qNeeded){
-		int qAvailable = 0;
-		for(Batch batch : super.getBatches()){
-			qAvailable += batch.getAvailableQuantity();
-		}
-		return qAvailable < qNeeded;
-	}
 	//TODO
 	@Override
 	public double gatherUnits(int quantity){
 		return 0;
+	}
+
+	//TODO check last field (agravamento)
+	@Override
+	public String toString(){
+		return String.format("%s|%s", super.toString(), _recipe.toString());
 	}
 	
 }
