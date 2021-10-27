@@ -108,10 +108,10 @@ public class Warehouse implements Serializable {
         Product newProduct = this.searchProduct(tokens[1]);
 
         if (newProduct == null){
-          newProduct = new Product(tokens[1]);
+          newProduct = new SimpleProduct(tokens[1]);
           this.addProduct(newProduct);
         }
-        newProduct.addBatch(new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, tokens[2]));
+        newProduct.addBatch(new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, this.getPartner(tokens[2])));
       }
 
       /*else {
