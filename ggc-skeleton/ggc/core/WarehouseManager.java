@@ -8,7 +8,9 @@ import java.io.FileNotFoundException;
 
 import java.util.*;
 
+import ggc.app.exception.DuplicatePartnerKeyException;
 import ggc.app.exception.InvalidDateException;
+import ggc.app.exception.UnknownPartnerKeyException;
 import ggc.core.exception.BadEntryException;
 import ggc.core.exception.ImportFileException;
 import ggc.core.exception.UnavailableFileException;
@@ -38,12 +40,19 @@ public class WarehouseManager {
   public int displayGlobalBalance(){
     return _warehouse.getBalance();
   }
-  public void addPartner(String name, String adress){
-    Partner partner = new Partner(name, adress);
+  public void addPartner(String name, String id, String adress) throws DuplicatePartnerKeyException{
+    if (_warehouse.getPartner(id) != null){
+      throw new DuplicatePartnerKeyException(id);
+    }
+    Partner partner = new Partner(name, id, adress);
     _warehouse.addPartner(partner);
   }
 
-  public String showPartner(String id){
+  public String showPartner(String id) throws UnknownPartnerKeyException{
+    Partner p = _warehouse.getPartner(id);
+    if (p == null){
+      throw new UnknownPartnerKeyException(id);
+    }
     return _warehouse.getPartner(id).toString();
   }
 
