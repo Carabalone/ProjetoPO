@@ -12,6 +12,7 @@ public class Batch{
 		_quantity = quantity;
 		_product = product;
 		_supplier = supplier;
+		_product.updatePrices(_unitPrice * _quantity);
 	}
 
 	public double getUnitPrice(){
