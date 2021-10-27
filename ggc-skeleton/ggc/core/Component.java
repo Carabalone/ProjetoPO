@@ -3,11 +3,11 @@ package ggc.core;
 public class Component {
 
 	private int _quantity;
-	private Product _product;
+	private String _productId;
 
-	public Component(int quantity, Product product) {
+	public Component(int quantity, String productId) {
 		_quantity = quantity;
-		_product = product;
+		_productId = productId;
 	}
 
 	public int getQuantity() {
@@ -15,6 +15,6 @@ public class Component {
 	}
 
 	public String toString(){
-		return String.format("%s:%d", _product.getId(), _quantity);
+		return String.format("%s:%d", _productId, _quantity);
 	}
 }

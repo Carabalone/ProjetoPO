@@ -104,21 +104,21 @@ public class Warehouse implements Serializable {
         this.addPartner(new Partner(tokens[2], tokens[1], tokens[3]));
       }
 
-      else if (tokens[0].equals("BATCH_S")) {
+      else {
         Product newProduct = this.searchProduct(tokens[1]);
-        
 
         if (newProduct == null){
-          newProduct = new SimpleProduct(tokens[1]);
-          this.addProduct(newProduct);
+
+          if (tokens[0].equals("BATCH_S"))
+            newProduct = new SimpleProduct(tokens[1]);
+          else
+            newProduct = new DerivedProduct(tokens[1], new Recipe(tokens[6], Integer.valueOf(tokens[5])));
         }
-        newProduct.addBatch(new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, this.getPartner(tokens[2])));
+
+          this.addProduct(newProduct);
       }
 
-      /*else {
-
-      }*/
+        newProduct.addBatch(new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, this.getPartner(tokens[2])));
     }
   }
-
 }
