@@ -34,8 +34,8 @@ public class WarehouseManager {
   public int displayGlobalBalance(){
     return _warehouse.getBalance();
   }
-  public void addPartner(String name, String adress){
-    Partner partner = new Partner(name, adress);
+  public void addPartner(String id, String name, String adress){
+    Partner partner = new Partner(id, name, adress);
     _warehouse.addPartner(partner);
   }
 

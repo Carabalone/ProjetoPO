@@ -98,20 +98,20 @@ public class Warehouse implements Serializable {
       initialData.add(sc.nextLine());
 
     for (String data : initialData) {
-      List<String> tokens = data.split("|");
+      String[] tokens = data.split("|");
 
-      if (tokens.get(0).equals("PARTNER")){
-        this.addPartner(new Partner(tokens.get(1), tokens.get(2), tokens.get(3)));
+      if (tokens[0].equals("PARTNER")){
+        this.addPartner(new Partner(tokens[1], tokens[2], tokens[3]));
       }
 
-      else if (tokens.get(0).equals("BATCH_S")) {
-        Product newProduct = this.searchProduct(tokens.get(1));
+      else if (tokens[0].equals("BATCH_S")) {
+        Product newProduct = this.searchProduct(tokens[1]);
 
         if (newProduct == null){
-          newProduct = new Product(tokens.get(1));
+          newProduct = new Product(tokens[1]);
           this.addProduct(newProduct);
         }
-        newProduct.addBatch(new Batch(Integer.valueOf(tokens.get(3)), Integer.valueOf(tokens.get(4)), newProduct, tokens.get(2)));
+        newProduct.addBatch(new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, tokens[2]));
       }
 
       /*else {

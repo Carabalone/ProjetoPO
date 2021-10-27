@@ -16,8 +16,8 @@ public class Partner{
     private List<Sale> _sales;
     private List<Batch> _batches;
 
-    protected Partner(String name, String adress){
-        _id = name;
+    protected Partner(String id, String name, String adress){
+        _id = id;
         _name = name;
         _address = adress;
         _points = 0;
@@ -29,6 +29,7 @@ public class Partner{
         _paidSalesValue = 0;
         _salesValue = 0;
     }
+    
     public String getId(){
         return _id;
     }
