@@ -64,6 +64,14 @@ public class Warehouse implements Serializable {
     return new ArrayList(_products);
   }
 
+  protected List<Batch> getBatches(){
+    List<Batch> batches = new ArrayList();
+    for (Product p : _products){
+      batches.addAll(p.getBatches());
+    }
+    return batches;
+  }
+
   protected int getBalance(){
     return (int) Math.round(_balance);
   }

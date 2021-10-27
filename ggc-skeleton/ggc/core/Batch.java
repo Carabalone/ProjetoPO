@@ -38,4 +38,9 @@ public class Batch{
 	protected Batch makeCopy(){
         return new Batch(_unitPrice, _quantity, _product, _supplier);
     }
+
+    // TODO check rounding of prices
+    public String toString(){
+    	return String.format("%s|%s|%d|%d", _product.getId(), _supplier.getId(), _unitPrice * _quantity, _quantity);
+    }
 }

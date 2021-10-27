@@ -59,6 +59,14 @@ public class WarehouseManager {
     return stringProducts;
   }
 
+  public List<String> showAllBatches(){
+    List stringBatches = new ArrayList();
+    for (Batches bat : _warehouse.getBatches()) {
+      stringBatches.add(bat.toString());
+    }
+    return stringBatches;
+  }
+
   /**
    * @@throws IOException
    * @@throws FileNotFoundException
