@@ -1,4 +1,7 @@
 package ggc.core;
+
+import ggc.app.exception.InvalidDateException;
+
 public class Date{
     private int _days;
     private static int _now;

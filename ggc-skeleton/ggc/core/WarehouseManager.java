@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 
 import java.util.*;
 
+import ggc.app.exception.InvalidDateException;
 import ggc.core.exception.BadEntryException;
 import ggc.core.exception.ImportFileException;
 import ggc.core.exception.UnavailableFileException;
@@ -28,7 +29,10 @@ public class WarehouseManager {
   public int displayDate(){
     return Date.showNow();
   }
-  public void advanceDate(int days){
+  public void advanceDate(int days) throws InvalidDateException{
+    if (days < 0){
+      throw new InvalidDateException(days);
+    }
     Date.addNow(days);
   }
   public int displayGlobalBalance(){
