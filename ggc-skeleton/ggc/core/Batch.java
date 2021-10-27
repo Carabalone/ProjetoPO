@@ -41,6 +41,6 @@ public class Batch{
 
     // TODO check rounding of prices
     public String toString(){
-    	return String.format("%s|%s|%d|%d", _product.getId(), _supplier.getId(), _unitPrice * _quantity, _quantity);
+    	return String.format("%s|%s|%d|%d", _product.getId(), _supplier.getId(), Math.round(_unitPrice * _quantity), _quantity);
     }
 }
