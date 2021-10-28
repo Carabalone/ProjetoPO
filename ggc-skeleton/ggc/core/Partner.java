@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.lang.*;
 
-public class Partner{
+public class Partner implements Comparable<Partner>{
     private String _name;
     private String _id;
     private String _address;
@@ -30,6 +30,11 @@ public class Partner{
         _paidSalesValue = 0.0;
         _salesValue = 0.0;
     }
+
+    public int compareTo(Partner p){
+        return _id.compareTo(p.getId());
+    }
+
     public String getId(){
         return _id;
     }

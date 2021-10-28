@@ -20,7 +20,7 @@ public class Warehouse implements Serializable {
   private Date _date = Date.now();
   private int _nextTransactionId = 0;
   private List<Product> _products;
-  private List<Partner> _partners;
+  private TreeSet<Partner> _partners;
   private List<Transaction> _transactions;
   private double _balance;
 
@@ -28,7 +28,7 @@ public class Warehouse implements Serializable {
   // FIXME define contructor(s)
   protected Warehouse(){
     _products = new ArrayList();
-    _partners = new ArrayList();
+    _partners = new TreeSet();
     _transactions = new ArrayList();
     _balance = 0;
   }
@@ -53,15 +53,12 @@ public class Warehouse implements Serializable {
     _transactions.add(transaction);
   }
 
-  // FIXME define methods
-  //TODO define exception
   protected Partner getPartner(String id){
     for (Partner partner: _partners){
       if(partner.getId().equals(id)){
         return partner;
       }
     }
-    //FIXME must throw exception instead of returning null;
     return null;
   }
 
@@ -89,7 +86,7 @@ public class Warehouse implements Serializable {
    * @throws IOException
    * @throws BadEntryException
    */
-  void importFile(String txtfile) throws IOException, BadEntryException /* FIXME maybe other exceptions */ {
+  void importFile(String txtfile) throws IOException, BadEntryException{ /* FIXME maybe other exceptions */
     File impfile = new File(txtfile);
     Scanner sc = new Scanner(impfile);
     List<String> initialData = new ArrayList();

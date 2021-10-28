@@ -12,9 +12,12 @@ import ggc.app.exception.DuplicatePartnerKeyException;
 import ggc.app.exception.InvalidDateException;
 import ggc.app.exception.UnknownPartnerKeyException;
 import ggc.core.exception.BadEntryException;
+import ggc.core.exception.DuplicatePartnerIdException;
 import ggc.core.exception.ImportFileException;
+import ggc.core.exception.InvalidDateInputException;
 import ggc.core.exception.UnavailableFileException;
 import ggc.core.exception.MissingFileAssociationException;
+import ggc.core.exception.NoSuchPartnerException;
 
 /** Façade for access. */
 public class WarehouseManager {
@@ -28,30 +31,34 @@ public class WarehouseManager {
   //FIXME define other attributes
   //FIXME define constructor(s)
   //FIXME define other methods
+
   public int displayDate(){
     return Date.showNow();
   }
-  public void advanceDate(int days) throws InvalidDateException{
+
+  public void advanceDate(int days) throws InvalidDateInputException{
     if (days < 0){
-      throw new InvalidDateException(days);
+      throw new InvalidDateInputException(days);
     }
     Date.addNow(days);
   }
+
   public int displayGlobalBalance(){
     return _warehouse.getBalance();
   }
-  public void addPartner(String name, String id, String adress) throws DuplicatePartnerKeyException{
+
+  public void addPartner(String name, String id, String adress) throws DuplicatePartnerIdException{
     if (_warehouse.getPartner(id) != null){
-      throw new DuplicatePartnerKeyException(id);
+      throw new DuplicatePartnerIdException(id);
     }
     Partner partner = new Partner(name, id, adress);
     _warehouse.addPartner(partner);
   }
 
-  public String showPartner(String id) throws UnknownPartnerKeyException{
+  public String showPartner(String id) throws NoSuchPartnerException{
     Partner p = _warehouse.getPartner(id);
     if (p == null){
-      throw new UnknownPartnerKeyException(id);
+      throw new NoSuchPartnerException(id);
     }
     return _warehouse.getPartner(id).toString();
   }

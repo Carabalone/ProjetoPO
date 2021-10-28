@@ -5,6 +5,7 @@ import pt.tecnico.uilib.menus.CommandException;
 import ggc.app.exception.DuplicatePartnerKeyException;
 import ggc.core.WarehouseManager;
 //FIXME import classes
+import ggc.core.exception.DuplicatePartnerIdException;
 
 /**
  * Register new partner.
@@ -25,8 +26,8 @@ class DoRegisterPartner extends Command<WarehouseManager> {
     String adress = stringField("adress");
     try{
       _receiver.addPartner(name, id, adress);
-    } catch (DuplicatePartnerKeyException ex){
-      throw ex;
+    } catch (DuplicatePartnerIdException ex){
+      throw new DuplicatePartnerKeyException(ex.getId());
     }
   }
 

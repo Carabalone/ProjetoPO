@@ -5,6 +5,7 @@ import pt.tecnico.uilib.menus.CommandException;
 import ggc.app.exception.UnknownPartnerKeyException;
 import ggc.core.WarehouseManager;
 //FIXME import classes
+import ggc.core.exception.NoSuchPartnerException;
 
 /**
  * Show partner.
@@ -21,8 +22,8 @@ class DoShowPartner extends Command<WarehouseManager> {
     String id = stringField("id");
     try{
       _display.popup(_receiver.showPartner(id));
-    } catch(UnknownPartnerKeyException ex){
-      throw ex; 
+    } catch(NoSuchPartnerException ex){
+      throw new UnknownPartnerKeyException(ex.getId()); 
     }
   }
 
