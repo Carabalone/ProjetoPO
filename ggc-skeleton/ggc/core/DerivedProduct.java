@@ -1,8 +1,9 @@
 package ggc.core;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class DerivedProduct extends Product {
+public class DerivedProduct extends Product implements Serializable{
 
 	private Recipe _recipe;
 

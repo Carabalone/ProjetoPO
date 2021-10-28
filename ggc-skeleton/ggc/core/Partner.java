@@ -2,9 +2,10 @@ package ggc.core;
 
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.io.Serializable;
 import java.lang.*;
 
-public class Partner implements Comparable<Partner>{
+public class Partner implements Comparable<Partner>, Serializable{
     private String _name;
     private String _id;
     private String _address;

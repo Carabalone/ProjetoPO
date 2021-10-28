@@ -1,8 +1,9 @@
 package ggc.core;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class SaleByCredit extends Sale{
+public class SaleByCredit extends Sale implements Serializable{
     private Date _deadline;
     private double _ammountPaid;
 

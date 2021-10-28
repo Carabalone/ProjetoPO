@@ -1,7 +1,8 @@
 package ggc.core;
 
+import java.io.Serializable;
 import java.util.*;
-public class SimpleProduct extends Product {
+public class SimpleProduct extends Product implements Serializable{
 
 	public SimpleProduct(String id) {
 		super(id);

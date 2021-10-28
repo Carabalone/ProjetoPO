@@ -1,8 +1,10 @@
 package ggc.core;
 
+import java.io.Serializable;
+
 import ggc.app.exception.InvalidDateException;
 
-public class Date{
+public class Date  implements Serializable{
     private int _days;
     private static int _now;
 

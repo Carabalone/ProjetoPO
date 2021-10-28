@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import java.util.*;
+import java.io.*;
+import java.util.zip.*;
 
 import ggc.app.exception.DuplicatePartnerKeyException;
 import ggc.app.exception.InvalidDateException;
@@ -28,6 +30,8 @@ public class WarehouseManager {
   /** The warehouse itself. */
   private Warehouse _warehouse = new Warehouse();
 
+  private boolean alteredSinceLastSave = false;
+
   //FIXME define other attributes
   //FIXME define constructor(s)
   //FIXME define other methods
@@ -41,6 +45,7 @@ public class WarehouseManager {
       throw new InvalidDateInputException(days);
     }
     Date.addNow(days);
+    alteredSinceLastSave = true;
   }
 
   public int displayGlobalBalance(){
@@ -53,6 +58,7 @@ public class WarehouseManager {
     }
     Partner partner = new Partner(name, id, adress);
     _warehouse.addPartner(partner);
+    alteredSinceLastSave = true;
   }
 
   public String showPartner(String id) throws NoSuchPartnerException{
@@ -87,6 +93,14 @@ public class WarehouseManager {
     return stringBatches;
   }
 
+  public boolean alteredSinceLastSave(){
+    return alteredSinceLastSave;
+  }
+
+  public String getFileName(){
+    return new String(_filename);
+  }
+
   /**
    * @@throws IOException
    * @@throws FileNotFoundException
@@ -94,6 +108,16 @@ public class WarehouseManager {
    */
   public void save() throws IOException, FileNotFoundException, MissingFileAssociationException {
     //FIXME implement serialization method
+    ObjectOutputStream obOut = null;
+    try {
+      FileOutputStream fpout = new FileOutputStream(_filename);
+      DeflaterOutputStream dOut = new DeflaterOutputStream(fpout);
+      obOut = new ObjectOutputStream(dOut);
+      obOut.writeObject(_warehouse);
+    } finally {
+      if (obOut != null)
+        obOut.close();
+      }
   }
 
   /**
