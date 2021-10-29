@@ -3,10 +3,6 @@ import java.util.*;
 
 import java.io.Serializable;
 
-public class Batch implements Serializable{
-
-	private double _totalPrice;
-
 public class Batch implements Comparable<Batch>, Serializable{
 
 	private double _totalPrice;
@@ -25,23 +21,21 @@ public class Batch implements Comparable<Batch>, Serializable{
 
 	public double getPrice(){
 		return _totalPrice;
+	}
 
 	public double getUnitPrice(){
 		return _unitPrice;
+	}
 
 	public int compareTo(Batch b){
-        int equal = _product.getSupplier().getId().compareTo(b.getProduct().getSupplier().getId());
+        int equal = _product.getId().compareTo(b.getSupplier().getId());
         if (equal != 0)
         	return equal;
-        equal = _product.getPrice().compareTo(b.getProduct().getPrice());
+        equal = _totalPrice.compareTo(b.getPrice());
         if (equal != 0)
         	return equal;
-        return _product.getAvailableQuantity().compareTo(b.getProduct().getAvailableQuantity());
+        return _quantity.compareTo(b.getAvailableQuantity());
     }
-
-	public double getPrice(){
-		return _totalPrice;
-	} 
 
 	public int getAvailableQuantity(){
 		return _quantity;
