@@ -15,8 +15,7 @@ class DoShowGlobalBalance extends Command<WarehouseManager> {
 
   @Override
   public final void execute() throws CommandException {
-    //TODO exception
-    
+    //FIXME implement command    
   }
   
 }

@@ -18,7 +18,6 @@ class DoAdvanceDate extends Command<WarehouseManager> {
 
   }
 
-  //TODO exceptions
   @Override
   public final void execute() throws CommandException {
     Integer number = integerField("number");

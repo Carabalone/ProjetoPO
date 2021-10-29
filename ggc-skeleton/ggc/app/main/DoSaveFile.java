@@ -25,7 +25,6 @@ class DoSaveFile extends Command<WarehouseManager> {
 
   @Override
   public final void execute() throws CommandException {
-    //FIXME implement command and create a local Form
     if (_receiver.alteredSinceLastSave()){
       try{
         if (_receiver.getFileName().equals("")){

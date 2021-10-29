@@ -5,7 +5,6 @@ import pt.tecnico.uilib.menus.CommandException;
 import ggc.core.WarehouseManager;
 
 import java.util.*;
-//FIXME import classes
 
 /**
  * Show all partners.

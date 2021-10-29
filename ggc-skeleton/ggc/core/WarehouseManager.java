@@ -163,7 +163,7 @@ public class WarehouseManager {
   public void importFile(String textfile) throws ImportFileException {
     try {
       _warehouse.importFile(textfile);
-    } catch (IOException | BadEntryException /* FIXME maybe other exceptions */ e) {
+    } catch (IOException | BadEntryException e) {
       throw new ImportFileException(textfile, e);
     }
   }

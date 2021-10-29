@@ -41,8 +41,6 @@ public class SimpleProduct extends Product implements Serializable{
 			}
 
 			quantity -= bt.getAvailableQuantity();
-			//price += (bt.getAvailableQuantity() * bt.getUnitPrice());
-			//bt.getSupplier().removeBatch(bt);
 			it.remove();
 
 		}

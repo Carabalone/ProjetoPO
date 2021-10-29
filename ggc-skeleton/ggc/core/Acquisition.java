@@ -9,7 +9,6 @@ public class Acquisition extends Transaction implements Serializable{
         _partner = intPart;
 
     }
-    //TODO
     public String toString(){
         return "TODO";
     }

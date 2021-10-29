@@ -16,7 +16,6 @@ public class Warehouse implements Serializable {
   /** Serial number for serialization. */
   private static final long serialVersionUID = 202109192006L;
 
-  // FIXME define attributes
   private Date _date = Date.now();
   private int _nextTransactionId = 0;
   private TreeSet<Product> _products;
@@ -80,13 +79,13 @@ public class Warehouse implements Serializable {
   protected int getBalance(){
     return (int) Math.round(_balance);
   }
-  
+
   /**
    * @param txtfile filename to be loaded.
    * @throws IOException
    * @throws BadEntryException
    */
-  void importFile(String txtfile) throws IOException, BadEntryException{ /* FIXME maybe other exceptions */
+  void importFile(String txtfile) throws IOException, BadEntryException{
     File impfile = new File(txtfile);
     Scanner sc = new Scanner(impfile);
     List<String> initialData = new ArrayList();
