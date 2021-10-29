@@ -29,9 +29,7 @@ public class Recipe implements Serializable{
 	public String toString() {
 		String recipeStr = "";
 		for (Component cmp : _components) {
-			recipeStr += cmp.toString();
-			if (cmp.hasNext())
-				recipeStr += "#";
+			recipeStr += cmp.toString() + "#";
 		}
 		return recipeStr.substring(0, recipeStr.length() - 1);
 	}
