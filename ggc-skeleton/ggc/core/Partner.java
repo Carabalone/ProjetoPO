@@ -32,10 +32,12 @@ public class Partner implements Comparable<Partner>, Serializable{
         _salesValue = 0.0;
     }
 
+
     public int compareTo(Partner p){
         return _id.compareTo(p.getId());
     }
 
+    
     public String getId(){
         return _id;
     }

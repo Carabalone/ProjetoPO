@@ -25,7 +25,6 @@ public class Warehouse implements Serializable {
   private double _balance;
 
 
-  // FIXME define contructor(s)
   protected Warehouse(){
     _products = new TreeSet();
     _partners = new TreeSet();
@@ -81,6 +80,7 @@ public class Warehouse implements Serializable {
   protected int getBalance(){
     return (int) Math.round(_balance);
   }
+  
   /**
    * @param txtfile filename to be loaded.
    * @throws IOException

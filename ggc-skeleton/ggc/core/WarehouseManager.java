@@ -30,16 +30,16 @@ public class WarehouseManager {
   /** The warehouse itself. */
   private Warehouse _warehouse = new Warehouse();
 
+  /* Variable that controls if any change has been made since last Save */
   private boolean alteredSinceLastSave = false;
-
-  //FIXME define other attributes
-  //FIXME define constructor(s)
-  //FIXME define other methods
 
   public int displayDate(){
     return Date.showNow();
   }
 
+  /*
+  * @@throws InvalidDateInputException
+  */
   public void advanceDate(int days) throws InvalidDateInputException{
     if (days < 0){
       throw new InvalidDateInputException(days);
@@ -52,6 +52,9 @@ public class WarehouseManager {
     return _warehouse.getBalance();
   }
 
+  /*
+  * @@throws DuplicatePartnerIdException
+  */
   public void addPartner(String name, String id, String adress) throws DuplicatePartnerIdException{
     if (_warehouse.getPartner(id) != null){
       throw new DuplicatePartnerIdException(id);
@@ -61,6 +64,9 @@ public class WarehouseManager {
     alteredSinceLastSave = true;
   }
 
+  /*
+  * @@throws NoSuchPartnerException
+  */
   public String showPartner(String id) throws NoSuchPartnerException{
     Partner p = _warehouse.getPartner(id);
     if (p == null){
@@ -93,6 +99,7 @@ public class WarehouseManager {
     return stringBatches;
   }
 
+
   public boolean alteredSinceLastSave(){
     return alteredSinceLastSave;
   }
@@ -107,7 +114,6 @@ public class WarehouseManager {
    * @@throws MissingFileAssociationException
    */
   public void save() throws IOException, FileNotFoundException, MissingFileAssociationException {
-    //FIXME implement serialization method
     ObjectOutputStream obOut = null;
     try {
       FileOutputStream fpout = new FileOutputStream(_filename);
