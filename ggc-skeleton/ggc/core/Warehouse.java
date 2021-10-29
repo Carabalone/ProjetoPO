@@ -62,12 +62,12 @@ public class Warehouse implements Serializable {
     return null;
   }
 
-  protected List<Partner> getPartners(){
-    return new ArrayList(_partners);
+  protected TreeSet<Partner> getPartners(){
+    return new TreeSet(_partners);
   }
 
-  protected List<Product> getProducts(){
-    return new ArrayList(_products);
+  protected TreeSet<Product> getProducts(){
+    return new TreeSet(_products);
   }
 
   protected List<Batch> getBatches(){

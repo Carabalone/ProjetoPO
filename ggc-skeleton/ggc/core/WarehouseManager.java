@@ -114,6 +114,7 @@ public class WarehouseManager {
       DeflaterOutputStream dOut = new DeflaterOutputStream(fpout);
       obOut = new ObjectOutputStream(dOut);
       obOut.writeObject(_warehouse);
+      obOut.writeObject(Date.now());
     } finally {
       if (obOut != null)
         obOut.close();
@@ -142,6 +143,7 @@ public class WarehouseManager {
       InflaterInputStream inflateIn = new InflaterInputStream(fpin);
       obIn = new ObjectInputStream(inflateIn);
       _warehouse = (Warehouse)obIn.readObject();
+      Date data = (Date)obIn.readObject();
     } finally {
       if (obIn != null)
       obIn.close();

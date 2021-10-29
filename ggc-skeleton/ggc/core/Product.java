@@ -19,6 +19,7 @@ public abstract class Product implements Comparable<Product>, Serializable{
 	}
 
 	public int compareTo(Product p){
+		System.out.print("comparador: " + _id.compareTo(p.getId()));
         return _id.compareTo(p.getId());
     }
 
