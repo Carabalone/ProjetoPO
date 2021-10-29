@@ -23,18 +23,14 @@ public class Batch implements Comparable<Batch>, Serializable{
 		return _totalPrice;
 	}
 
-	public double getUnitPrice(){
-		return _unitPrice;
-	}
-
 	public int compareTo(Batch b){
         int equal = _product.getId().compareTo(b.getSupplier().getId());
         if (equal != 0)
         	return equal;
-        equal = _totalPrice.compareTo(b.getPrice());
+        equal = Double.compare(_totalPrice, b.getPrice());
         if (equal != 0)
         	return equal;
-        return _quantity.compareTo(b.getAvailableQuantity());
+        return Double.compare(_quantity, b.getAvailableQuantity());
     }
 
 	public int getAvailableQuantity(){
