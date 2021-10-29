@@ -2,8 +2,9 @@ package ggc.core;
 
 import java.io.Serializable;
 import java.util.*;
+//import java.lang.*;
 
-public abstract class Product implements Serializable{
+public abstract class Product implements Comparable<Product>, Serializable{
 	
 	private double _maxPrice;
 	private double _lowestPrice;
@@ -16,6 +17,10 @@ public abstract class Product implements Serializable{
 		_lowestPrice = 0;
 		_batches = new ArrayList();
 	}
+
+	public int compareTo(Product p){
+        return _id.compareTo(p.getId());
+    }
 
 	public ArrayList<Batch> getBatches(){
 		return new ArrayList(_batches);

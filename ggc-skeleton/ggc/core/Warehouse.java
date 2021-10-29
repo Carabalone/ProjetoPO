@@ -19,7 +19,7 @@ public class Warehouse implements Serializable {
   // FIXME define attributes
   private Date _date = Date.now();
   private int _nextTransactionId = 0;
-  private List<Product> _products;
+  private TreeSet<Product> _products;
   private TreeSet<Partner> _partners;
   private List<Transaction> _transactions;
   private double _balance;
@@ -27,7 +27,7 @@ public class Warehouse implements Serializable {
 
   // FIXME define contructor(s)
   protected Warehouse(){
-    _products = new ArrayList();
+    _products = new TreeSet();
     _partners = new TreeSet();
     _transactions = new ArrayList();
     _balance = 0;
