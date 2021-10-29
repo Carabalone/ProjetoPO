@@ -5,6 +5,10 @@ import pt.tecnico.uilib.menus.CommandException;
 import ggc.core.WarehouseManager;
 //FIXME import classes
 
+import ggc.core.exception.UnavailableFileException;
+import ggc.app.exception.FileOpenFailedException;
+import java.io.IOException;
+
 /**
  * Open existing saved state.
  */
@@ -17,14 +21,16 @@ class DoOpenFile extends Command<WarehouseManager> {
   }
 
   @Override
-  public final void execute() throws CommandException {
+  public final void execute() throws CommandException, FileOpenFailedException {
     try {
-      String filename = StringField("filename");
+      String filename = stringField("filename");
       _receiver.load(filename);
     } catch (UnavailableFileException ufe) {
       throw new FileOpenFailedException(ufe.getFilename());
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
+    } catch (IOException ex) {
+      ex.printStackTrace();
     }
   }
 

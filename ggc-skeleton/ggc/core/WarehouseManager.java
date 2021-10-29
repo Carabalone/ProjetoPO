@@ -135,13 +135,13 @@ public class WarehouseManager {
    * @@param filename
    * @@throws UnavailableFileException
    */
-  public void load(String filename) throws UnavailableFileException, ClassNotFoundException  {
+  public void load(String filename) throws UnavailableFileException, ClassNotFoundException, IOException  {
     ObjectInputStream obIn = null;
     try {
-      FileInputStream fpin = new FileInputStream(inputFilename);
+      FileInputStream fpin = new FileInputStream(filename);
       InflaterInputStream inflateIn = new InflaterInputStream(fpin);
       obIn = new ObjectInputStream(inflateIn);
-      _warehouse = obIn.readObject();
+      _warehouse = (Warehouse)obIn.readObject();
     } finally {
       if (obIn != null)
       obIn.close();
