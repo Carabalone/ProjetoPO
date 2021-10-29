@@ -4,6 +4,7 @@ import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import pt.tecnico.uilib.forms.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import ggc.core.WarehouseManager;
@@ -39,7 +40,7 @@ class DoSaveFile extends Command<WarehouseManager> {
       } catch (IOException ex){
         ex.printStackTrace();
       } catch (MissingFileAssociationException ex){
-        _display.popup("erro");
+        _display.popup("error (FIXME-> resolve exception)");
       }
 
     }
