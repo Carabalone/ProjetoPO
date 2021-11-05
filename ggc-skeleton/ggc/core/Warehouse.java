@@ -53,7 +53,7 @@ public class Warehouse implements Serializable {
 
   protected Partner getPartner(String id){
     for (Partner partner: _partners){
-      if(partner.getId().equals(id)){
+      if(partner.getId().compareToIgnoreCase(id) == 0){
         return partner;
       }
     }
