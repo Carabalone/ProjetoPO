@@ -3,6 +3,7 @@ package ggc.core;
 //FIXME import classes (cannot import from pt.tecnico or ggc.app)
 
 import java.io.Serializable;
+import java.nio.file.FileSystemNotFoundException;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
@@ -143,7 +144,7 @@ public class WarehouseManager {
    * @@param filename
    * @@throws UnavailableFileException
    */
-  public void load(String filename) throws UnavailableFileException, ClassNotFoundException, IOException  {
+  public void load(String filename) throws UnavailableFileException, ClassNotFoundException, UnavailableFileException, IOException  {
     ObjectInputStream obIn = null;
     try {
       FileInputStream fpin = new FileInputStream(filename);
@@ -151,6 +152,8 @@ public class WarehouseManager {
       obIn = new ObjectInputStream(inflateIn);
       _warehouse = (Warehouse)obIn.readObject();
       Date data = (Date)obIn.readObject();
+    } catch (FileNotFoundException ex){
+      throw new UnavailableFileException(filename);
     } finally {
       if (obIn != null){
         obIn.close();
@@ -163,10 +166,10 @@ public class WarehouseManager {
    * @param textfile
    * @throws ImportFileException
    */
-  public void importFile(String textfile) throws ImportFileException {
+  public void importFile(String textfile) throws ImportFileException{
     try {
       _warehouse.importFile(textfile);
-    } catch (IOException | BadEntryException e) {
+    }catch (IOException | BadEntryException e) {
       throw new ImportFileException(textfile, e);
     }
   }
