@@ -7,6 +7,8 @@ import ggc.core.WarehouseManager;
 
 import ggc.core.exception.UnavailableFileException;
 import ggc.app.exception.FileOpenFailedException;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -27,7 +29,7 @@ class DoOpenFile extends Command<WarehouseManager> {
       _receiver.load(filename);
     } catch (UnavailableFileException ufe) {
       throw new FileOpenFailedException(ufe.getFilename());
-    } catch (ClassNotFoundException e) {
+    }catch (ClassNotFoundException e) {
       e.printStackTrace();
     } catch (IOException ex) {
       ex.printStackTrace();
