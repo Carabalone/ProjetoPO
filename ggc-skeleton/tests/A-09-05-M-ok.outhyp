@@ -17,7 +17,7 @@ Escolha uma opção: Gestão de Parceiros
 5 - Mostrar compras com parceiro
 6 - Mostrar vendas (e desagregações) com parceiro
 0 - Sair
-Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
+Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
 1 - Mostrar parceiro
 2 - Mostrar parceiros
 3 - Registar parceiro
@@ -25,8 +25,7 @@ Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do p
 5 - Mostrar compras com parceiro
 6 - Mostrar vendas (e desagregações) com parceiro
 0 - Sair
-Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Registar parceiro: Operação inválida: O parceiro 'we' já existe.
-Gestão de Parceiros
+Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
 1 - Mostrar parceiro
 2 - Mostrar parceiros
 3 - Registar parceiro
@@ -34,7 +33,7 @@ Gestão de Parceiros
 5 - Mostrar compras com parceiro
 6 - Mostrar vendas (e desagregações) com parceiro
 0 - Sair
-Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
+Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
 1 - Mostrar parceiro
 2 - Mostrar parceiros
 3 - Registar parceiro
@@ -42,7 +41,7 @@ Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do p
 5 - Mostrar compras com parceiro
 6 - Mostrar vendas (e desagregações) com parceiro
 0 - Sair
-Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
+Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
 1 - Mostrar parceiro
 2 - Mostrar parceiros
 3 - Registar parceiro
@@ -56,9 +55,10 @@ CCCCCCCCP1|Lages do Chão|Lisboa, Portugal|NORMAL|0|0|0|0
 DDDDDDP3|ObBrian Rocks|Koln, Germany|NORMAL|0|0|0|0
 EEEEEER2|Jorge Figueiredo|Lisboa, Portugal|NORMAL|0|0|0|0
 EFFFFF4|Filomena Figueiredo|Lisboa, Portugal|NORMAL|0|0|0|0
-nos|WEWE|nos|NORMAL|0|0|0|0
-nos 2|WewE|nos 2|NORMAL|0|0|0|0
-we|aaAAS1|we|NORMAL|0|0|0|0
+WEWE|nos|nos|NORMAL|0|0|0|0
+WewE|nos 2|nos 2|NORMAL|0|0|0|0
+aaAAS1|we|we|NORMAL|0|0|0|0
+ddddddp3|we|we|NORMAL|0|0|0|0
 wewe|Cristiano Ronaldo|Lisboa, Portugal|NORMAL|0|0|0|0
 Gestão de Parceiros
 1 - Mostrar parceiro

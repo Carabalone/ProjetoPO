@@ -13,15 +13,15 @@ class DoRegisterPartner extends Command<WarehouseManager> {
 
   DoRegisterPartner(WarehouseManager receiver) {
     super(Label.REGISTER_PARTNER, receiver);
-    addStringField("name", Message.requestPartnerName());
     addStringField("id", Message.requestPartnerKey());
+    addStringField("name", Message.requestPartnerName());
     addStringField("adress", Message.requestPartnerAddress()); 
   }
 
   @Override
   public void execute() throws CommandException {
-    String name = stringField("name");
     String id = stringField("id");
+    String name = stringField("name");
     String adress = stringField("adress");
     try{
       _receiver.addPartner(name, id, adress);

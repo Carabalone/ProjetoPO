@@ -1,73 +1,5 @@
 *** tests/A-09-06-M-ok.out	2021-10-14 18:14:02.630747800 -0300
---- tests/A-09-06-M-ok.outhyp	2021-11-05 14:27:07.770523300 -0300
-***************
-*** 17,23 ****
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
---- 17,23 ----
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
-***************
-*** 25,31 ****
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
---- 25,31 ----
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
-***************
-*** 33,39 ****
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
---- 33,39 ----
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
-***************
-*** 41,47 ****
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Identificador do parceiro: Nome do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
---- 41,47 ----
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Nome do parceiro: Identificador do parceiro: Endereço do parceiro: Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-  3 - Registar parceiro
+--- tests/A-09-06-M-ok.outhyp	2021-11-05 14:36:51.023224000 -0300
 ***************
 *** 49,63 ****
   5 - Mostrar compras com parceiro
@@ -95,9 +27,9 @@
   DDDDDDP3|ObBrian Rocks|Koln, Germany|NORMAL|0|0|0|0
   EEEEEER2|Jorge Figueiredo|Lisboa, Portugal|NORMAL|0|0|0|0
   EFFFFF4|Filomena Figueiredo|Lisboa, Portugal|NORMAL|0|0|0|0
-+ aa|aaaaaaaaaaaaa|aa|NORMAL|0|0|0|0
-+ de de|dede|de@de|NORMAL|0|0|0|0
-+ ee EE|eeEE|e@e|NORMAL|0|0|0|0
++ aaaaaaaaaaaaa|aa|aa|NORMAL|0|0|0|0
++ dede|de de|de@de|NORMAL|0|0|0|0
++ eeEE|ee EE|e@e|NORMAL|0|0|0|0
   yyy|yyy|yyyyyy|NORMAL|0|0|0|0
   Gestão de Parceiros
   1 - Mostrar parceiro
