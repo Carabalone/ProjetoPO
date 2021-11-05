@@ -1,0 +1,29 @@
+*** tests/A-03-05-M-ok.out	2021-10-15 15:23:37.099607100 -0300
+--- tests/A-03-05-M-ok.outhyp	2021-11-05 13:56:13.811010100 -0300
+***************
+*** 16,27 ****
+  4 - Visualizar lotes de um dado produto
+  0 - Sair
+  Escolha uma opção: HIDROGENIO|200|5000
+- lata|100|100
+- papel|100|50
+- pedra|150|100
+  ROLHA|2000|500
+  SAL|1000|500
+  VIDRO|1000|500
+  Gestão de Produtos
+  1 - Visualizar todos os produtos
+  2 - Visualizar todos os lotes
+--- 16,27 ----
+  4 - Visualizar lotes de um dado produto
+  0 - Sair
+  Escolha uma opção: HIDROGENIO|200|5000
+  ROLHA|2000|500
+  SAL|1000|500
+  VIDRO|1000|500
++ lata|100|100
++ papel|100|50
++ pedra|150|100
+  Gestão de Produtos
+  1 - Visualizar todos os produtos
+  2 - Visualizar todos os lotes

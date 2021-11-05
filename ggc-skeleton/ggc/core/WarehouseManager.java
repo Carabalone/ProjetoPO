@@ -31,7 +31,7 @@ public class WarehouseManager {
   private Warehouse _warehouse = new Warehouse();
 
   /* Variable that controls if any change has been made since last Save */
-  private boolean alteredSinceLastSave = false;
+  private boolean _alteredSinceLastSave = false;
 
   public int displayDate(){
     return Date.showNow();
@@ -45,7 +45,7 @@ public class WarehouseManager {
       throw new InvalidDateInputException(days);
     }
     Date.addNow(days);
-    alteredSinceLastSave = true;
+    _alteredSinceLastSave = true;
   }
 
   public int displayGlobalBalance(){
@@ -61,7 +61,7 @@ public class WarehouseManager {
     }
     Partner partner = new Partner(name, id, adress);
     _warehouse.addPartner(partner);
-    alteredSinceLastSave = true;
+    _alteredSinceLastSave = true;
   }
 
   /*
@@ -101,7 +101,7 @@ public class WarehouseManager {
 
 
   public boolean alteredSinceLastSave(){
-    return alteredSinceLastSave;
+    return _alteredSinceLastSave;
   }
 
   public String getFileName(){
@@ -124,6 +124,7 @@ public class WarehouseManager {
     } finally {
       if (obOut != null)
         obOut.close();
+        _alteredSinceLastSave = false;
       }
   }
 
@@ -151,8 +152,10 @@ public class WarehouseManager {
       _warehouse = (Warehouse)obIn.readObject();
       Date data = (Date)obIn.readObject();
     } finally {
-      if (obIn != null)
-      obIn.close();
+      if (obIn != null){
+        obIn.close();
+      }
+      _alteredSinceLastSave = true;
     }
   }
 

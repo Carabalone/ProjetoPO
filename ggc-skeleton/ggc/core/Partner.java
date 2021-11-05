@@ -23,7 +23,7 @@ public class Partner implements Comparable<Partner>, Serializable{
         _name = name;
         _address = adress;
         _points = 0.0;
-        _status = "Normal";
+        _status = "NORMAL";
         _acquisition = new ArrayList();
         _sales = new ArrayList();
         _batches = new ArrayList();
@@ -45,8 +45,8 @@ public class Partner implements Comparable<Partner>, Serializable{
     //TODO round up last values
     @Override
     public String toString(){
-        return String.format("%s|%s|%s|%d|%s|%d|%d|%d", _id,_name,_address, _points.intValue(),
-                                                        _status, _acquisitionsValue.intValue(),
+        return String.format("%s|%s|%s|%s|%d|%d|%d|%d", _id,_name,_address, _status,
+                                                        _points.intValue(), _acquisitionsValue.intValue(),
                                                         _acquisitionsValue.intValue(),
                                                         _acquisitionsValue.intValue());
     }

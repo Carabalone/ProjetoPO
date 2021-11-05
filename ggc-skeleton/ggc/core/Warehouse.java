@@ -86,6 +86,7 @@ public class Warehouse implements Serializable {
    * @throws BadEntryException
    */
   void importFile(String txtfile) throws IOException, BadEntryException{
+    System.out.println("a text file é essa: " + txtfile);
     File impfile = new File(txtfile);
     Scanner sc = new Scanner(impfile);
     List<String> initialData = new ArrayList();

@@ -19,13 +19,13 @@ class DoSaveFile extends Command<WarehouseManager> {
   /** @param receiver */
   DoSaveFile(WarehouseManager receiver) {
     super(Label.SAVE, receiver);
-    if (receiver.alteredSinceLastSave())
-      addStringField("filename", Message.newSaveAs());
+    // if (_receiver.getFileName() == null)
+    //   addStringField("filename", Message.newSaveAs());
   }
 
   @Override
   public final void execute() throws CommandException {
-    if (_receiver.alteredSinceLastSave()){
+    if (_receiver.alteredSinceLastSave() || true){
       try{
         if (_receiver.getFileName().equals("")){
           Form form = new Form("filename");
