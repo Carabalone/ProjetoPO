@@ -31,7 +31,7 @@ public abstract class Product implements Comparable<Product>, Serializable{
    * @return negative number if this product comes before p, positive otherwise (0 if equal).
    */
 	public int compareTo(Product p){
-        return _id.compareTo(p.getId());
+        return _id.compareToIgnoreCase(p.getId());
     }
 
 	public ArrayList<Batch> getBatches(){

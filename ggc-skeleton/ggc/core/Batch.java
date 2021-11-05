@@ -33,10 +33,10 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @return negative number if this batch comes before b, positive otherwise.
    */
 	public int compareTo(Batch b){
-        int equal = _product.getId().compareTo(b.getProduct().getId());
+        int equal = _product.getId().compareToIgnoreCase(b.getProduct().getId());
         if (equal != 0)
         	return equal;
-        equal = _supplier.getId().compareTo(b.getSupplier().getId());
+        equal = _supplier.getId().compareToIgnoreCase(b.getSupplier().getId());
         if (equal != 0)
         	return equal;
         equal = Double.compare(_totalPrice, b.getPrice());
