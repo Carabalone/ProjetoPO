@@ -1,5 +1,5 @@
 *** tests/A-09-05-M-ok.out	2021-10-14 17:57:33.524779900 -0300
---- tests/A-09-05-M-ok.outhyp	2021-11-05 14:36:50.780620400 -0300
+--- tests/A-09-05-M-ok.outhyp	2021-11-05 14:43:08.792148700 -0300
 ***************
 *** 17,24 ****
   5 - Mostrar compras com parceiro
@@ -72,16 +72,3 @@
   1 - Mostrar parceiro
   2 - Mostrar parceiros
   3 - Registar parceiro
-***************
-*** 59,64 ****
---- 55,64 ----
-  DDDDDDP3|ObBrian Rocks|Koln, Germany|NORMAL|0|0|0|0
-  EEEEEER2|Jorge Figueiredo|Lisboa, Portugal|NORMAL|0|0|0|0
-  EFFFFF4|Filomena Figueiredo|Lisboa, Portugal|NORMAL|0|0|0|0
-+ WEWE|nos|nos|NORMAL|0|0|0|0
-+ WewE|nos 2|nos 2|NORMAL|0|0|0|0
-+ aaAAS1|we|we|NORMAL|0|0|0|0
-+ ddddddp3|we|we|NORMAL|0|0|0|0
-  wewe|Cristiano Ronaldo|Lisboa, Portugal|NORMAL|0|0|0|0
-  Gestão de Parceiros
-  1 - Mostrar parceiro

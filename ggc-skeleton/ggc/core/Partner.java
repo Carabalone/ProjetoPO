@@ -34,7 +34,7 @@ public class Partner implements Comparable<Partner>, Serializable{
 
 
     public int compareTo(Partner p){
-        return _id.compareTo(p.getId());
+        return _id.toLowerCase().compareTo(p.getId().toLowerCase());
     }
 
     
