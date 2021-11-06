@@ -21,9 +21,9 @@ class DoShowBatchesByPartner extends Command<WarehouseManager> {
     String id = stringField("partnerId");
     try {
       for (String b: _receiver.showBatchesPartner(id)) {
-      _display.addLine(batch);
+      _display.addLine(b);
       }
-    } catch (NoSuchPartnerExeption e) {
+    } catch (NoSuchPartnerException e) {
       throw new UnknownPartnerKeyException(id);
     }
     _display.display();
