@@ -45,6 +45,10 @@ public class Partner implements Comparable<Partner>, Serializable{
     public TreeSet<Batch> getBatches(){
         return new TreeSet(_batches);
     }
+
+    public void addBatch(Batch batch){
+        _batches.add(batch);
+    }
     
     //TODO round up last values
     @Override

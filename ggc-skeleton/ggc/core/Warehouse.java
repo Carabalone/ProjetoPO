@@ -112,7 +112,9 @@ public class Warehouse implements Serializable {
         }
 
           this.addProduct(newProduct);
-          newProduct.addBatch(new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, this.getPartner(tokens[2])));
+          Batch btc = new Batch(Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), newProduct, this.getPartner(tokens[2]));
+          newProduct.addBatch(btc);
+          getPartner(tokens[2]).addBatch(btc);
       }
     }
   }
