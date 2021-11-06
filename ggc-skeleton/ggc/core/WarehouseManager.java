@@ -87,9 +87,10 @@ public class WarehouseManager {
     return p;
   }
 
-  public List<String> showBatchesPartner(Partner supplier){
+  public List<String> showBatchesPartner(String id) throws NoSuchPartnerException{
     List stringBatches = new ArrayList();
-    for (Batch b : supplier.getBatches()) {
+    Partner p = getPartner(id);
+    for (Batch b : p.getBatches()) {
       stringBatches.add(b.toString());
     }
     return stringBatches;
