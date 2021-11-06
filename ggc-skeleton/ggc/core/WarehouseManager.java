@@ -133,7 +133,7 @@ public class WarehouseManager {
       DeflaterOutputStream dOut = new DeflaterOutputStream(fpout);
       obOut = new ObjectOutputStream(dOut);
       obOut.writeObject(_warehouse);
-      obOut.writeObject(Date.now());
+      obOut.writeObject((Integer) Date.showNow());
     } finally {
       if (obOut != null)
         obOut.close();
@@ -163,7 +163,9 @@ public class WarehouseManager {
       InflaterInputStream inflateIn = new InflaterInputStream(fpin);
       obIn = new ObjectInputStream(inflateIn);
       _warehouse = (Warehouse)obIn.readObject();
-      Date data = (Date)obIn.readObject();
+      int data = (Integer)obIn.readObject();
+      Date.addNow(data);
+      _filename = filename;
     } catch (FileNotFoundException ex){
       throw new UnavailableFileException(filename);
     } finally {
