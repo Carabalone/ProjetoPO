@@ -69,11 +69,7 @@ public class WarehouseManager {
   * @@throws NoSuchPartnerException
   */
   public String showPartner(String id) throws NoSuchPartnerException{
-    Partner p = _warehouse.getPartner(id);
-    if (p == null){
-      throw new NoSuchPartnerException(id);
-    }
-    return _warehouse.getPartner(id).toString();
+    return getPartner(id).toString();
   }
 
   public List<String> showPartners(){
@@ -82,6 +78,21 @@ public class WarehouseManager {
       partnerStrings.add(partner.toString());
     };
     return partnerStrings;
+  }
+
+  public Partner getPartner(String id) throws NoSuchPartnerException{
+    Partner p = _warehouse.getPartner(id);
+    if (p == null)
+      throw new NoSuchPartnerException(id);
+    return p;
+  }
+
+  public List<String> showBatchesPartner(Partner supplier){
+    List stringBatches = new ArrayList();
+    for (Batch b : supplier.getBatches()) {
+      stringBatches.add(b.toString());
+    }
+    return stringBatches;
   }
 
   public List<String> showAllProducts(){

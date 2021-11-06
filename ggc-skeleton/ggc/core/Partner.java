@@ -16,7 +16,7 @@ public class Partner implements Comparable<Partner>, Serializable{
     private Double _paidSalesValue;
     private List<Acquisition> _acquisition;
     private List<Sale> _sales;
-    private List<Batch> _batches;
+    private TreeSet<Batch> _batches;
 
     protected Partner(String name, String id, String adress){
         _id = id;
@@ -26,7 +26,7 @@ public class Partner implements Comparable<Partner>, Serializable{
         _status = "NORMAL";
         _acquisition = new ArrayList();
         _sales = new ArrayList();
-        _batches = new ArrayList();
+        _batches = new TreeSet();
         _acquisitionsValue = 0.0;
         _paidSalesValue = 0.0;
         _salesValue = 0.0;
@@ -40,6 +40,10 @@ public class Partner implements Comparable<Partner>, Serializable{
     
     public String getId(){
         return _id;
+    }
+
+    public TreeSet<Batch> getBatches(){
+        return new TreeSet(_batches);
     }
     
     //TODO round up last values
