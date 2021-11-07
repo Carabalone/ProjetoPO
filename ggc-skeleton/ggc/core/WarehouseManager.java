@@ -123,7 +123,7 @@ public class WarehouseManager {
     return stringBatches;
   }
 
-  public String getTransaction(int id) throws ArrayIndexOutOfBoundsException{
+  public String getTransaction(int id) throws IndexOutOfBoundsException{
     return _warehouse.getTransactions().get(id).toString();
   }
 

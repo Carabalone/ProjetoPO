@@ -21,7 +21,7 @@ public class DoShowTransaction extends Command<WarehouseManager> {
     String transaction;
     try{
       transaction = _receiver.getTransaction(id);
-    } catch (ArrayIndexOutOfBoundsException e){
+    } catch (IndexOutOfBoundsException e){
       throw new UnknownTransactionKeyException(id);
     }
     _display.display(transaction);
