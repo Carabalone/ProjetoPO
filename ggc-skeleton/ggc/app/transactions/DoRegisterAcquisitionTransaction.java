@@ -36,7 +36,7 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
 
     _receiver.addAcquisition(partner, product, price, amount);
     if (!_receiver.productExists(product))
-      _receiver.addProduct(product);
+      _receiver.addProduct(product, "SIMPLE");
     _receiver.newBatch(price, amount, product, partner);
   }
 

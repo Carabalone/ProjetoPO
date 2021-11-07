@@ -24,7 +24,8 @@ public class DoShowTransaction extends Command<WarehouseManager> {
     } catch (IndexOutOfBoundsException e){
       throw new UnknownTransactionKeyException(id);
     }
-    _display.display(transaction);
+    _display.addLine(transaction);
+    _display.display();
   }
 
 }

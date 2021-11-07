@@ -55,14 +55,15 @@ public class WarehouseManager {
     return false;
   }
 
-  public void addProduct(String id){
-    _warehouse.addProduct(new Product(id));
+  public void addProduct(String id, String type){
+    if(type.equals("SIMPLE"))
+      _warehouse.addProduct(new SimpleProduct(id));
   }
 
   public void newBatch(double price, int amount, String productId, String supplierId){
     Product pro = _warehouse.getProduct(productId);
     Partner sup = _warehouse.getPartner(supplierId);
-    Batch bat = new Batch(price, ammount, pro, sup);
+    Batch bat = new Batch(price, amount, pro, sup);
     pro.addBatch(bat);
     sup.addBatch(bat);
   }
@@ -110,7 +111,7 @@ public class WarehouseManager {
     return stringBatches;
   }
 
-  public List<String> showBatchesProduct(String id) throws BadEntryException{
+  public List<String> showBatchesProduct(String id){
     List stringBatches = new ArrayList();
     Product p = _warehouse.getProduct(id);
     for (Batch b : p.getBatches())
@@ -149,7 +150,7 @@ public class WarehouseManager {
 
   public void addAcquisition(String partner, String product, double price, int amount){
     Partner prt = _warehouse.getPartner(partner);
-    Acquisition acq = New Acquisition(_warehouse.getProduct(product), amount, price, prt)
+    Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
     prt.addAcquisition(acq);
   }
