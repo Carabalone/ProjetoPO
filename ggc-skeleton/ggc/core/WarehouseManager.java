@@ -114,6 +114,14 @@ public class WarehouseManager {
     return stringBatches;
   }
 
+  public List<String> showBatchesUnderGivenPrice(double price){
+    List stringBatches = new ArrayList();
+    for (Batch b : _warehouse.getBatches()){
+      if (b.getPrice() < price)
+        stringBatches.add(b.toString());
+    }
+  }
+
 
   public boolean alteredSinceLastSave(){
     return _alteredSinceLastSave;
