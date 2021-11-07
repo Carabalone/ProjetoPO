@@ -5,7 +5,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.io.Serializable;
 import java.lang.*;
 
-public class Partner implements Comparable<Partner>, Serializable{
+public class Partner implements Comparable<Partner>, Serializable, Observer{
     private String _name;
     private String _id;
     private String _address;
@@ -17,6 +17,7 @@ public class Partner implements Comparable<Partner>, Serializable{
     private List<Acquisition> _acquisition;
     private List<Sale> _sales;
     private TreeSet<Batch> _batches;
+    private List<Notification> _notifications;
 
     protected Partner(String name, String id, String adress){
         _id = id;
@@ -57,5 +58,9 @@ public class Partner implements Comparable<Partner>, Serializable{
                                                         _points.intValue(), _acquisitionsValue.intValue(),
                                                         _acquisitionsValue.intValue(),
                                                         _acquisitionsValue.intValue());
+    }
+
+    public void update(Notification n){
+        _notifications.add(n);
     }
 }

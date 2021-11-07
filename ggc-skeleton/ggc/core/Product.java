@@ -8,12 +8,14 @@ import java.util.*;
 * @see ggc.core.SimpleProduct
 * @see ggc.core.DerivedProduct
 */
-public abstract class Product implements Comparable<Product>, Serializable{
+public abstract class Product implements Comparable<Product>, Serializable, Subject{
 	
 	private double _maxPrice;
 	private double _lowestPrice;
 	private String _id;
 	private TreeSet<Batch> _batches;
+	//TODO we can substitute this arrayList to a HashMap, since we are going to be removing/adding partners a lot of times
+	private ArrayList<Observer> _observers;
 
 	/**
    * @param id Product Id.
@@ -53,6 +55,7 @@ public abstract class Product implements Comparable<Product>, Serializable{
 	public void updatePrices(double newPrice) {
 		if (newPrice < _lowestPrice) {
 			_lowestPrice = newPrice;
+			notify(Type.BARGAIN);
 		}
 		else if (newPrice > _maxPrice) {
 			_maxPrice = newPrice;
@@ -60,6 +63,9 @@ public abstract class Product implements Comparable<Product>, Serializable{
 	}
 
 	public void addBatch(Batch newBatch){
+		if (this.checkQuantity() == 0){
+			notify(Type.NEW);
+		}
 		_batches.add(newBatch);
 	}
 
@@ -92,5 +98,21 @@ public abstract class Product implements Comparable<Product>, Serializable{
    */
 	public String toString(){
 		return String.format("%s|%d|%d", _id, Math.round(_maxPrice), this.checkQuantity());
+	}
+
+	@Override
+	public void registerObserver(Observer o){
+		_observers.add(o);
+	}
+
+	public void unregisterObserver(Observer o){
+		_observers.remove(o);
+	}
+
+	public void notify(Type type){
+		Notification not = new Notification(type, this);
+		for (Observer obs: _observers){
+			obs.update(not);
+		}
 	}
 }
