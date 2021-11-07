@@ -17,7 +17,7 @@ public class Warehouse implements Serializable {
   private static final long serialVersionUID = 202109192006L;
 
   private Date _date = Date.now();
-  private int _nextTransactionId = 0;
+  private static int _nextTransactionId = 0;
   private TreeSet<Product> _products;
   private TreeSet<Partner> _partners;
   private List<Transaction> _transactions;
@@ -35,11 +35,11 @@ public class Warehouse implements Serializable {
     return new ArrayList(_transactions);
   }
 
-  protected int getNexTransactionId(){
+  protected static int getNextTransactionId(){
     return _nextTransactionId;
   }
 
-  protected void advanceTransactionId(){
+  protected static void advanceTransactionId(){
     _nextTransactionId += 1;
   }
 

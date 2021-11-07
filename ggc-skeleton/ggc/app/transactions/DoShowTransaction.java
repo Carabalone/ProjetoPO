@@ -18,8 +18,9 @@ public class DoShowTransaction extends Command<WarehouseManager> {
   @Override
   public final void execute() throws CommandException {
     Integer id = integerField("id");
+    String transaction;
     try{
-      String transaction = _receiver.getTransaction(id);
+      transaction = _receiver.getTransaction(id);
     } catch (ArrayIndexOutOfBoundsException e){
       throw new UnknownTransactionKeyException(id);
     }

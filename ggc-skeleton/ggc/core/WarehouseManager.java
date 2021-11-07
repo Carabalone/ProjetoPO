@@ -124,7 +124,7 @@ public class WarehouseManager {
   }
 
   public String getTransaction(int id) throws ArrayIndexOutOfBoundsException{
-    return _warehouse.getTransactions()[id].toString();
+    return _warehouse.getTransactions().get(id).toString();
   }
 
   public boolean alteredSinceLastSave(){
