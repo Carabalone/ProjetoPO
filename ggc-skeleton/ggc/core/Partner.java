@@ -54,12 +54,24 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     public void addAcquisition(Acquisition acq){
         _acquisitions.add(acq);
     }
+
+    public int getAcquisitionValue(){
+        double value = 0;
+        for (Acquisition a: _acquisitions){
+            value += a.getValue();
+        }
+        return (int) value;
+    }
+
+    public List<Acquisition> getAcquisitions(){
+        return new ArrayList(_acquisitions);
+    }
     
     //TODO round up last values
     @Override
     public String toString(){
         return String.format("%s|%s|%s|%s|%d|%d|%d|%d", _id,_name,_address, _status,
-                                                        _points.intValue(), _acquisitionsValue.intValue(),
+                                                        _points.intValue(), getAcquisitionValue(),
                                                         _acquisitionsValue.intValue(),
                                                         _acquisitionsValue.intValue());
     }

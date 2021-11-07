@@ -38,4 +38,16 @@ public abstract class Transaction implements Serializable{
     public String toString(){
         return String.format("%d|%s|%s|%d", _id, _partner.getId(), _product.getId(), _quantity);
     }
+
+    public int getId(){
+        return _id;
+    }
+
+    public Product getProduct(){
+        return _product;
+    }
+
+    public int getQuantity(){
+        return _quantity;
+    }
 }
