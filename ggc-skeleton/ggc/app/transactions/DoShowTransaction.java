@@ -3,7 +3,7 @@ package ggc.app.transactions;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import ggc.core.WarehouseManager;
-//FIXME import classes
+import ggc.app.exception.UnknownTransactionKeyException;
 
 /**
  * Show specific transaction.
@@ -12,12 +12,18 @@ public class DoShowTransaction extends Command<WarehouseManager> {
 
   public DoShowTransaction(WarehouseManager receiver) {
     super(Label.SHOW_TRANSACTION, receiver);
-    //FIXME maybe add command fields
+    addIntegerField("id", Message.requestTransactionKey());
   }
 
   @Override
   public final void execute() throws CommandException {
-    //FIXME implement command
+    Integer id = integerField("id");
+    try{
+      String transaction = _receiver.getTransaction(id);
+    } catch (ArrayIndexOutOfBoundsException e){
+      throw new UnknownTransactionKeyException(id);
+    }
+    _display.display(transaction);
   }
 
 }

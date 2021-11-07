@@ -31,6 +31,22 @@ public class Warehouse implements Serializable {
     _balance = 0;
   }
 
+  protected List<Transaction> getTransactions(){
+    return new ArrayList(_transactions);
+  }
+
+  protected int getNexTransactionId(){
+    return _nextTransactionId;
+  }
+
+  protected void advanceTransactionId(){
+    _nextTransactionId += 1;
+  }
+
+  protected void addTransaction(Transaction transaction){
+    _transactions.add(transaction);
+  }
+
   protected Product searchProduct(String id){
     for (Product p : _products){
       if (p.getId().equals(id))
@@ -45,10 +61,6 @@ public class Warehouse implements Serializable {
 
   protected void addProduct(Product product){
     _products.add(product);
-  }
-
-  protected void addTransaction(Transaction transaction){
-    _transactions.add(transaction);
   }
 
   protected Partner getPartner(String id){
