@@ -17,7 +17,7 @@ public class Warehouse implements Serializable {
   private static final long serialVersionUID = 202109192006L;
 
   private Date _date = Date.now();
-  private int _nextTransactionId = 0;
+  private static int _nextTransactionId = 0;
   private TreeSet<Product> _products;
   private TreeSet<Partner> _partners;
   private List<Transaction> _transactions;
@@ -29,6 +29,22 @@ public class Warehouse implements Serializable {
     _partners = new TreeSet();
     _transactions = new ArrayList();
     _balance = 0;
+  }
+
+  protected List<Transaction> getTransactions(){
+    return new ArrayList(_transactions);
+  }
+
+  protected static int getNextTransactionId(){
+    return _nextTransactionId;
+  }
+
+  protected static void advanceTransactionId(){
+    _nextTransactionId += 1;
+  }
+
+  protected void addTransaction(Transaction transaction){
+    _transactions.add(transaction);
   }
 
   protected Product searchProduct(String id){
@@ -47,10 +63,6 @@ public class Warehouse implements Serializable {
     _products.add(product);
   }
 
-  protected void addTransaction(Transaction transaction){
-    _transactions.add(transaction);
-  }
-
   protected Partner getPartner(String id){
     for (Partner partner: _partners){
       if(partner.getId().compareToIgnoreCase(id) == 0){
@@ -64,12 +76,12 @@ public class Warehouse implements Serializable {
     return new TreeSet(_partners);
   }
 
-  protected Product getProduct(String id) throws BadEntryException{
+  protected Product getProduct(String id){
     for (Product product: _products){
       if(product.getId().compareToIgnoreCase(id) == 0)
         return product;
     }
-    throw new BadEntryException(id);
+    return null;
   }
 
   protected TreeSet<Product> getProducts(){

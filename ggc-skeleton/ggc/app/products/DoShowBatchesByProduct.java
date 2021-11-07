@@ -19,12 +19,12 @@ class DoShowBatchesByProduct extends Command<WarehouseManager> {
   @Override
   public final void execute() throws CommandException {
     String id = stringField("productId");
-    try {
-      for (String batch: _receiver.showBatchesProduct(id)) {
-        _display.addLine(batch);
-      }
-    } catch (BadEntryException e) {
+
+    if (!_receiver.productExists(id))
       throw new UnknownProductKeyException(id);
+    
+    for (String batch: _receiver.showBatchesProduct(id)) {
+      _display.addLine(batch);
     }
     _display.display();
   }

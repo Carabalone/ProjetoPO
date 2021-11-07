@@ -47,6 +47,27 @@ public class WarehouseManager {
     return _warehouse.getBalance();
   }
 
+  public boolean productExists(String id){
+    for (Product p : _warehouse.getProducts()){
+      if (id.compareToIgnoreCase(p.getId()) == 0)
+        return true;
+    }
+    return false;
+  }
+
+  public void addProduct(String id, String type){
+    if(type.equals("SIMPLE"))
+      _warehouse.addProduct(new SimpleProduct(id));
+  }
+
+  public void newBatch(double price, int amount, String productId, String supplierId){
+    Product pro = _warehouse.getProduct(productId);
+    Partner sup = _warehouse.getPartner(supplierId);
+    Batch bat = new Batch(price, amount, pro, sup);
+    pro.addBatch(bat);
+    sup.addBatch(bat);
+  }
+
   /*
   * @@throws DuplicatePartnerIdException
   */
@@ -90,7 +111,7 @@ public class WarehouseManager {
     return stringBatches;
   }
 
-  public List<String> showBatchesProduct(String id) throws BadEntryException{
+  public List<String> showBatchesProduct(String id){
     List stringBatches = new ArrayList();
     Product p = _warehouse.getProduct(id);
     for (Batch b : p.getBatches())
@@ -123,6 +144,16 @@ public class WarehouseManager {
     return stringBatches;
   }
 
+  public String getTransaction(int id) throws IndexOutOfBoundsException{
+    return _warehouse.getTransactions().get(id).toString();
+  }
+
+  public void addAcquisition(String partner, String product, double price, int amount){
+    Partner prt = _warehouse.getPartner(partner);
+    Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
+    _warehouse.addTransaction(acq);
+    prt.addAcquisition(acq);
+  }
 
   public boolean alteredSinceLastSave(){
     return _alteredSinceLastSave;
