@@ -14,7 +14,7 @@ public class Partner implements Comparable<Partner>, Serializable{
     private Double _acquisitionsValue;
     private Double _salesValue;
     private Double _paidSalesValue;
-    private List<Acquisition> _acquisition;
+    private List<Acquisition> _acquisitions;
     private List<Sale> _sales;
     private TreeSet<Batch> _batches;
 
@@ -24,7 +24,7 @@ public class Partner implements Comparable<Partner>, Serializable{
         _address = adress;
         _points = 0.0;
         _status = "NORMAL";
-        _acquisition = new ArrayList();
+        _acquisitions = new ArrayList();
         _sales = new ArrayList();
         _batches = new TreeSet();
         _acquisitionsValue = 0.0;
@@ -48,6 +48,10 @@ public class Partner implements Comparable<Partner>, Serializable{
 
     public void addBatch(Batch batch){
         _batches.add(batch);
+    }
+
+    public void addAcquisition(Acquisition acq){
+        _acquisitions.add(acq);
     }
     
     //TODO round up last values

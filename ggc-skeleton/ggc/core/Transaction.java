@@ -23,6 +23,8 @@ public abstract class Transaction implements Serializable{
         _product = product;
         _partner = partner;
         _paymentDate = null;
+        _id = Warehouse.getNextTransactionId();
+        Warehouse.advanceTransactionId();
     }
     //TODO
     public boolean isPaid(){
