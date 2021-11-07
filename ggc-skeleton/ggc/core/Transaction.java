@@ -30,6 +30,7 @@ public abstract class Transaction implements Serializable{
         return new Date(_paymentDate.getDay());
     }
 
+    @Override
     public String toString(){
         return String.format("%d|%s|%s|%d", _id, _partner.getId(), _product.getId(), _quantity);
     }
