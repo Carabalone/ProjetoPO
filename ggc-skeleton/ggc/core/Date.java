@@ -39,7 +39,11 @@ public class Date  implements Serializable{
     public static int showNow(){
         return Date._now;
     }
-    public int getDay(){ return _days;}
+    
+    public int getDay(){
+        return _days;
+    }
+
     public String toString(){
         return "Data: " + Date._now + " dias.";
     }

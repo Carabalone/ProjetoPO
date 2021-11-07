@@ -5,13 +5,17 @@ import java.util.*;
 
 public class SaleByCredit extends Sale implements Serializable{
     private Date _deadline;
-    private double _ammountPaid;
 
-    protected SaleByCredit(Product p, int quantity, Date deadline, Partner intPart){
-        super(p, quantity, intPart);
+    protected SaleByCredit(Product product, int quantity, Date deadline, Partner partner){
+        super(product, quantity, partner);
         _deadline = deadline;
     }
+
+    @Override
     public String toString(){
-        return "TODO";
+        if (getPaymentDate() != null)
+            return String.format("%s|%s|%d|%d", "VENDA", super.toString(), _deadline.getDay(), getPaymentDate().getDay());
+        else
+            return String.format("%s|%s|%d|%d", "VENDA", super.toString(), _deadline.getDay());
     }
 }

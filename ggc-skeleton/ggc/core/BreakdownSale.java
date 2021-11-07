@@ -4,12 +4,19 @@ import java.io.Serializable;
 import java.util.*;
 public class BreakdownSale extends Sale implements Serializable{
     private List<Batch> _batches;
-    protected BreakdownSale(Product p, int quantity, Partner intPart){
-        super(p, quantity, intPart);
+
+    protected BreakdownSale(Product product, int quantity, Partner partner){
+        super(product, quantity, partner);
         _batches = new ArrayList();
     }
+
+    //TODO add components field in the end
+    @Override
     public String toString(){
-        return "TODO";
+        if(getPaymentDate() != null)
+            return String.format("%s|%s|%d", "DESAGREGAÇÃO", super.toString(), getPaymentDate().getDay());
+        else
+            return String.format("%s|%s", "DESAGREGAÇÃO", super.toString());
     }
 
 }

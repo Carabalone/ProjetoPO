@@ -4,9 +4,16 @@ import java.io.Serializable;
 import java.nio.file.ProviderNotFoundException;
 
 public abstract class Sale extends Transaction implements Serializable{
-    Partner _partner;
-    protected Sale(Product p, int quantity, Partner intPart){
-        super(quantity, p);
-        _partner = intPart;
+
+    protected double _ammountPaid;
+
+    protected Sale(Product product, int quantity, Partner partner){
+        super(quantity, product, partner);
+        _ammountPaid = 0;
+    }
+
+    @Override
+    protected String toString(){
+        return String.format("%s|%d|%d", super.toString(), _baseValue, _ammountPaid);
     }
 }
