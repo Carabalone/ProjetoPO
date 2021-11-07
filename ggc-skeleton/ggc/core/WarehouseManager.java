@@ -96,6 +96,14 @@ public class WarehouseManager {
     return stringBatches;
   }
 
+  public List<String> showBatchesProduct(String id) throws BadEntryException{
+    List stringBatches = new ArrayList();
+    Product p = _warehouse.getProduct(id);
+    for (Batch b : p.getBatches())
+      stringBatches.add(b.toString());
+    return stringBatches;
+  }
+
   public List<String> showAllProducts(){
     List stringProducts = new ArrayList();
     for (Product pro : _warehouse.getProducts()) {

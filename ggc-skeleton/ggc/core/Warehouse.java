@@ -64,6 +64,14 @@ public class Warehouse implements Serializable {
     return new TreeSet(_partners);
   }
 
+  protected Product getProduct(String id) throws BadEntryException{
+    for (Product product: _products){
+      if(product.getId().compareToIgnoreCase(id) == 0)
+        return product;
+    }
+    throw new BadEntryException(id);
+  }
+
   protected TreeSet<Product> getProducts(){
     return new TreeSet(_products);
   }
