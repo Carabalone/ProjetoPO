@@ -11,12 +11,12 @@ public class DoLookupProductBatchesUnderGivenPrice extends Command<WarehouseMana
 
   public DoLookupProductBatchesUnderGivenPrice(WarehouseManager receiver) {
     super(Label.PRODUCTS_UNDER_PRICE, receiver);
-    addDoubleField("price", Prompt.requestPriceLimit());
+    addIntegerField("price", Message.requestPriceLimit());
   }
 
   @Override
   public void execute() throws CommandException {
-    double price = integerField("price");
+    Integer price = integerField("price");
     for (String batch : _receiver.showBatchesUnderGivenPrice(price))
       _display.addLine(batch);
     _display.display();

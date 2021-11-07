@@ -120,6 +120,7 @@ public class WarehouseManager {
       if (b.getPrice() < price)
         stringBatches.add(b.toString());
     }
+    return stringBatches;
   }
 
 
