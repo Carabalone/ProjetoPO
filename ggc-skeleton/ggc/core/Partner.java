@@ -16,7 +16,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     private Double _paidSalesValue;
     private List<Acquisition> _acquisitions;
     private List<Sale> _sales;
-    private TreeSet<Batch> _batches;
+    private Set<Batch> _batches;
     private List<Notification> _notifications;
 
     protected Partner(String name, String id, String adress){
@@ -25,9 +25,10 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _address = adress;
         _points = 0.0;
         _status = "NORMAL";
-        _acquisitions = new ArrayList();
-        _sales = new ArrayList();
-        _batches = new TreeSet();
+        _acquisitions = new ArrayList<>();
+        _sales = new ArrayList<>();
+        _batches = new TreeSet<>();
+        _notifications = new ArrayList<>();
         _acquisitionsValue = 0.0;
         _paidSalesValue = 0.0;
         _salesValue = 0.0;
@@ -43,8 +44,8 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return _id;
     }
 
-    public TreeSet<Batch> getBatches(){
-        return new TreeSet(_batches);
+    public Set<Batch> getBatches(){
+        return new TreeSet<>(_batches);
     }
 
     public void addBatch(Batch batch){
@@ -64,10 +65,13 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     }
 
     public List<Acquisition> getAcquisitions(){
-        return new ArrayList(_acquisitions);
+        return new ArrayList<>(_acquisitions);
+    }
+
+    public List<Notification> getNotifications(){
+        return _notifications;
     }
     
-    //TODO round up last values
     @Override
     public String toString(){
         return String.format("%s|%s|%s|%s|%d|%d|%d|%d", _id,_name,_address, _status,

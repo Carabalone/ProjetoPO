@@ -13,7 +13,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	private double _maxPrice;
 	private double _lowestPrice;
 	private String _id;
-	private TreeSet<Batch> _batches;
+	private Set<Batch> _batches;
 	//TODO we can substitute this arrayList to a HashMap, since we are going to be removing/adding partners a lot of times
 	private ArrayList<Observer> _observers;
 
@@ -24,7 +24,8 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		_id = id;
 		_maxPrice = 0;
 		_lowestPrice = 0;
-		_batches = new TreeSet();
+		_batches = new TreeSet<Batch>();
+		_observers = new ArrayList<>();
 	}
 
 	/**
@@ -36,8 +37,8 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
         return _id.compareToIgnoreCase(p.getId());
     }
 
-	public ArrayList<Batch> getBatches(){
-		return new ArrayList(_batches);
+	public List<Batch> getBatches(){
+		return new ArrayList<Batch>(_batches);
 	}
 
 	public String getId() {
@@ -48,16 +49,20 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		return _maxPrice;
 	}
 
+	public double getLowestPrice(){
+		return _lowestPrice;
+	}
+
 	/**
    * Checks if a new price is now the highest or lowest and updates it if it is.
    * @param newPrice price to check.
    */
 	public void updatePrices(double newPrice) {
-		if (newPrice < _lowestPrice) {
+		if (newPrice < _lowestPrice){
 			_lowestPrice = newPrice;
 			notify(Type.BARGAIN);
 		}
-		else if (newPrice > _maxPrice) {
+		else if (newPrice > _maxPrice){
 			_maxPrice = newPrice;
 		}
 	}
@@ -71,6 +76,15 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 
 	public void removeBatch(Batch emptyBatch){
 		_batches.remove(emptyBatch);
+		// prices are reseted so we when a new batch comes, the prices will be updated accordingly 
+		if(_batches.isEmpty()){
+			_lowestPrice = 0;
+			_maxPrice = 0;
+		}
+	}
+
+	public void addObserver(Observer o){
+		_observers.add(o);
 	}
 
 	/**

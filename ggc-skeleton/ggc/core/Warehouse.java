@@ -5,6 +5,8 @@ package ggc.core;
 import java.io.Serializable;
 import java.io.IOException;
 import ggc.core.exception.BadEntryException;
+import ggc.core.exception.NoSuchPartnerException;
+
 import java.util.*;
 import java.io.File;
 
@@ -25,14 +27,14 @@ public class Warehouse implements Serializable {
 
 
   protected Warehouse(){
-    _products = new TreeSet();
-    _partners = new TreeSet();
-    _transactions = new ArrayList();
+    _products = new TreeSet<Product>();
+    _partners = new TreeSet<Partner>();
+    _transactions = new ArrayList<Transaction>();
     _balance = 0;
   }
 
   protected List<Transaction> getTransactions(){
-    return new ArrayList(_transactions);
+    return new ArrayList<>(_transactions);
   }
 
   protected static int getNextTransactionId(){
@@ -57,6 +59,9 @@ public class Warehouse implements Serializable {
 
   protected void addPartner(Partner partner){
     _partners.add(partner);
+    for (Product p: _products){
+      p.addObserver(partner);
+    }
   }
 
   protected void addProduct(Product product){
@@ -72,8 +77,8 @@ public class Warehouse implements Serializable {
     return null;
   }
 
-  protected TreeSet<Partner> getPartners(){
-    return new TreeSet(_partners);
+  protected Set<Partner> getPartners(){
+    return new TreeSet<Partner>(_partners);
   }
 
   protected Product getProduct(String id){
@@ -84,12 +89,12 @@ public class Warehouse implements Serializable {
     return null;
   }
 
-  protected TreeSet<Product> getProducts(){
-    return new TreeSet(_products);
+  protected Set<Product> getProducts(){
+    return new TreeSet<Product>(_products);
   }
 
   protected List<Batch> getBatches(){
-    List<Batch> batches = new ArrayList();
+    List<Batch> batches = new ArrayList<>();
     for (Product p : _products){
       batches.addAll(p.getBatches());
     }
@@ -108,7 +113,7 @@ public class Warehouse implements Serializable {
   void importFile(String txtfile) throws IOException, BadEntryException{
     File impfile = new File(txtfile);
     Scanner sc = new Scanner(impfile);
-    List<String> initialData = new ArrayList();
+    List<String> initialData = new ArrayList<>();
 
     while (sc.hasNextLine())
       initialData.add(sc.nextLine());

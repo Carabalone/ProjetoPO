@@ -11,9 +11,6 @@ import java.util.*;
 import java.io.*;
 import java.util.zip.*;
 
-import ggc.app.exception.DuplicatePartnerKeyException;
-import ggc.app.exception.InvalidDateException;
-import ggc.app.exception.UnknownPartnerKeyException;
 import ggc.core.exception.*;
 
 /** Façade for access. */
@@ -60,9 +57,14 @@ public class WarehouseManager {
       _warehouse.addProduct(new SimpleProduct(id));
   }
 
-  public void newBatch(double price, int amount, String productId, String supplierId){
+  public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException, NoSuchProductException{
     Product pro = _warehouse.getProduct(productId);
     Partner sup = _warehouse.getPartner(supplierId);
+    if (sup == null){
+      throw new NoSuchPartnerException(supplierId);
+    } else if (pro == null){
+      throw new NoSuchProductException(productId);
+    }
     Batch bat = new Batch(price, amount, pro, sup);
     pro.addBatch(bat);
     sup.addBatch(bat);
@@ -88,7 +90,7 @@ public class WarehouseManager {
   }
 
   public List<String> showPartners(){
-    List partnerStrings = new ArrayList();
+    List<String> partnerStrings = new ArrayList<>();
     for (Partner partner : _warehouse.getPartners()) {
       partnerStrings.add(partner.toString());
     };
@@ -102,8 +104,19 @@ public class WarehouseManager {
     return p;
   }
 
+  public List<String> showNotificationStrings(String id) throws NoSuchPartnerException{
+    List <String> NotificationStrings = new ArrayList<>();
+    Partner p = _warehouse.getPartner(id);
+    if(p == null)
+      throw new NoSuchPartnerException(id);
+    for (Notification n: p.getNotifications()){
+      NotificationStrings.add(n.toString());
+    }
+    return NotificationStrings;
+  }
+
   public List<String> showBatchesPartner(String id) throws NoSuchPartnerException{
-    List stringBatches = new ArrayList();
+    List<String> stringBatches = new ArrayList<>();
     Partner p = getPartner(id);
     for (Batch b : p.getBatches()) {
       stringBatches.add(b.toString());
@@ -112,7 +125,7 @@ public class WarehouseManager {
   }
 
   public List<String> showBatchesProduct(String id){
-    List stringBatches = new ArrayList();
+    List<String> stringBatches = new ArrayList<>();
     Product p = _warehouse.getProduct(id);
     for (Batch b : p.getBatches())
       stringBatches.add(b.toString());
@@ -120,7 +133,7 @@ public class WarehouseManager {
   }
 
   public List<String> showAllProducts(){
-    List stringProducts = new ArrayList();
+    List<String> stringProducts = new ArrayList<>();
     for (Product pro : _warehouse.getProducts()) {
       stringProducts.add(pro.toString());
     }
@@ -128,7 +141,7 @@ public class WarehouseManager {
   }
 
   public List<String> showAllBatches(){
-    List stringBatches = new ArrayList();
+    List<String> stringBatches = new ArrayList<>();
     for (Batch bat : _warehouse.getBatches()) {
       stringBatches.add(bat.toString());
     }
@@ -136,7 +149,7 @@ public class WarehouseManager {
   }
 
   public List<String> showBatchesUnderGivenPrice(double price){
-    List stringBatches = new ArrayList();
+    List<String> stringBatches = new ArrayList<>();
     for (Batch b : _warehouse.getBatches()){
       if (b.getPrice() < price)
         stringBatches.add(b.toString());
@@ -148,8 +161,13 @@ public class WarehouseManager {
     return _warehouse.getTransactions().get(id).toString();
   }
 
-  public void addAcquisition(String partner, String product, double price, int amount){
+  public void addAcquisition(String partner, String product, double price, int amount) throws NoSuchProductException, NoSuchPartnerException{
     Partner prt = _warehouse.getPartner(partner);
+    if (prt == null){
+      throw new NoSuchPartnerException(partner);
+    } else if (_warehouse.getProduct(product) == null){
+      throw new NoSuchProductException(product);
+    }
     Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
     prt.addAcquisition(acq);
@@ -221,6 +239,7 @@ public class WarehouseManager {
       int data = (Integer)obIn.readObject();
       Date.addNow(data);
       _filename = filename;
+
     } catch (FileNotFoundException ex){
       throw new UnavailableFileException(filename);
     } finally {
