@@ -53,8 +53,9 @@ public class WarehouseManager {
   }
 
   public void addProduct(String id, String type){
+    TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
     if(type.equals("SIMPLE"))
-      _warehouse.addProduct(new SimpleProduct(id));
+      _warehouse.addProduct(new SimpleProduct(id, observers));
   }
 
   public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException, NoSuchProductException{

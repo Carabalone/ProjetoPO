@@ -11,8 +11,8 @@ public class SimpleProduct extends Product implements Serializable{
 	/**
    * @param id Product Id.
    */
-	public SimpleProduct(String id) {
-		super(id);
+	public SimpleProduct(String id, TreeSet<Observer> observers) {
+		super(id, observers);
 	}
 
 	/**

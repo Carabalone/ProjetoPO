@@ -15,17 +15,17 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	private String _id;
 	private Set<Batch> _batches;
 	//TODO we can substitute this arrayList to a HashMap, since we are going to be removing/adding partners a lot of times
-	private ArrayList<Observer> _observers;
+	private TreeSet<Observer> _observers;
 
 	/**
    * @param id Product Id.
    */
-	public Product(String id) {
+	public Product(String id, TreeSet<Observer> observers) {
 		_id = id;
 		_maxPrice = 0;
 		_lowestPrice = 0;
 		_batches = new TreeSet<Batch>();
-		_observers = new ArrayList<>();
+		_observers = new TreeSet<>(observers);
 	}
 
 	/**
@@ -68,10 +68,13 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	}
 
 	public void addBatch(Batch newBatch){
-		if (this.checkQuantity() == 0){
+		if (_batches.isEmpty()){
 			notify(Type.NEW);
+			_lowestPrice = newBatch.getPrice();
+			_maxPrice = _lowestPrice;
 		}
 		_batches.add(newBatch);
+		updatePrices(newBatch.getPrice());
 	}
 
 	public void removeBatch(Batch emptyBatch){

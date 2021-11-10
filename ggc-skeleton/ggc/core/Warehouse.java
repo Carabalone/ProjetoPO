@@ -131,9 +131,10 @@ public class Warehouse implements Serializable {
         if (newProduct == null){
 
           if (tokens[0].equals("BATCH_S"))
-            newProduct = new SimpleProduct(tokens[1]);
+            newProduct = new SimpleProduct(tokens[1], new TreeSet<Observer>(_partners));
           else
-            newProduct = new DerivedProduct(tokens[1], new Recipe(tokens[6], Double.valueOf(tokens[5])));
+            newProduct = new DerivedProduct(tokens[1], new Recipe(tokens[6], Double.valueOf(tokens[5])),
+                                                       new TreeSet<Observer>(_partners));
         }
 
           this.addProduct(newProduct);

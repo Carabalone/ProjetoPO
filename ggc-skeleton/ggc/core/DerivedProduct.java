@@ -14,8 +14,8 @@ public class DerivedProduct extends Product implements Serializable{
    * @param id Product Id.
    * @param recipe Recipe object that includes components necessary to make a unit of this product
    */
-	public DerivedProduct(String id, Recipe recipe) {
-		super(id);
+	public DerivedProduct(String id, Recipe recipe, TreeSet<Observer> observers) {
+		super(id, observers);
 		_recipe = recipe;
 	}
 

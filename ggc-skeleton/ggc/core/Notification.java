@@ -1,5 +1,8 @@
 package ggc.core;
-public class Notification {
+
+import java.io.Serializable;
+
+public class Notification implements Serializable{
 
     private Type _type;
     private Product _product;
@@ -14,6 +17,6 @@ public class Notification {
         /*  since the bargain only notifies when the price is at it's lowest and when the stock of a product goes from 0 to 1+
         *   the lowest and maximum prices are the same we can just use _product.getLowestPrice to get the price of the product.
         */
-        return String.format("%s|%d|%d", _type.name(), _product.getId(), (int) _product.getLowestPrice());
+        return String.format("%s|%s|%d", _type.name(), _product.getId(), (int) _product.getLowestPrice());
     }
 }
