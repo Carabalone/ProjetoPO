@@ -67,7 +67,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		}
 	}
 
-	public void addBatch(Batch newBatch){
+	protected void addBatch(Batch newBatch){
 		if (_batches.isEmpty()){
 			notify(Type.NEW);
 			_lowestPrice = newBatch.getPrice();
@@ -77,7 +77,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		updatePrices(newBatch.getPrice());
 	}
 
-	public void removeBatch(Batch emptyBatch){
+	protected void removeBatch(Batch emptyBatch){
 		_batches.remove(emptyBatch);
 		// prices are reseted so we when a new batch comes, the prices will be updated accordingly 
 		if(_batches.isEmpty()){
@@ -86,8 +86,16 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		}
 	}
 
-	public void addObserver(Observer o){
+	protected void addObserver(Observer o){
 		_observers.add(o);
+	}
+
+	protected void removeObserver(Observer o){
+		_observers.remove(o);
+	}
+
+	protected boolean hasObserver(Observer o){
+		return _observers.contains(o);
 	}
 
 	/**

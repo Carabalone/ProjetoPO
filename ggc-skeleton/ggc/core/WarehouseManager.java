@@ -86,8 +86,12 @@ public class WarehouseManager {
   /*
   * @@throws NoSuchPartnerException
   */
-  public String showPartner(String id) throws NoSuchPartnerException{
-    return getPartner(id).toString();
+  public List<String> showPartner(String id) throws NoSuchPartnerException{
+    List<String> partnerInfo = new ArrayList<>();
+    Partner p = getPartner(id);
+    partnerInfo.add(p.toString());
+    partnerInfo.addAll(showNotificationStrings(p));
+    return partnerInfo;
   }
 
   public List<String> showPartners(){
@@ -105,14 +109,12 @@ public class WarehouseManager {
     return p;
   }
 
-  public List<String> showNotificationStrings(String id) throws NoSuchPartnerException{
+  public List<String> showNotificationStrings(Partner p){
     List <String> NotificationStrings = new ArrayList<>();
-    Partner p = _warehouse.getPartner(id);
-    if(p == null)
-      throw new NoSuchPartnerException(id);
     for (Notification n: p.getNotifications()){
       NotificationStrings.add(n.toString());
     }
+    p.clearNotifications();
     return NotificationStrings;
   }
 
@@ -179,6 +181,16 @@ public class WarehouseManager {
 
   public int checkProductAvailability(String id){
     return _warehouse.getProduct(id).checkQuantity();
+  }
+
+  public void toggleNotifications(String productId, String partnerId) throws NoSuchProductException, NoSuchPartnerException{
+    Partner partner = _warehouse.getPartner(partnerId);
+    Product product = _warehouse.getProduct(productId);
+
+    if(product.hasObserver(partner))
+      product.removeObserver(partner);
+    else
+      product.addObserver(partner);;
   }
 
   public List<String> getPartnerAcquisitions(String id) throws NoSuchPartnerException{

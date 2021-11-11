@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.io.IOException;
 import ggc.core.exception.BadEntryException;
 import ggc.core.exception.NoSuchPartnerException;
+import ggc.core.exception.NoSuchProductException;
 
 import java.util.*;
 import java.io.File;
@@ -105,6 +106,7 @@ public class Warehouse implements Serializable {
     return (int) Math.round(_balance);
   }
 
+
   /**
    * @param txtfile filename to be loaded.
    * @throws IOException
@@ -142,6 +144,10 @@ public class Warehouse implements Serializable {
           newProduct.addBatch(btc);
           getPartner(tokens[2]).addBatch(btc);
       }
+    }
+    // removing the notifications created by the load method
+    for (Partner p: _partners){
+      p.clearNotifications();
     }
   }
 }

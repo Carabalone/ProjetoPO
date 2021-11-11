@@ -71,6 +71,11 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     public List<Notification> getNotifications(){
         return _notifications;
     }
+
+    protected void clearNotifications(){
+        _notifications.clear();
+    }
+
     
     @Override
     public String toString(){

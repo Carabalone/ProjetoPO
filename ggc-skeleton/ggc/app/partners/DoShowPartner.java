@@ -20,11 +20,8 @@ class DoShowPartner extends Command<WarehouseManager> {
   @Override
   public void execute() throws CommandException {
     String id = stringField("id");
-    List<String> partnerNotifications;
     try{
-      _display.popup(_receiver.showPartner(id));
-      partnerNotifications = _receiver.showNotificationStrings(id);
-      _display.addAll(partnerNotifications);
+      _display.addAll(_receiver.showPartner(id));
       _display.display();
       
     } catch(NoSuchPartnerException ex){
