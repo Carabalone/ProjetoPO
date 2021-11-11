@@ -36,6 +36,10 @@ public abstract class Transaction implements Serializable{
         return _paymentDate;
     }
 
+    protected void setPaymentDate(date){
+        _paymentDate = date;
+    }
+
     @Override
     public String toString(){
         return String.format("%d|%s|%s|%d", _id, _partner.getId(), _product.getId(), _quantity);
@@ -47,6 +51,10 @@ public abstract class Transaction implements Serializable{
 
     public Product getProduct(){
         return _product;
+    }
+
+    public Partner getPartner(){
+        return _partner;
     }
 
     public int getQuantity(){

@@ -206,7 +206,7 @@ public class WarehouseManager {
     if(product.hasObserver(partner))
       product.removeObserver(partner);
     else
-      product.addObserver(partner);;
+      product.addObserver(partner);
   }
 
   public List<String> getPartnerAcquisitions(String id) throws NoSuchPartnerException{
@@ -216,7 +216,17 @@ public class WarehouseManager {
       acquisitions.add(a.toString());
     }
     return acquisitions;
+  }
 
+  public void receivePayment(int id)throws NoSuchTransactionException{
+    try {
+      Transaction trans = _warehouse.getTransactions().get(id);
+    } catch (IndexOutOfBoundsException e) {
+      throw new NoSuchTransactionException(id);
+    }
+
+    if (trans instanceof Sale)
+      trans.receivePayment();
   }
 
   public boolean alteredSinceLastSave(){
