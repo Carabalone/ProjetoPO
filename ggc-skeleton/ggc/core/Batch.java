@@ -39,7 +39,7 @@ public class Batch implements Comparable<Batch>, Serializable{
         equal = _supplier.getId().compareToIgnoreCase(b.getSupplier().getId());
         if (equal != 0)
         	return equal;
-        equal = Double.compare(_totalPrice, b.getPrice());
+        equal = Double.compare(_unitPrice, b.getPrice());
         if (equal != 0)
         	return equal;
         return Double.compare(_quantity, b.getAvailableQuantity());
@@ -80,7 +80,7 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @return a new Batch with same values as this.
    */
 	protected Batch makeCopy(){
-        return new Batch(_totalPrice, _quantity, _product, _supplier);
+        return new Batch(_unitPrice, _quantity, _product, _supplier);
     }
 
     /**
