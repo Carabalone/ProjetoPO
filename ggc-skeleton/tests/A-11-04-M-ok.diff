@@ -1,5 +1,5 @@
 *** tests/A-11-04-M-ok.out	2021-11-07 13:04:59.147572800 -0300
---- tests/A-11-04-M-ok.outhyp	2021-11-11 17:40:01.260763600 -0300
+--- tests/A-11-04-M-ok.outhyp	2021-11-11 18:28:42.267889000 -0300
 ***************
 *** 42,48 ****
   5 - Mostrar compras com parceiro
@@ -13,24 +13,7 @@
   5 - Mostrar compras com parceiro
   6 - Mostrar vendas (e desagregações) com parceiro
   0 - Sair
-! Escolha uma opção: Identificador do parceiro: COMPRA|0|M1|GARRAFA|1000|0|0
-  Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
-***************
-*** 70,76 ****
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Identificador do parceiro: M1|Rohit Figueiredo|New Delhi, India|NORMAL|0|70000|0|0
-  Gestão de Parceiros
-  1 - Mostrar parceiro
-  2 - Mostrar parceiros
---- 70,76 ----
-  5 - Mostrar compras com parceiro
-  6 - Mostrar vendas (e desagregações) com parceiro
-  0 - Sair
-! Escolha uma opção: Identificador do parceiro: M1|Rohit Figueiredo|New Delhi, India|NORMAL|0|0|0|0
+! Escolha uma opção: Identificador do parceiro: COMPRA|0|M1|GARRAFA|1000|70|0
   Gestão de Parceiros
   1 - Mostrar parceiro
   2 - Mostrar parceiros

@@ -63,4 +63,8 @@ public abstract class Transaction implements Serializable{
     public int getQuantity(){
         return _quantity;
     }
+
+    public double getBaseValue(){
+        return _baseValue;
+    }
 }
