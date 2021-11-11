@@ -16,6 +16,6 @@ public class SaleByCredit extends Sale implements Serializable{
         if (getPaymentDate() != null)
             return String.format("%s|%s|%d|%d", "VENDA", super.toString(), _deadline.getDay(), getPaymentDate().getDay());
         else
-            return String.format("%s|%s|%d|%d", "VENDA", super.toString(), _deadline.getDay());
+            return String.format("%s|%s|%d", "VENDA", super.toString(), _deadline.getDay());
     }
 }

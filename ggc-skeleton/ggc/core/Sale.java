@@ -14,6 +14,6 @@ public abstract class Sale extends Transaction implements Serializable{
 
     @Override
     public String toString(){
-        return String.format("%s|%d|%d", super.toString(), _baseValue, _ammountPaid);
+        return String.format("%s|%d|%d", super.toString(), Math.round(_baseValue), Math.round(_ammountPaid));
     }
 }

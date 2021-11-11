@@ -33,7 +33,7 @@ public abstract class Transaction implements Serializable{
         return true;
     }
     public Date getPaymentDate(){
-        return new Date(_paymentDate.getDay());
+        return _paymentDate;
     }
 
     @Override

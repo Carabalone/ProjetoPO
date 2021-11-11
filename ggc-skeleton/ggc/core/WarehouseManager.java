@@ -212,10 +212,7 @@ public class WarehouseManager {
     List<String> acquisitions = new ArrayList<>();
     Partner ptr = this.getPartner(id);
     for (Acquisition a: ptr.getAcquisitions()){
-      acquisitions.add(String.format("COMPRA|%d|%s|%s|%d|%d|%d", a.getId(), ptr.getId(), 
-                                                                a.getProduct().getId(),
-                                                                a.getQuantity(), (int) a.getValue(),
-                                                                 a.getPaymentDate()));
+      acquisitions.add(a.toString());
     }
     return acquisitions;
 
