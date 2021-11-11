@@ -12,13 +12,14 @@ public abstract class Sale extends Transaction implements Serializable{
         _amountPaid = 0;
     }
 
+    @Override
     public void receivePayment(){
         setPaymentDate(new Date(Date.showNow()));
         updateAmount();
     }
 
     public void updateAmount(){
-        _amountPaid = _baseValue * (1 + SalePaymentCoeficient.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - getPaymentDate().getDay()));
+        _amountPaid = _baseValue * (1 + SalePaymentCoeficients.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - getPaymentDate().getDay()));
     }
 
     @Override

@@ -32,11 +32,14 @@ public abstract class Transaction implements Serializable{
     public boolean isPaid(){
         return true;
     }
+    
     public Date getPaymentDate(){
         return _paymentDate;
     }
 
-    protected void setPaymentDate(date){
+    public void receivePayment(){}
+
+    protected void setPaymentDate(Date date){
         _paymentDate = date;
     }
 

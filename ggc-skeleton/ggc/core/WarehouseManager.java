@@ -221,12 +221,12 @@ public class WarehouseManager {
   public void receivePayment(int id)throws NoSuchTransactionException{
     try {
       Transaction trans = _warehouse.getTransactions().get(id);
+
+      trans.receivePayment();
+
     } catch (IndexOutOfBoundsException e) {
       throw new NoSuchTransactionException(id);
     }
-
-    if (trans instanceof Sale)
-      trans.receivePayment();
   }
 
   public boolean alteredSinceLastSave(){
