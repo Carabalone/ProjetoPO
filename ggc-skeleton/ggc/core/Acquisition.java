@@ -10,11 +10,12 @@ public class Acquisition extends Transaction implements Serializable{
         super(quantity, new Date(Date.showNow()), product, partner, value);
     }
 
+    public double getValue(){
+        return getBaseValue()*getQuantity();
+    }
+
     @Override
     public String toString(){
         return String.format("%s|%s|%d|%d", "COMPRA", super.toString(), Math.round(_baseValue), getPaymentDate().getDay());
-    }
-    public double getValue(){
-        return getBaseValue()*getQuantity();
     }
 }

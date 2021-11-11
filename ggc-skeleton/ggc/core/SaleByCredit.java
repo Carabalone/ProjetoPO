@@ -5,10 +5,12 @@ import java.util.*;
 
 public class SaleByCredit extends Sale implements Serializable{
     private Date _deadline;
+    private double _amountPaid;
 
     protected SaleByCredit(Product product, int quantity, Date deadline, Partner partner, double value){
         super(product, quantity, partner, value);
         _deadline = deadline;
+        _amountPaid = 0;
     }
 
     @Override
@@ -18,15 +20,17 @@ public class SaleByCredit extends Sale implements Serializable{
     }
 
     public void updateAmount(){
-        _amountPaid = _baseValue * (1 + SalePaymentCoeficients.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - _deadline.getDay()));
+        if (getPaymentDate() == null)
+            _amountPaid = _baseValue * (1 + SalePaymentCoeficients.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - _deadline.getDay()));
     }
 
     @Override
     public String toString(){
-        updateAmount();
         if (getPaymentDate() != null)
-            return String.format("%s|%s|%d|%d", "VENDA", super.toString(), _deadline.getDay(), getPaymentDate().getDay());
-        else
-            return String.format("%s|%s|%d", "VENDA", super.toString(), _deadline.getDay());
+            return String.format("%s|%s|%d|%d|%d", "VENDA", super.toString(), Math.round(_amountPaid), _deadline.getDay(), getPaymentDate().getDay());
+        else {
+            updateAmount();
+            return String.format("%s|%s|%d|%d", "VENDA", super.toString(), Math.round(_amountPaid), _deadline.getDay());
+        }
     }
 }

@@ -8,7 +8,6 @@ import java.io.Serializable;
 */
 public class Batch implements Comparable<Batch>, Serializable{
 
-	private double _totalPrice;
 	private int _quantity;
 	private Product _product;
 	private Partner _supplier;
@@ -20,13 +19,12 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @param product this batch has units of this product.
    * @param supplier partner that provided this batch.
    */
-	public Batch(double totalPrice, int quantity, Product product, Partner supplier){
-		_totalPrice = totalPrice;
+	public Batch(double unitPrice, int quantity, Product product, Partner supplier){
 		_quantity = quantity;
 		_product = product;
 		_supplier = supplier;
-		_product.updatePrices(totalPrice);
-		_unitPrice = totalPrice / quantity;
+		_product.updatePrices(unitPrice);
+		_unitPrice = unitPrice;
 	}
 
 	/**
@@ -52,7 +50,7 @@ public class Batch implements Comparable<Batch>, Serializable{
 	}
 
 	public double getPrice(){
-		return _totalPrice;
+		return _unitPrice;
 	}
 
 	public double getPriceOfUnits(int units){
@@ -74,7 +72,6 @@ public class Batch implements Comparable<Batch>, Serializable{
    */
 	public int removeUnits(int amount){
 		_quantity -= amount;
-		_totalPrice -= amount * _unitPrice;
 		return _quantity;
 	}
 
@@ -91,6 +88,6 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @return a string in the form of "ProductId|SupplierID|Price|AvailableUnits".
    */
     public String toString(){
-    	return String.format("%s|%s|%d|%d", _product.getId(), _supplier.getId(), Math.round(_totalPrice), _quantity);
+    	return String.format("%s|%s|%d|%d", _product.getId(), _supplier.getId(), Math.round(_unitPrice), _quantity);
     }
 }
