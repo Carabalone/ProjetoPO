@@ -167,10 +167,11 @@ public class WarehouseManager {
     
     if (prt == null){
       throw new NoSuchPartnerException(partner);
-
+    }
     Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
     prt.addAcquisition(acq);
+    
   }
 
   public void addSale(String partnerid, String productid, int deadline, int amount){
