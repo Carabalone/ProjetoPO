@@ -1,0 +1,42 @@
+*** tests/A-17-03-M-ok.out	2021-11-10 20:23:36.519207100 -0300
+--- tests/A-17-03-M-ok.outhyp	2021-11-11 17:40:07.583360600 -0300
+***************
+*** 159,167 ****
+  5 - Mostrar compras com parceiro
+  6 - Mostrar vendas (e desagregações) com parceiro
+  0 - Sair
+! Escolha uma opção: Identificador do parceiro: COMPRA|0|M1|SAL|10|100|1
+! COMPRA|1|M1|SAL|20|200|1
+! COMPRA|3|M1|SAL|30|300|5
+  Gestão de Parceiros
+  1 - Mostrar parceiro
+  2 - Mostrar parceiros
+--- 159,167 ----
+  5 - Mostrar compras com parceiro
+  6 - Mostrar vendas (e desagregações) com parceiro
+  0 - Sair
+! Escolha uma opção: Identificador do parceiro: COMPRA|0|M1|SAL|10|0|1
+! COMPRA|1|M1|SAL|20|0|1
+! COMPRA|3|M1|SAL|30|0|5
+  Gestão de Parceiros
+  1 - Mostrar parceiro
+  2 - Mostrar parceiros
+***************
+*** 170,177 ****
+  5 - Mostrar compras com parceiro
+  6 - Mostrar vendas (e desagregações) com parceiro
+  0 - Sair
+! Escolha uma opção: Identificador do parceiro: COMPRA|2|M2|VIDRO|10|100|2
+! COMPRA|4|M2|VIDRO|40|400|5
+  Gestão de Parceiros
+  1 - Mostrar parceiro
+  2 - Mostrar parceiros
+--- 170,177 ----
+  5 - Mostrar compras com parceiro
+  6 - Mostrar vendas (e desagregações) com parceiro
+  0 - Sair
+! Escolha uma opção: Identificador do parceiro: COMPRA|2|M2|VIDRO|10|0|2
+! COMPRA|4|M2|VIDRO|40|0|5
+  Gestão de Parceiros
+  1 - Mostrar parceiro
+  2 - Mostrar parceiros
