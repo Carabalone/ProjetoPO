@@ -12,6 +12,7 @@ public class Batch implements Comparable<Batch>, Serializable{
 	private int _quantity;
 	private Product _product;
 	private Partner _supplier;
+	private double _unitPrice;
 
 	/**
    * @param totalPrice price of the batch.
@@ -25,6 +26,7 @@ public class Batch implements Comparable<Batch>, Serializable{
 		_product = product;
 		_supplier = supplier;
 		_product.updatePrices(totalPrice);
+		_unitPrice = totalPrice / quantity;
 	}
 
 	/**
@@ -53,6 +55,10 @@ public class Batch implements Comparable<Batch>, Serializable{
 		return _totalPrice;
 	}
 
+	public double getPriceOfUnits(int units){
+		return _unitPrice * units; 
+	}
+
 	public Product getProduct(){
 		return _product;
 	}
@@ -66,8 +72,9 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @param ammount number of units to remove.
    * @return quantity still available.
    */
-	public int removeUnits(int ammount){
-		_quantity -= ammount;
+	public int removeUnits(int amount){
+		_quantity -= amount;
+		_totalPrice -= amount * _unitPrice;
 		return _quantity;
 	}
 

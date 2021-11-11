@@ -164,21 +164,36 @@ public class WarehouseManager {
 
   public void addAcquisition(String partner, String product, double price, int amount) throws NoSuchPartnerException{
     Partner prt = _warehouse.getPartner(partner);
-    
-    if (prt == null){
+
+    if (prt == null)
       throw new NoSuchPartnerException(partner);
-    }
+    
     Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
     prt.addAcquisition(acq);
-    
+}
+
+  public void addSale(String partnerId, String productId, int deadline, int amount) throws NoSuchPartnerException{
+    Partner partner = _warehouse.getPartner(partnerId);
+    Product product = _warehouse.getProduct(productId);
+
+    if (partner == null)
+      throw new NoSuchPartnerException(partnerId);
+
+    double value = product.gatherUnits();
+
+    Sale sale = new SaleByCredit(product, amount, deadline, partner, value);
+    _warehouse.addTransaction(sale);
+    partner.addSale(sale);
   }
 
-  public void addSale(String partnerid, String productid, int deadline, int amount){
-  }
+  public int checkProductAvailability(String id) throws NoSuchProductException{
+    Product product = _warehouse.getProduct(id);
 
-  public int checkProductAvailability(String id){
-    return _warehouse.getProduct(id).checkQuantity();
+    if (product == null)
+      throw new NoSuchProductException(id);
+
+    return product.checkQuantity();
   }
 
   public List<String> getPartnerAcquisitions(String id) throws NoSuchPartnerException{
