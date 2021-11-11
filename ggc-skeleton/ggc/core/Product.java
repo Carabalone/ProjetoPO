@@ -16,6 +16,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	private Set<Batch> _batches;
 	//TODO we can substitute this arrayList to a HashMap, since we are going to be removing/adding partners a lot of times
 	private TreeSet<Observer> _observers;
+	private DeliveryMethod _deliveryMethod;
 
 	/**
    * @param id Product Id.
@@ -26,6 +27,15 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		_lowestPrice = 0;
 		_batches = new TreeSet<Batch>();
 		_observers = new TreeSet<>(observers);
+		_deliveryMethod = new RegisterInApp(_observers);
+	}
+	public Product(String id, TreeSet<Observer> observers, DeliveryMethod dMethod) {
+		_id = id;
+		_maxPrice = 0;
+		_lowestPrice = 0;
+		_batches = new TreeSet<Batch>();
+		_observers = new TreeSet<>(observers);
+		_deliveryMethod = dMethod;
 	}
 
 	/**
@@ -135,9 +145,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	}
 
 	public void notify(Type type){
-		Notification not = new Notification(type, this);
-		for (Observer obs: _observers){
-			obs.update(not);
-		}
+		Notification n = new Notification(type, this);
+		_deliveryMethod.deliver(n);
 	}
 }
