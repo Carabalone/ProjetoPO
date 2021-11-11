@@ -27,7 +27,7 @@ public class DoRegisterSaleTransaction extends Command<WarehouseManager> {
     Integer amount = integerField("amount");
 
     if (!_receiver.productExists(product))
-      throw new UnknownProductKeyException;
+      throw new UnknownProductKeyException(product);
 
     int quantityAvailable = _receiver.checkProductAvailability(product);
     if (amount > quantityAvailable)

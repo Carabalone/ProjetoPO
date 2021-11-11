@@ -58,14 +58,14 @@ public class WarehouseManager {
       _warehouse.addProduct(new SimpleProduct(id, observers));
   }
 
-  public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException, NoSuchProductException{
+  public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException{
     Product pro = _warehouse.getProduct(productId);
     Partner sup = _warehouse.getPartner(supplierId);
+
     if (sup == null){
       throw new NoSuchPartnerException(supplierId);
-    } else if (pro == null){
-      throw new NoSuchProductException(productId);
     }
+
     Batch bat = new Batch(price, amount, pro, sup);
     pro.addBatch(bat);
     sup.addBatch(bat);
@@ -162,13 +162,12 @@ public class WarehouseManager {
     return _warehouse.getTransactions().get(id).toString();
   }
 
-  public void addAcquisition(String partner, String product, double price, int amount) throws NoSuchProductException, NoSuchPartnerException{
+  public void addAcquisition(String partner, String product, double price, int amount) throws NoSuchPartnerException{
     Partner prt = _warehouse.getPartner(partner);
+    
     if (prt == null){
       throw new NoSuchPartnerException(partner);
-    } else if (_warehouse.getProduct(product) == null){
-      throw new NoSuchProductException(product);
-    }
+
     Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
     prt.addAcquisition(acq);

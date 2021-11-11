@@ -38,10 +38,10 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
 
     if (!_receiver.productExists(product))
       _receiver.addProduct(product, "SIMPLE");
-    _receiver.newBatch(price, amount, product, partner);
 
     try {
-      _receiver.addAcquisition(partner, product, price, amount);
+      _receiver.newBatch(price, amount, product, partner);
+      _receiver.addAcquisition(partner, product, price, amount); 
     } catch (NoSuchPartnerException e) {
       throw new UnknownPartnerKeyException(e.getId());
     }
