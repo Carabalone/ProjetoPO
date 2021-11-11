@@ -3,15 +3,8 @@ package ggc.app.transactions;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import ggc.app.exception.UnknownPartnerKeyException;
-import ggc.app.exception.UnknownProductKeyException;
 import ggc.core.WarehouseManager;
 import ggc.core.exception.NoSuchPartnerException;
-<<<<<<< Updated upstream
-import ggc.core.exception.NoSuchProductException;
-
-=======
-import ggc.app.exception.UnknownPartnerKeyException;
->>>>>>> Stashed changes
 import java.util.*;
 
 /**
@@ -43,20 +36,6 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     Integer price = integerField("price");
     Integer amount = integerField("amount");
 
-<<<<<<< Updated upstream
-    try{
-      if (!_receiver.productExists(product)){
-        _receiver.addProduct(product, "SIMPLE");
-        _receiver.newBatch(price, amount, product, partner);
-      }
-      _receiver.addAcquisition(partner, product, price, amount);
-    } catch (NoSuchPartnerException ex){
-      throw new UnknownPartnerKeyException(ex.getId());
-    } catch (NoSuchProductException ex){
-      throw new UnknownProductKeyException(ex.getId());
-
-    }
-=======
     if (!_receiver.productExists(product))
       _receiver.addProduct(product, "SIMPLE");
     _receiver.newBatch(price, amount, product, partner);
@@ -66,8 +45,6 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     } catch (NoSuchPartnerException e) {
       throw new UnknownPartnerKeyException(e.getId());
     }
-
->>>>>>> Stashed changes
   }
 
 }
