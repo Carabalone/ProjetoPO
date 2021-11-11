@@ -6,8 +6,7 @@ public class Acquisition extends Transaction implements Serializable{
     
     private double _baseValue;
     public Acquisition(Product product, int quantity, double value, Partner partner){
-        super(quantity, new Date(Date.showNow()), product, partner);
-        _baseValue = value;
+        super(quantity, new Date(Date.showNow()), product, partner, value);
     }
 
     @Override

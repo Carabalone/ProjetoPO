@@ -5,9 +5,12 @@ import pt.tecnico.uilib.menus.CommandException;
 import ggc.core.WarehouseManager;
 import ggc.app.exception.UnavailableProductException;
 import ggc.app.exception.UnknownProductKeyException;
+import ggc.app.exception.UnknownPartnerKeyException;
+import ggc.core.exception.NoSuchPartnerException;
+import ggc.core.exception.NoSuchProductException;
 
 /**
- * 
+ * Registers a sale made to a partner.
  */
 public class DoRegisterSaleTransaction extends Command<WarehouseManager> {
 
@@ -16,7 +19,7 @@ public class DoRegisterSaleTransaction extends Command<WarehouseManager> {
     addStringField("partnerId", Message.requestPartnerKey());
     addIntegerField("deadline", Message.requestPaymentDeadline());
     addStringField("productId", Message.requestProductKey());
-    addIntegerField("amount", Message.requestAmount()); 
+    addIntegerField("amount", Message.requestAmount());
   }
 
   @Override
@@ -26,13 +29,20 @@ public class DoRegisterSaleTransaction extends Command<WarehouseManager> {
     Integer deadline = integerField("deadline");
     Integer amount = integerField("amount");
 
-    if (!_receiver.productExists(product))
+    try {
+
+      int quantityAvailable = _receiver.checkProductAvailability(product);
+
+      if (amount > quantityAvailable)
+        throw new UnavailableProductException(product, amount, quantityAvailable);
+
+      _receiver.addSale(partner, product, deadline, amount);
+
+    } catch(NoSuchPartnerException exPartner){
+      throw new UnknownPartnerKeyException(partner);
+
+    } catch (NoSuchProductException exProduct){
       throw new UnknownProductKeyException(product);
-
-    int quantityAvailable = _receiver.checkProductAvailability(product);
-    if (amount > quantityAvailable)
-      throw new UnavailableProductException(product, amount, quantityAvailable);
-
+    }
   }
-
 }

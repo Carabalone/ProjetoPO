@@ -52,6 +52,10 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _batches.add(batch);
     }
 
+    public void addSale(Sale sale){
+        _sales.add(sale);
+    }
+
     public void addAcquisition(Acquisition acq){
         _acquisitions.add(acq);
     }

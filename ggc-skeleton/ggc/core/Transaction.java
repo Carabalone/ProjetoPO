@@ -10,19 +10,21 @@ public abstract class Transaction implements Serializable{
     private Product _product;
     private Partner _partner;
 
-    protected Transaction(int quantity, Date paymentDate, Product product, Partner partner){
+    protected Transaction(int quantity, Date paymentDate, Product product, Partner partner, double value){
         _quantity = quantity;
         _paymentDate = paymentDate;
         _product = product;
         _partner = partner;
+        _baseValue = value;
         _id = Warehouse.getNextTransactionId();
         Warehouse.advanceTransactionId();
     }
-    protected Transaction(int quantity, Product product, Partner partner){
+    protected Transaction(int quantity, Product product, Partner partner, double value){
         _quantity = quantity;
         _product = product;
         _partner = partner;
         _paymentDate = null;
+        _baseValue = value;
         _id = Warehouse.getNextTransactionId();
         Warehouse.advanceTransactionId();
     }

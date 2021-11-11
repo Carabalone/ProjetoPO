@@ -35,13 +35,14 @@ public class SimpleProduct extends Product implements Serializable{
 
 			Batch bt = it.next();
 			if (bt.getAvailableQuantity() > quantity){
-				price += (bt.getPrice());
+				price += (bt.getPriceOfUnits(quantity));
 				bt.removeUnits(quantity);
 				return price;
 			}
 
 			quantity -= bt.getAvailableQuantity();
 			it.remove();
+			price += bt.getPrice();
 
 		}
 

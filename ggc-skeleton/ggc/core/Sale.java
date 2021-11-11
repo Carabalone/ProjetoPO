@@ -7,8 +7,8 @@ public abstract class Sale extends Transaction implements Serializable{
 
     protected double _ammountPaid;
 
-    protected Sale(Product product, int quantity, Partner partner){
-        super(quantity, product, partner);
+    protected Sale(Product product, int quantity, Partner partner, double value){
+        super(quantity, product, partner, value);
         _ammountPaid = 0;
     }
 

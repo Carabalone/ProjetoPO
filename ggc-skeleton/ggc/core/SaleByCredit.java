@@ -6,8 +6,8 @@ import java.util.*;
 public class SaleByCredit extends Sale implements Serializable{
     private Date _deadline;
 
-    protected SaleByCredit(Product product, int quantity, Date deadline, Partner partner){
-        super(product, quantity, partner);
+    protected SaleByCredit(Product product, int quantity, Date deadline, Partner partner, double value){
+        super(product, quantity, partner, value);
         _deadline = deadline;
     }
 
