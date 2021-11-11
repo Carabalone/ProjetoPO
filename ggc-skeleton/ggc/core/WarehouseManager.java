@@ -172,6 +172,7 @@ public class WarehouseManager {
     
     Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
+    _warehouse.removeFunds(price);
     prt.addAcquisition(acq);
 }
 

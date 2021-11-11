@@ -5,8 +5,6 @@ package ggc.core;
 import java.io.Serializable;
 import java.io.IOException;
 import ggc.core.exception.BadEntryException;
-import ggc.core.exception.NoSuchPartnerException;
-import ggc.core.exception.NoSuchProductException;
 
 import java.util.*;
 import java.io.File;
@@ -106,6 +104,9 @@ public class Warehouse implements Serializable {
     return (int) Math.round(_balance);
   }
 
+  protected void removeFunds(double price){
+    _balance -= price;
+  }
 
   /**
    * @param txtfile filename to be loaded.
