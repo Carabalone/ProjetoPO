@@ -174,6 +174,13 @@ public class WarehouseManager {
     prt.addAcquisition(acq);
   }
 
+  public void addSale(String partnerid, String productid, int deadline, int amount){
+  }
+
+  public int checkProductAvailability(String id){
+    return _warehouse.getProduct(id).checkQuantity();
+  }
+
   public List<String> getPartnerAcquisitions(String id) throws NoSuchPartnerException{
     List<String> acquisitions = new ArrayList<>();
     Partner ptr = this.getPartner(id);
