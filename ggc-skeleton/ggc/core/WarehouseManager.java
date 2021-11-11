@@ -180,9 +180,9 @@ public class WarehouseManager {
     if (partner == null)
       throw new NoSuchPartnerException(partnerId);
 
-    double value = product.gatherUnits();
+    double value = product.gatherUnits(amount);
 
-    Sale sale = new SaleByCredit(product, amount, deadline, partner, value);
+    Sale sale = new SaleByCredit(product, amount, new Date(deadline), partner, value);
     _warehouse.addTransaction(sale);
     partner.addSale(sale);
   }

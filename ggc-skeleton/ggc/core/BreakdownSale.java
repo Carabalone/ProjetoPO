@@ -5,7 +5,7 @@ import java.util.*;
 public class BreakdownSale extends Sale implements Serializable{
     private List<Batch> _batches;
 
-    protected BreakdownSale(Product product, int quantity, Partner partner, value){
+    protected BreakdownSale(Product product, int quantity, Partner partner, double value){
         super(product, quantity, partner, value);
         _batches = new ArrayList();
     }
