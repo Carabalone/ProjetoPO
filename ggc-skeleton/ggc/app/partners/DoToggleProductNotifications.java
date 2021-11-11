@@ -26,11 +26,11 @@ class DoToggleProductNotifications extends Command<WarehouseManager> {
     String productId = stringField("productId");
 
     try{
-      _receiver.toggleNotifications(partnerId, productId);
-    } catch (NoSuchPartnerException ex){
-      throw new UnknownPartnerKeyException(ex.getId());
+      _receiver.toggleNotifications(productId, partnerId);
     } catch (NoSuchProductException ex){
       throw new UnknownProductKeyException(ex.getId());
+    } catch (NoSuchPartnerException ex){
+      throw new UnknownPartnerKeyException(ex.getId());
     }
   }
 

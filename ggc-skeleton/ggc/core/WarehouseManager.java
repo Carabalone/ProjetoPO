@@ -60,7 +60,7 @@ public class WarehouseManager {
 
   public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException{
     Product pro = _warehouse.getProduct(productId);
-    Partner sup = _warehouse.getPartner(supplierId);
+    Partner sup = getPartner(supplierId);
 
     if (sup == null){
       throw new NoSuchPartnerException(supplierId);
@@ -106,6 +106,13 @@ public class WarehouseManager {
     Partner p = _warehouse.getPartner(id);
     if (p == null)
       throw new NoSuchPartnerException(id);
+    return p;
+  }
+
+  public Product getProduct(String id) throws NoSuchProductException{
+    Product p = _warehouse.getProduct(id);
+    if (p == null)
+      throw new NoSuchProductException(id);
     return p;
   }
 
@@ -165,7 +172,7 @@ public class WarehouseManager {
   }
 
   public void addAcquisition(String partner, String product, double price, int amount) throws NoSuchPartnerException{
-    Partner prt = _warehouse.getPartner(partner);
+    Partner prt = getPartner(partner);
 
     if (prt == null)
       throw new NoSuchPartnerException(partner);
@@ -177,7 +184,7 @@ public class WarehouseManager {
 }
 
   public void addSale(String partnerId, String productId, int deadline, int amount) throws NoSuchPartnerException{
-    Partner partner = _warehouse.getPartner(partnerId);
+    Partner partner = getPartner(partnerId);
     Product product = _warehouse.getProduct(productId);
 
     if (partner == null)
@@ -200,8 +207,8 @@ public class WarehouseManager {
   }
 
   public void toggleNotifications(String productId, String partnerId) throws NoSuchProductException, NoSuchPartnerException{
-    Partner partner = _warehouse.getPartner(partnerId);
-    Product product = _warehouse.getProduct(productId);
+    Partner partner = getPartner(partnerId);
+    Product product = getProduct(productId);
 
     if(product.hasObserver(partner))
       product.removeObserver(partner);
@@ -211,7 +218,7 @@ public class WarehouseManager {
 
   public List<String> getPartnerAcquisitions(String id) throws NoSuchPartnerException{
     List<String> acquisitions = new ArrayList<>();
-    Partner ptr = this.getPartner(id);
+    Partner ptr = getPartner(id);
     for (Acquisition a: ptr.getAcquisitions()){
       acquisitions.add(a.toString());
     }
