@@ -32,8 +32,15 @@ public abstract class Transaction implements Serializable{
     public boolean isPaid(){
         return true;
     }
+    
     public Date getPaymentDate(){
         return _paymentDate;
+    }
+
+    public void receivePayment(){}
+
+    protected void setPaymentDate(Date date){
+        _paymentDate = date;
     }
 
     @Override
@@ -47,6 +54,10 @@ public abstract class Transaction implements Serializable{
 
     public Product getProduct(){
         return _product;
+    }
+
+    public Partner getPartner(){
+        return _partner;
     }
 
     public int getQuantity(){

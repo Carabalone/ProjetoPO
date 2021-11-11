@@ -44,6 +44,10 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return _id;
     }
 
+    public String getStatus(){
+        return _status;
+    }
+
     public Set<Batch> getBatches(){
         return new TreeSet<>(_batches);
     }
