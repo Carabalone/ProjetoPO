@@ -19,14 +19,23 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     addIntegerField("price", Message.requestPrice());
     addIntegerField("amount", Message.requestAmount());
 
-    /*if (!receiver.productExists(integerField("productId"))){
-      System.out.print(Message.requestAddRecipe());
-      Scanner sc = new Scanner(System.in);
-      if (sc.nextBoolean()) {
+    if (!receiver.productExists(integerField("productId"))){
+      addBooleanField("hasRecipe", Message.requestAddRecipe())
+
+      if (booleanField("hasRecipe")) {
         addIntegerField("numberComponents", Message.requestNumberOfComponents());
         addDoubleField("commission", Message.requestAlpha());
+        String recipe = "";
+
+        for(int i = 0; i < integerField("numberComponents"); i++){
+          addStringField("componentId", Message.requestProductKey());
+          addIntegerField("componentQuantity", Message.requestAmount());
+          recipe += stringField("componentId") + ":" + integerField("componentQuantity") + "#";
+        }
+
+        addStringField("recipe", recipe.substring(0, recipe.length() - 1));
       }
-    }*/
+    }
   }
 
   @Override
@@ -37,7 +46,11 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     Integer amount = integerField("amount");
 
     if (!_receiver.productExists(product))
-      _receiver.addProduct(product, "SIMPLE");
+      if (booleanField("hasRecipe")){
+        _receiver.addProduct(product, stringField("recipe"), doubleField("commission"));
+      }
+      else
+        _receiver.addProduct(product);
 
     try {
       _receiver.newBatch(price, amount, product, partner);

@@ -56,10 +56,14 @@ public class WarehouseManager {
     return false;
   }
 
-  public void addProduct(String id, String type){
+  public void addProduct(String id){
     TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
-    if(type.equals("SIMPLE"))
-      _warehouse.addProduct(new SimpleProduct(id, observers));
+    _warehouse.addProduct(new SimpleProduct(id, observers));
+  }
+
+  public void addProduct(String id, String recipe, double comission){
+    TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
+    _warehouse.addProduct(new DerivedProduct(id, new Recipe(recipe, comission), observers));
   }
 
   public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException{

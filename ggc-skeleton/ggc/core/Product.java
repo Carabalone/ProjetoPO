@@ -47,8 +47,8 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
         return _id.compareToIgnoreCase(p.getId());
     }
 
-	public List<Batch> getBatches(){
-		return new ArrayList<Batch>(_batches);
+	public Set<Batch> getBatches(){
+		return _batches;
 	}
 
 	public String getId() {
