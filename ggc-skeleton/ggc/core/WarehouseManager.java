@@ -287,6 +287,14 @@ public class WarehouseManager {
     return payments;
   }
 
+  public List<String> showSalesByPartner(Partner p){
+    List<String> sales = new ArrayList<>();
+    for (Sale s: p.getSales()){
+        sales.add(s.toString());
+    }
+    return sales;
+  }
+
   public boolean alteredSinceLastSave(){
     return _alteredSinceLastSave;
   }

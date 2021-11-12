@@ -24,7 +24,7 @@ public class DoLookupPaymentsByPartner extends Command<WarehouseManager> {
     String id = stringField("partnerId");
     List<String> payments;
     try{
-      payments = new ArrayList(_receiver.showPaymentsByPartner(_receiver.getPartner(id)));
+      payments = new ArrayList<>(_receiver.showPaymentsByPartner(_receiver.getPartner(id)));
       _display.addAll(payments);
       _display.display();
     } catch (NoSuchPartnerException ex){
