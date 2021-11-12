@@ -10,7 +10,9 @@ public abstract class Sale extends Transaction implements Serializable{
     }
 
     @Override
-    public void receivePayment(){}
+    public int receivePayment(){
+        return 0;
+    }
 
     @Override
     public String toString(){

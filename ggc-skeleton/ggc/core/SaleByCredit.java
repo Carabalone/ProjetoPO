@@ -14,9 +14,10 @@ public class SaleByCredit extends Sale implements Serializable{
     }
 
     @Override
-    public void receivePayment(){
+    public int receivePayment(){
         setPaymentDate(new Date(Date.showNow()));
         updateAmount();
+        return (int) _amountPaid;
     }
 
     public void updateAmount(){

@@ -114,9 +114,17 @@ public class Warehouse implements Serializable {
     return (int) Math.round(_accountingBalance);
   }
 
-  protected void removeFunds(double price){
-    _accountingBalance -= price;
-    _availableBalance -=price;
+  protected void removeFunds(double funds){
+    _accountingBalance -= funds;
+    _availableBalance -= funds;
+  }
+
+  protected void addAvailableFunds(double funds){
+    _availableBalance += funds;
+  }
+
+  protected void addAccountingFunds(double funds){
+    _accountingBalance += funds;
   }
 
   /**

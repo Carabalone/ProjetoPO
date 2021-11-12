@@ -37,7 +37,9 @@ public abstract class Transaction implements Serializable{
         return _paymentDate;
     }
 
-    public void receivePayment(){}
+    public int receivePayment(){
+        return 0;
+    }
 
     protected void setPaymentDate(Date date){
         _paymentDate = date;

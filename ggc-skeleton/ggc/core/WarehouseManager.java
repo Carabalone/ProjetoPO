@@ -187,7 +187,7 @@ public class WarehouseManager {
     
     Acquisition acq = new Acquisition(_warehouse.getProduct(product), amount, price, prt);
     _warehouse.addTransaction(acq);
-    _warehouse.removeFunds(price);
+    _warehouse.removeFunds(price*amount);
     prt.addAcquisition(acq);
 }
 
@@ -203,6 +203,7 @@ public class WarehouseManager {
     Sale sale = new SaleByCredit(product, amount, new Date(deadline), partner, value);
     _warehouse.addTransaction(sale);
     partner.addSale(sale);
+    _warehouse.addAccountingFunds(value*amount);
   }
 
   public int checkProductAvailability(String id) throws NoSuchProductException{
@@ -234,10 +235,12 @@ public class WarehouseManager {
   }
 
   public void receivePayment(int id)throws NoSuchTransactionException{
+    int funds;
     try {
       Transaction trans = _warehouse.getTransactions().get(id);
 
-      trans.receivePayment();
+      funds = trans.receivePayment();
+      _warehouse.addAvailableFunds(funds);
 
     } catch (IndexOutOfBoundsException e) {
       throw new NoSuchTransactionException(id);
