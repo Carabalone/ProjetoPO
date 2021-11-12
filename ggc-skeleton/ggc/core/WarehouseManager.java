@@ -11,6 +11,8 @@ import java.util.*;
 import java.io.*;
 import java.util.zip.*;
 
+import javax.print.DocFlavor.STRING;
+
 import ggc.core.exception.*;
 
 /** Façade for access. */
@@ -252,6 +254,16 @@ public class WarehouseManager {
     } catch (IndexOutOfBoundsException e) {
       throw new NoSuchTransactionException(id);
     }
+  }
+
+  public List<String> showPaymentsByPartner(Partner p){
+    List<String> payments = new ArrayList<>();
+    for (Sale s: p.getSales()){
+      if(s.isPaid()){
+        payments.add(s.toString());
+      }
+    }
+    return payments;
   }
 
   public boolean alteredSinceLastSave(){

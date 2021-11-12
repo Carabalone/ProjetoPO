@@ -80,6 +80,10 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return (int) value;
     }
 
+    public List<Sale> getSales(){
+        return _sales;
+    }
+
     public void addAcquisition(Acquisition acq){
         _acquisitions.add(acq);
     }
