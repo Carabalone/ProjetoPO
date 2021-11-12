@@ -134,17 +134,9 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * @param quantity number of units to allocate
    * @return price of buying allocated units (0 if there weren't enough units).
    */
-	abstract double gatherUnits(int quantity);
-
-	/**
-   * Allocates a certain ammount of units by removing them from the Batches and deleting empty batches.
-   * @param quantity number of units to allocate
-   * @return price of buying allocated units (0 if there weren't enough units).
-   */
 	public double gatherUnits(int quantity){
 		double price = 0;
-		Iterator<Batch> it = super.getBatches().iterator();
-		Partner supplier;
+		Iterator<Batch> it = getBatches().iterator();
 
 		if (this.checkQuantity() == 0){
 			return 0;
@@ -168,6 +160,9 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		return price;
 	}
 
+	public Recipe getRecipe(){
+		return new Recipe("", 0);
+	}
 
 	/**
    * Converts product into its display form.

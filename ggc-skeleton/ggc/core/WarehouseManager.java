@@ -131,7 +131,7 @@ public class WarehouseManager {
 
   public List<String> showNotificationStrings(Partner p){
     List <String> notificationStrings = new ArrayList<>();
-    for (notification n: p.getNotifications()){
+    for (Notification n: p.getNotifications()){
       notificationStrings.add(n.toString());
     }
     p.clearNotifications();

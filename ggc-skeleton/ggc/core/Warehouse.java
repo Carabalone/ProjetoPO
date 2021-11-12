@@ -127,7 +127,7 @@ public class Warehouse implements Serializable {
     _accountingBalance += funds;
   }
 
-  protected double breakdownProduct(Product product, Partner partner, int amount){
+  protected Sale breakdownProduct(DerivedProduct product, Partner partner, int amount){
     double income = product.gatherUnits(amount);
     double loss = 0;
 

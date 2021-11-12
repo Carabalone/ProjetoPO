@@ -23,7 +23,7 @@ public class Recipe implements Serializable{
 		_product = product;
 	}
 
-	public DerivedProduct getProduct(DerivedProduct){
+	public DerivedProduct getProduct(){
 		return _product;
 	}
 

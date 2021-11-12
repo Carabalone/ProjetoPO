@@ -15,7 +15,7 @@ public class BreakdownSale extends Sale implements Serializable{
         else 
             _paidAmount = 0;
 
-        setPaymentDate(new Date(Date.shownow()));
+        setPaymentDate(new Date(Date.showNow()));
     }
 
     /*private String toStringComponents(){
@@ -32,10 +32,10 @@ public class BreakdownSale extends Sale implements Serializable{
     @Override
     public String toString(){
         String generatedBatches = "";
-        for (Batch b ; _batches){
+        for (Batch b : _batches){
             generatedBatches += String.format("%s:%d:%d#", b.getProduct().getId(), b.getAvailableQuantity(), b.getPrice());
         }
-        generatedBatches = generatedBatches.substring(0, generatedBatches.length() - 1)
+        generatedBatches = generatedBatches.substring(0, generatedBatches.length() - 1);
         return String.format("%s|%s|%d|%d|%s", "DESAGREGAÇÃO", super.toString(), _paidAmount, getPaymentDate().getDay(), generatedBatches);
     }
 

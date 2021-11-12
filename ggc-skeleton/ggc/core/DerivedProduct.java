@@ -19,6 +19,7 @@ public class DerivedProduct extends Product implements Serializable{
 		_recipe = recipe;
 	}
 
+	@Override
 	public Recipe getRecipe(){
 		return _recipe;
 	}
