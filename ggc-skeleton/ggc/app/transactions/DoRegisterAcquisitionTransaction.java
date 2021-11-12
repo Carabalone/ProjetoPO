@@ -30,9 +30,9 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
 
     if (!_receiver.productExists(product)){
       System.out.print(Message.requestAddRecipe());
-      boolean hasRecipe = sc.nextBoolean();
+      String hasRecipe = sc.nextLine();
 
-      if (hasRecipe) {
+      if (hasRecipe.equals("s")) {
         System.out.print(Message.requestNumberOfComponents());
         int numberComponents = sc.nextInt();
         System.out.print(Message.requestAlpha());
