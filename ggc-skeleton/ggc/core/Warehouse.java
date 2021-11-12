@@ -134,7 +134,7 @@ public class Warehouse implements Serializable {
     List<Batch> batches = new ArrayList();
 
     for (Component c : product.getRecipe().getComponents()){
-      Product pro = getProduct(c.getProductId());
+      Product pro = c.getProduct();
       double batchPrice = c.getQuantity() * amount * pro.getLowestPrice();
       loss += batchPrice;
       Batch bat = new Batch(pro.getLowestPrice(), amount * c.getQuantity(), pro, partner);
@@ -173,9 +173,16 @@ public class Warehouse implements Serializable {
 
           if (tokens[0].equals("BATCH_S"))
             newProduct = new SimpleProduct(tokens[1], new TreeSet<Observer>(_partners));
-          else
-            newProduct = new DerivedProduct(tokens[1], new Recipe(tokens[6], Double.valueOf(tokens[5])),
+          else{
+            List<Component> components = new ArrayList();
+            String[] cmp = tokens[6].split("#");
+            for (String c : cmp){
+              String[] attributes = c.split(":");
+              components.add(new Component(Integer.valueOf(attributes[1]), getProduct(attributes[0])));
+            }
+            newProduct = new DerivedProduct(tokens[1], new Recipe(components, Double.valueOf(tokens[5])),
                                                        new TreeSet<Observer>(_partners));
+          }
         }
 
           this.addProduct(newProduct);

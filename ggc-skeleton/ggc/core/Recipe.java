@@ -6,17 +6,12 @@ import java.util.*;
 public class Recipe implements Serializable{
 
 	private double _commission;
-	private ArrayList<Component> _components;
+	private List<Component> _components;
 	private DerivedProduct _product;
 
-	public Recipe(String strComponents, double commission) {
+	public Recipe(List<Component> components, double commission) {
 		_commission = commission;
-		_components = new ArrayList();
-		String[] cmp = strComponents.split("#");
-		for (String c : cmp){
-			String[] attributes = c.split(":");
-			_components.add(new Component(Integer.valueOf(attributes[1]), attributes[0]));
-		}
+		_components = components;
 	}
 
 	public void addProduct(DerivedProduct product){
@@ -27,7 +22,7 @@ public class Recipe implements Serializable{
 		return _product;
 	}
 
-	public ArrayList <Component> getComponents(){
+	public List <Component> getComponents(){
 		return _components;
 	}
 

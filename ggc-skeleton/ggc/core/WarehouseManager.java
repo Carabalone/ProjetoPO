@@ -63,8 +63,14 @@ public class WarehouseManager {
     _warehouse.addProduct(new SimpleProduct(id, observers));
   }
 
-  public void addProduct(String id, String components, double comission){
+  public void addProduct(String id, String componentsStr, double comission){
     TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
+    List<Component> components = new ArrayList();
+    String[] componentsStrArray = componentsStr.split("#");
+    for (String c : componentsStrArray){
+      String[] attributes = c.split(":");
+      components.add(new Component(Integer.valueOf(attributes[1]), _warehouse.getProduct(attributes[0])));
+    }
     Recipe recipe = new Recipe(components, comission);
     DerivedProduct product = new DerivedProduct(id, recipe, observers);
     recipe.addProduct(product);

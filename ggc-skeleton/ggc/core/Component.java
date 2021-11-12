@@ -5,11 +5,11 @@ import java.io.Serializable;
 public class Component implements Serializable{
 
 	private int _quantity;
-	private String _productId;
+	private Product _product;
 
-	public Component(int quantity, String productId) {
+	public Component(int quantity, Product product) {
 		_quantity = quantity;
-		_productId = productId;
+		_product = product;
 	}
 
 	public int getQuantity() {
@@ -17,10 +17,14 @@ public class Component implements Serializable{
 	}
 
 	public String getProductId(){
-		return _productId;
+		return _product.getId();
+	}
+
+	public Product getProduct(){
+		return _product;
 	}
 
 	public String toString(){
-		return String.format("%s:%d", _productId, _quantity);
+		return String.format("%s:%d", getProductId(), _quantity);
 	}
 }
