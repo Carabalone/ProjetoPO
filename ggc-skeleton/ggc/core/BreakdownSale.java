@@ -33,10 +33,10 @@ public class BreakdownSale extends Sale implements Serializable{
     public String toString(){
         String generatedBatches = "";
         for (Batch b : _batches){
-            generatedBatches += String.format("%s:%d:%d#", b.getProduct().getId(), b.getAvailableQuantity(), b.getPrice());
+            generatedBatches += String.format("%s:%d:%d#", b.getProduct().getId(), b.getAvailableQuantity(), (int) b.getPrice());
         }
         generatedBatches = generatedBatches.substring(0, generatedBatches.length() - 1);
-        return String.format("%s|%s|%d|%d|%s", "DESAGREGAÇÃO", super.toString(), _paidAmount, getPaymentDate().getDay(), generatedBatches);
+        return String.format("%s|%s|%d|%d|%s", "DESAGREGAÇÃO", super.toString(), (int) _paidAmount, getPaymentDate().getDay(), generatedBatches);
     }
 
 }
