@@ -127,6 +127,25 @@ public class Warehouse implements Serializable {
     _accountingBalance += funds;
   }
 
+  protected double breakdownProduct(Product product, Partner partner, int amount){
+    double income = product.gatherUnits(amount);
+    double loss = 0;
+
+    List<Batch> batches = new ArrayList();
+
+    for (Component c : product.getRecipe().getComponents()){
+      Product pro = getProduct(c.getProductId());
+      double batchPrice = c.getQuantity() * amount * pro.getLowestPrice();
+      loss += batchPrice;
+      Batch bat = new Batch(pro.getLowestPrice(), amount * c.getQuantity(), pro, partner);
+      pro.addBatch(bat);
+      partner.addBatch(bat);
+      batches.add(bat.makeCopy());
+    }
+
+    return new BreakdownSale(product, amount, partner, income - loss, batches);
+  }
+
   /**
    * @param txtfile filename to be loaded.
    * @throws IOException

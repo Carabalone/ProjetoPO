@@ -64,7 +64,10 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	}
 
 	public double getLowestPrice(){
-		return _lowestPrice;
+		if (!_batches.isEmpty())
+			return _lowestPrice;
+		else
+			return _maxPrice;
 	}
 
 	/**
@@ -132,6 +135,39 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * @return price of buying allocated units (0 if there weren't enough units).
    */
 	abstract double gatherUnits(int quantity);
+
+	/**
+   * Allocates a certain ammount of units by removing them from the Batches and deleting empty batches.
+   * @param quantity number of units to allocate
+   * @return price of buying allocated units (0 if there weren't enough units).
+   */
+	public double gatherUnits(int quantity){
+		double price = 0;
+		Iterator<Batch> it = super.getBatches().iterator();
+		Partner supplier;
+
+		if (this.checkQuantity() == 0){
+			return 0;
+		}
+
+		while (it.hasNext()){
+
+			Batch bt = it.next();
+			if (bt.getAvailableQuantity() > quantity){
+				price += (bt.getPriceOfUnits(quantity));
+				bt.removeUnits(quantity);
+				return price;
+			}
+
+			quantity -= bt.getAvailableQuantity();
+			it.remove();
+			price += bt.getPriceOfUnits(bt.getAvailableQuantity());
+
+		}
+
+		return price;
+	}
+
 
 	/**
    * Converts product into its display form.

@@ -16,6 +16,10 @@ public class Component implements Serializable{
 		return _quantity;
 	}
 
+	public String getProductId(){
+		return _productId;
+	}
+
 	public String toString(){
 		return String.format("%s:%d", _productId, _quantity);
 	}

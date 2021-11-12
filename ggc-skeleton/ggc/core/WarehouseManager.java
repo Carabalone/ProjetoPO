@@ -63,9 +63,12 @@ public class WarehouseManager {
     _warehouse.addProduct(new SimpleProduct(id, observers));
   }
 
-  public void addProduct(String id, String recipe, double comission){
+  public void addProduct(String id, String components, double comission){
     TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
-    _warehouse.addProduct(new DerivedProduct(id, new Recipe(recipe, comission), observers));
+    Recipe recipe = new Recipe(components, comission);
+    DerivedProduct product = new DerivedProduct(id, recipe, observers);
+    recipe.addProduct(product);
+    _warehouse.addProduct(product);
   }
 
   public void newBatch(double price, int amount, String productId, String supplierId) throws NoSuchPartnerException{
@@ -128,7 +131,7 @@ public class WarehouseManager {
 
   public List<String> showNotificationStrings(Partner p){
     List <String> notificationStrings = new ArrayList<>();
-    for (Notification n: p.getNotifications()){
+    for (notification n: p.getNotifications()){
       notificationStrings.add(n.toString());
     }
     p.clearNotifications();
@@ -206,6 +209,24 @@ public class WarehouseManager {
     _warehouse.addTransaction(sale);
     partner.addSale(sale);
     _warehouse.addAccountingFunds(value*amount);
+  }
+
+  public void addBreakdownSale(String partnerId, String productId, int amount) throws NoSuchPartnerException, NoSuchProductException{
+    Partner partner = getPartner(partnerId);
+    Product product = _warehouse.getProduct(productId);
+
+    if (partner == null)
+      throw new NoSuchPartnerException(partnerId);
+
+    if (product == null)
+      throw new NoSuchProductException(productId);
+
+    if (product instanceof DerivedProduct){
+      Sale sale = _warehouse.breakdownProduct(product, partner, amount);
+
+      _warehouse.addTransaction(sale);
+      partner.addSale(sale);
+    }
   }
 
   public int checkProductAvailability(String id) throws NoSuchProductException{

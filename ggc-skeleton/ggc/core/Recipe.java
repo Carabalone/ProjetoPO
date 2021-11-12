@@ -7,6 +7,7 @@ public class Recipe implements Serializable{
 
 	private double _commission;
 	private ArrayList<Component> _components;
+	private DerivedProduct _product;
 
 	public Recipe(String strComponents, double commission) {
 		_commission = commission;
@@ -16,6 +17,14 @@ public class Recipe implements Serializable{
 			String[] attributes = c.split(":");
 			_components.add(new Component(Integer.valueOf(attributes[1]), attributes[0]));
 		}
+	}
+
+	public void addProduct(DerivedProduct product){
+		_product = product;
+	}
+
+	public DerivedProduct getProduct(DerivedProduct){
+		return _product;
 	}
 
 	public ArrayList <Component> getComponents(){

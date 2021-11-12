@@ -4,11 +4,23 @@ import java.io.Serializable;
 import java.util.*;
 public class BreakdownSale extends Sale implements Serializable{
     private List<Batch> _batches;
+    private double _paidAmount;
 
-    protected BreakdownSale(Product product, int quantity, Partner partner, double value){
+    protected BreakdownSale(Product product, int quantity, Partner partner, double value, List<Batch> batches){
         super(product, quantity, partner, value);
-        _batches = new ArrayList();
+        _batches = batches;
+
+        if (value > 0)
+            _paidAmount = value;
+        else 
+            _paidAmount = 0;
+
+        setPaymentDate(new Date(Date.shownow()));
     }
+
+    /*private String toStringComponents(){
+
+    }*/
 
     //TODO add components field in the end
 
@@ -19,10 +31,12 @@ public class BreakdownSale extends Sale implements Serializable{
 
     @Override
     public String toString(){
-        if(getPaymentDate() != null)
-            return String.format("%s|%s|%d", "DESAGREGAÇÃO", super.toString(), getPaymentDate().getDay());
-        else
-            return String.format("%s|%s", "DESAGREGAÇÃO", super.toString());
+        String generatedBatches = "";
+        for (Batch b ; _batches){
+            generatedBatches += String.format("%s:%d:%d#", b.getProduct().getId(), b.getAvailableQuantity(), b.getPrice());
+        }
+        generatedBatches = generatedBatches.substring(0, generatedBatches.length() - 1)
+        return String.format("%s|%s|%d|%d|%s", "DESAGREGAÇÃO", super.toString(), _paidAmount, getPaymentDate().getDay(), generatedBatches);
     }
 
 }

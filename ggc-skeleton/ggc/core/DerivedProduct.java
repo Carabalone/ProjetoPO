@@ -14,20 +14,20 @@ public class DerivedProduct extends Product implements Serializable{
    * @param id Product Id.
    * @param recipe Recipe object that includes components necessary to make a unit of this product
    */
-	public DerivedProduct(String id, Recipe recipe, TreeSet<Observer> observers) {
+	public DerivedProduct(String id, Recipe recipe, TreeSet<Observer> observers){
 		super(id, observers);
 		_recipe = recipe;
 	}
 
-	public Recipe getRecipe() {
+	public Recipe getRecipe(){
 		return _recipe;
 	}
 
 	//TODO
-	@Override
+	/*@Override
 	public double gatherUnits(int quantity){
 		return 0;
-	}
+	}*/
 
 	/**
    * Converts DerivedProduct into its display form.
@@ -37,6 +37,5 @@ public class DerivedProduct extends Product implements Serializable{
 	@Override
 	public String toString(){
 		return String.format("%s|%s", super.toString(), _recipe.toString());
-	}
-	
+	}	
 }
