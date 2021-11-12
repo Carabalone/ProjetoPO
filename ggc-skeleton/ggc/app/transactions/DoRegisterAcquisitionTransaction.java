@@ -18,24 +18,6 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     addStringField("productId", Message.requestProductKey());
     addIntegerField("price", Message.requestPrice());
     addIntegerField("amount", Message.requestAmount());
-
-    if (!receiver.productExists(integerField("productId"))){
-      addBooleanField("hasRecipe", Message.requestAddRecipe())
-
-      if (booleanField("hasRecipe")) {
-        addIntegerField("numberComponents", Message.requestNumberOfComponents());
-        addDoubleField("commission", Message.requestAlpha());
-        String recipe = "";
-
-        for(int i = 0; i < integerField("numberComponents"); i++){
-          addStringField("componentId", Message.requestProductKey());
-          addIntegerField("componentQuantity", Message.requestAmount());
-          recipe += stringField("componentId") + ":" + integerField("componentQuantity") + "#";
-        }
-
-        addStringField("recipe", recipe.substring(0, recipe.length() - 1));
-      }
-    }
   }
 
   @Override
@@ -44,13 +26,33 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     String product = stringField("productId");
     Integer price = integerField("price");
     Integer amount = integerField("amount");
+    Scanner sc = new Scanner(System.in);
 
-    if (!_receiver.productExists(product))
-      if (booleanField("hasRecipe")){
-        _receiver.addProduct(product, stringField("recipe"), doubleField("commission"));
+    if (!_receiver.productExists(product)){
+      System.out.print(Message.requestAddRecipe());
+      boolean hasRecipe = sc.nextBoolean();
+
+      if (hasRecipe) {
+        System.out.print(Message.requestNumberOfComponents());
+        int numberComponents = sc.nextInt();
+        System.out.print(Message.requestAlpha());
+        double comission = sc.nextDouble();
+        String recipe = "";
+
+        for(int i = 0; i < numberComponents; i++){
+          System.out.print(Message.requestProductKey());
+          String componentId = sc.nextLine();
+          System.out.print(Message.requestAmount());
+          String quantity = sc.nextLine();
+          recipe += componentId + ":" + quantity + "#";
+        }
+        recipe = recipe.substring(0, recipe.length() - 1);
+
+        _receiver.addProduct(product, recipe, comission);
       }
       else
         _receiver.addProduct(product);
+    }
 
     try {
       _receiver.newBatch(price, amount, product, partner);
