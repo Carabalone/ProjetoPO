@@ -122,11 +122,10 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * Checks how many availble units there are in all batches of this product.
    * @return total available units.
    */
-	public int checkQuantity(int quantity) throws NotEnoughProductException{
+	public void checkQuantity(int quantity) throws NotEnoughProductException{
 		int available = checkQuantity();
 		if (available < quantity)
 			throw new NotEnoughProductException(_id, quantity, available);
-		return available;
 	}
 
 	public int checkQuantity(){
@@ -146,10 +145,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		double price = 0;
 		Iterator<Batch> it = getBatches().iterator();
 
-		int available = checkQuantity();
-		if (available < quantity){
-			throw new NotEnoughProductException(available);
-		}
+		checkQuantity(quantity);
 
 		while (it.hasNext()){
 
