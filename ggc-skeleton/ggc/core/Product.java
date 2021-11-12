@@ -17,6 +17,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	//TODO we can substitute this arrayList to a HashMap, since we are going to be removing/adding partners a lot of times
 	private TreeSet<Observer> _observers;
 	private DeliveryMethod _deliveryMethod;
+	private boolean _newProduct;
 
 	/**
    * @param id Product Id.
@@ -28,6 +29,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		_batches = new TreeSet<Batch>();
 		_observers = new TreeSet<>(observers);
 		_deliveryMethod = new RegisterInApp(_observers);
+		_newProduct = true;
 	}
 	public Product(String id, TreeSet<Observer> observers, DeliveryMethod dMethod) {
 		_id = id;
@@ -36,6 +38,8 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		_batches = new TreeSet<Batch>();
 		_observers = new TreeSet<>(observers);
 		_deliveryMethod = dMethod;
+		_newProduct = true;
+
 	}
 
 	/**
@@ -79,12 +83,14 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 
 	protected void addBatch(Batch newBatch){
 		if (_batches.isEmpty()){
-			notify(Type.NEW);
+			if(!_newProduct)
+				notify(Type.NEW);
 			_lowestPrice = newBatch.getPrice();
 			_maxPrice = _lowestPrice;
 		}
 		_batches.add(newBatch);
 		updatePrices(newBatch.getPrice());
+		_newProduct = false;
 	}
 
 	protected void removeBatch(Batch emptyBatch){
