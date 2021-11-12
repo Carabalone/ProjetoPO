@@ -33,7 +33,7 @@ public class DoRegisterBreakdownTransaction extends Command<WarehouseManager> {
       _receiver.addBreakdownSale(partner, product, amount);
 
     } catch(NotEnoughProductException ex){
-      throw new UnavailableProductException(ex.getProductId(), ex.getRequiredUnits(), ex.getAvailableUnits());
+      throw new UnavailableProductException(ex.getId(), ex.getRequestedUnits(), ex.getAvailableUnits());
 
     } catch(NoSuchPartnerException exPartner){
       throw new UnknownPartnerKeyException(partner);

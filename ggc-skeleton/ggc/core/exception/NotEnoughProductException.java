@@ -8,7 +8,7 @@ public class NotEnoughProductException extends Exception{
 
     public NotEnoughProductException(String productId, int requestedUnits, int availableUnits){
         _available = availableUnits;
-        _reuested = requestedUnits;
+        _requested = requestedUnits;
         _productId = productId;
     }
 

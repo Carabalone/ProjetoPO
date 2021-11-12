@@ -41,9 +41,9 @@ public class DerivedProduct extends Product implements Serializable{
 	@Override
 	public double gatherUnits(int quantity) throws NotEnoughProductException{
 		
-		int available = checkQuantity(quantity);
+		checkQuantity(quantity);
 
-		return available;
+		return 0;
 	}
 
 	@Override

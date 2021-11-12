@@ -145,7 +145,9 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		double price = 0;
 		Iterator<Batch> it = getBatches().iterator();
 
-		checkQuantity(quantity);
+		int available = checkQuantity();
+		if (available < quantity)
+			throw new NotEnoughProductException(_id, quantity, available);
 
 		while (it.hasNext()){
 
