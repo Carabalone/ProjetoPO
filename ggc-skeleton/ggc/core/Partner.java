@@ -3,7 +3,6 @@ package ggc.core;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.io.Serializable;
-import java.lang.*;
 
 public class Partner implements Comparable<Partner>, Serializable, Observer{
     private String _name;
@@ -11,9 +10,6 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     private String _address;
     private Status _status;
     private Double _points;
-    private Double _acquisitionsValue;
-    private Double _salesValue;
-    private Double _paidSalesValue;
     private List<Acquisition> _acquisitions;
     private List<Sale> _sales;
     private Set<Batch> _batches;
@@ -29,9 +25,6 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _sales = new ArrayList<>();
         _batches = new TreeSet<>();
         _notifications = new ArrayList<>();
-        _acquisitionsValue = 0.0;
-        _paidSalesValue = 0.0;
-        _salesValue = 0.0;
     }
 
 

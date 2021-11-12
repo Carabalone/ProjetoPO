@@ -2,8 +2,6 @@ package ggc.core;
 
 //FIXME import classes (cannot import from pt.tecnico or ggc.app)
 
-import java.io.Serializable;
-import java.nio.file.FileSystemNotFoundException;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
@@ -11,7 +9,6 @@ import java.util.*;
 import java.io.*;
 import java.util.zip.*;
 
-import javax.print.DocFlavor.STRING;
 
 import ggc.core.exception.*;
 

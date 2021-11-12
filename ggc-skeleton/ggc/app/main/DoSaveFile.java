@@ -4,7 +4,6 @@ import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import pt.tecnico.uilib.forms.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import ggc.core.WarehouseManager;
