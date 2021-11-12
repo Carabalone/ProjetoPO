@@ -2,6 +2,7 @@ package ggc.app.transactions;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
+import pt.tecnico.uilib.forms.*;
 import ggc.app.exception.UnknownPartnerKeyException;
 import ggc.core.WarehouseManager;
 import ggc.core.exception.NoSuchPartnerException;
@@ -26,24 +27,27 @@ public class DoRegisterAcquisitionTransaction extends Command<WarehouseManager> 
     String product = stringField("productId");
     Integer price = integerField("price");
     Integer amount = integerField("amount");
-    Scanner sc = new Scanner(System.in);
 
     if (!_receiver.productExists(product)){
-      System.out.print(Message.requestAddRecipe());
-      String hasRecipe = sc.nextLine();
+      Form form = new Form("form");
+      form.addStringField("request", Message.requestAddRecipe());
+      form.parse();
+      String answer = form.stringField("request");
 
-      if (hasRecipe.equals("s")) {
-        System.out.print(Message.requestNumberOfComponents());
-        int numberComponents = sc.nextInt();
-        System.out.print(Message.requestAlpha());
-        double comission = sc.nextDouble();
+      if (answer.compareToIgnoreCase("s") == 0) {
+        form.addIntegerField("component", Message.requestNumberOfComponents());
+        form.addRealField("alpha", Message.requestAlpha());
+        form.parse();
+        int numberComponents = form.integerField("component");
+        double comission = form.realField("alpha");
         String recipe = "";
-
+        
         for(int i = 0; i < numberComponents; i++){
-          System.out.print(Message.requestProductKey());
-          String componentId = sc.nextLine();
-          System.out.print(Message.requestAmount());
-          String quantity = sc.nextLine();
+          form.addStringField("componentId", Message.requestProductKey());
+          form.addStringField("quantity", Message.requestAmount());
+          form.parse();
+          String componentId = form.stringField("componentId");
+          String quantity = form.stringField("quantity");
           recipe += componentId + ":" + quantity + "#";
         }
         recipe = recipe.substring(0, recipe.length() - 1);

@@ -55,7 +55,7 @@ public class WarehouseManager {
     }
     return false;
   }
-
+  
   public void addProduct(String id){
     TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
     _warehouse.addProduct(new SimpleProduct(id, observers));
@@ -125,12 +125,12 @@ public class WarehouseManager {
   }
 
   public List<String> showNotificationStrings(Partner p){
-    List <String> NotificationStrings = new ArrayList<>();
+    List <String> notificationStrings = new ArrayList<>();
     for (Notification n: p.getNotifications()){
-      NotificationStrings.add(n.toString());
+      notificationStrings.add(n.toString());
     }
     p.clearNotifications();
-    return NotificationStrings;
+    return notificationStrings;
   }
 
   public List<String> showBatchesPartner(String id) throws NoSuchPartnerException{
