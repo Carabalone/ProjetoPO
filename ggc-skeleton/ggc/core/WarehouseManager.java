@@ -238,7 +238,7 @@ public class WarehouseManager {
     }
   }
 
-  public int checkProductAvailability(String id) throws NoSuchProductException{
+  public int checkProductAvailability(String id) throws NoSuchProductException, NotEnoughProductException{
     Product product = _warehouse.getProduct(id);
 
     if (product == null)

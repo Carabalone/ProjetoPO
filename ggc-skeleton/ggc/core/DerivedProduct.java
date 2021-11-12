@@ -26,24 +26,24 @@ public class DerivedProduct extends Product implements Serializable{
 	}
 
 	@Override
-	public int checkQuantity(){
-		int quantity = super.checkQuantity();
-		int minimum = 0;
-		for (Component c : getRecipe().getComponents()){
-			int newValue = c.getProduct().checkQuantity() / c.getQuantity();
-			if (newValue < minimum)
-				minimum = newValue;
+	public int checkQuantity(int amount) throws NotEnoughProductException{
+
+		try {
+			int quantity = super.checkQuantity();
+		} catch (NotEnoughProductException ex){
+
+			for (Component c : getRecipe().getComponents()){
+				int cmpQuantity = amount * c.getQuantity();
+				c.getProduct().checkQuantity(cmpQuantity);
+			}
 		}
-		return quantity + minimum;
+		return quantity;
 	}
 
 	@Override
 	public double gatherUnits(int quantity) throws NotEnoughProductException{
 		
-		int available = checkQuantity();
-		if (available < quantity){
-			throw new NotEnoughProductException(available);
-		}
+		int available = checkQuantity(quantity);
 
 		return available;
 	}

@@ -122,6 +122,13 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * Checks how many availble units there are in all batches of this product.
    * @return total available units.
    */
+	public int checkQuantity(int quantity) throws NotEnoughProductException{
+		int available = checkQuantity();
+		if (available < quantity)
+			throw new NotEnoughProductException(_id, quantity, available);
+		return available;
+	}
+
 	public int checkQuantity(){
 		int qAvailable = 0;
 		for(Batch batch : _batches){
