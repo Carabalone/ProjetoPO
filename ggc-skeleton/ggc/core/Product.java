@@ -161,7 +161,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	}
 
 	public Recipe getRecipe(){
-		return new Recipe("", 0);
+		return null;
 	}
 
 	/**
