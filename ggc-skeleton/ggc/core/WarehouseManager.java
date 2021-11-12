@@ -202,7 +202,7 @@ public class WarehouseManager {
     prt.addAcquisition(acq);
 }
 
-  public void addSale(String partnerId, String productId, int deadline, int amount) throws NoSuchPartnerException, NoSuchProductExceptio, NotEnoughProductException{
+  public void addSale(String partnerId, String productId, int deadline, int amount) throws NoSuchPartnerException, NoSuchProductException, NotEnoughProductException{
     Partner partner = getPartner(partnerId);
     Product product = _warehouse.getProduct(productId);
 
