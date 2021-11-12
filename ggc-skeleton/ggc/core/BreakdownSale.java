@@ -11,6 +11,12 @@ public class BreakdownSale extends Sale implements Serializable{
     }
 
     //TODO add components field in the end
+
+    @Override
+    public double getAmountPaid(){
+        return _baseValue;
+    }
+
     @Override
     public String toString(){
         if(getPaymentDate() != null)

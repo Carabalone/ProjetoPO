@@ -14,6 +14,12 @@ public abstract class Sale extends Transaction implements Serializable{
         return 0;
     }
 
+    public double getBaseValue(){
+        return _baseValue;
+    }
+
+    abstract double getAmountPaid();
+
     @Override
     public String toString(){
         return String.format("%s|%d", super.toString(), Math.round(_baseValue));

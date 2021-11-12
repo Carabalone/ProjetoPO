@@ -20,6 +20,11 @@ public class SaleByCredit extends Sale implements Serializable{
         return (int) _amountPaid;
     }
 
+    @Override
+    public boolean isPaid(){
+        return getPaymentDate() != null;
+    }
+
     public void updateAmount(){
         if (getPaymentDate() == null)
             _amountPaid = _baseValue * (1 + SalePaymentCoeficients.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - _deadline.getDay()));
@@ -27,6 +32,10 @@ public class SaleByCredit extends Sale implements Serializable{
 
     public int getDeadline(){
         return _deadline.getDay();
+    }
+
+    public double getAmountPaid(){
+        return _amountPaid;
     }
 
     @Override

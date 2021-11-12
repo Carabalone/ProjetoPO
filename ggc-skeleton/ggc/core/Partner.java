@@ -60,6 +60,26 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _sales.add(sale);
     }
 
+    public int getSalesValue(){
+        double value = 0;
+        for (Sale s: _sales){
+            if (s instanceof SaleByCredit){
+                value += s.getAmountPaid();
+            }
+        }
+        return (int) value;
+    }
+
+    public int getPaidSalesValue(){
+        double value = 0;
+        for (Sale s: _sales){
+            if (s instanceof SaleByCredit && s.isPaid()){
+                value += s.getAmountPaid();
+            }
+        }
+        return (int) value;
+    }
+
     public void addAcquisition(Acquisition acq){
         _acquisitions.add(acq);
     }
@@ -114,8 +134,8 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     public String toString(){
         return String.format("%s|%s|%s|%s|%d|%d|%d|%d", _id,_name,_address, _status.name(),
                                                         _points.intValue(), getAcquisitionValue(),
-                                                        _acquisitionsValue.intValue(),
-                                                        _acquisitionsValue.intValue());
+                                                        getSalesValue(),
+                                                        getPaidSalesValue());
     }
 
     public void update(Notification n){
