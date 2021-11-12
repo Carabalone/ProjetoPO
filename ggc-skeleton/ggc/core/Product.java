@@ -2,6 +2,7 @@ package ggc.core;
 
 import java.io.Serializable;
 import java.util.*;
+import ggc.core.exception.NotEnoughProductException;
 
 /**
 * Class Product serves only to implement generic attributes and methods.
@@ -134,12 +135,13 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * @param quantity number of units to allocate
    * @return price of buying allocated units (0 if there weren't enough units).
    */
-	public double gatherUnits(int quantity){
+	public double gatherUnits(int quantity) throws NotEnoughProductException{
 		double price = 0;
 		Iterator<Batch> it = getBatches().iterator();
 
-		if (this.checkQuantity() == 0){
-			return 0;
+		int available = checkQuantity();
+		if (available < quantity){
+			throw new NotEnoughProductException(available);
 		}
 
 		while (it.hasNext()){

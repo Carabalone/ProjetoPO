@@ -8,6 +8,7 @@ import ggc.app.exception.UnknownProductKeyException;
 import ggc.app.exception.UnknownPartnerKeyException;
 import ggc.core.exception.NoSuchPartnerException;
 import ggc.core.exception.NoSuchProductException;
+import ggc.core.exception.NotEnoughProductException;
 
 /**
  * Registers a sale made to a partner.
@@ -31,12 +32,10 @@ public class DoRegisterSaleTransaction extends Command<WarehouseManager> {
 
     try {
 
-      int quantityAvailable = _receiver.checkProductAvailability(product);
-
-      if (amount > quantityAvailable)
-        throw new UnavailableProductException(product, amount, quantityAvailable);
-
       _receiver.addSale(partner, product, deadline, amount);
+
+    } catch(NotEnoughProductException ex){
+      throw new UnavailableProductException(product, amount, ex.getAvailable());
 
     } catch(NoSuchPartnerException exPartner){
       throw new UnknownPartnerKeyException(partner);

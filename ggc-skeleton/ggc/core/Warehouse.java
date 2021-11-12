@@ -127,8 +127,8 @@ public class Warehouse implements Serializable {
     _accountingBalance += funds;
   }
 
-  protected Sale breakdownProduct(Product product, Partner partner, int amount){
-    double income = product.gatherUnits(amount);
+  protected Sale breakdownProduct(Product product, Partner partner, int amount) throws NotEnoughProductException{
+    double income = product.gatherUnitsSimple(amount);
     double loss = 0;
 
     List<Batch> batches = new ArrayList();
