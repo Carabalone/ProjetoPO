@@ -9,7 +9,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     private String _name;
     private String _id;
     private String _address;
-    private String _status;
+    private Status _status;
     private Double _points;
     private Double _acquisitionsValue;
     private Double _salesValue;
@@ -24,7 +24,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _name = name;
         _address = adress;
         _points = 0.0;
-        _status = "NORMAL";
+        _status = Status.NORMAL;
         _acquisitions = new ArrayList<>();
         _sales = new ArrayList<>();
         _batches = new TreeSet<>();
@@ -44,7 +44,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return _id;
     }
 
-    public String getStatus(){
+    public Status getStatus(){
         return _status;
     }
 
@@ -84,10 +84,35 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _notifications.clear();
     }
 
+    protected void updateStatus(){
+        if (_points > 25000)
+            _status = Status.ELITE;
+        else if (_points > 2000)
+            _status = Status.SELECTION;
+    }
+
+    protected void updateStatus(int delay){
+        if (_status == Status.ELITE && delay > 15){
+            _status = Status.SELECTION;
+            _points *= 0.25;
+        }
+        else if (_status == Status.SELECTION && delay > 2){
+            _status = Status.NORMAL;
+            _points *= 0.1;
+        }
+        else if (_status == Status.NORMAL && delay > 0)
+            _points = 0d;
+    }
+
+    protected void addPoints(double points){
+        _points += points;
+        updateStatus();
+    }
+
     
     @Override
     public String toString(){
-        return String.format("%s|%s|%s|%s|%d|%d|%d|%d", _id,_name,_address, _status,
+        return String.format("%s|%s|%s|%s|%d|%d|%d|%d", _id,_name,_address, _status.name(),
                                                         _points.intValue(), getAcquisitionValue(),
                                                         _acquisitionsValue.intValue(),
                                                         _acquisitionsValue.intValue());

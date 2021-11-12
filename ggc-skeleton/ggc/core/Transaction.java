@@ -32,6 +32,10 @@ public abstract class Transaction implements Serializable{
     public boolean isPaid(){
         return true;
     }
+
+    public int getDeadline(){
+        return 0;
+    }
     
     public Date getPaymentDate(){
         return _paymentDate;

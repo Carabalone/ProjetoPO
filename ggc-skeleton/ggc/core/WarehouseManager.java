@@ -242,6 +242,13 @@ public class WarehouseManager {
       funds = trans.receivePayment();
       _warehouse.addAvailableFunds(funds);
 
+      if (trans.getDeadline() - Date.showNow() >= 0){
+        trans.getPartner().addPoints(funds*10);
+      }
+      else {
+        trans.getPartner().updateStatus(Date.showNow() - trans.getDeadline());
+      }
+
     } catch (IndexOutOfBoundsException e) {
       throw new NoSuchTransactionException(id);
     }

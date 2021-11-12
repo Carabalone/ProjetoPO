@@ -25,6 +25,10 @@ public class SaleByCredit extends Sale implements Serializable{
             _amountPaid = _baseValue * (1 + SalePaymentCoeficients.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - _deadline.getDay()));
     }
 
+    public int getDeadline(){
+        return _deadline.getDay();
+    }
+
     @Override
     public String toString(){
         if (getPaymentDate() != null)

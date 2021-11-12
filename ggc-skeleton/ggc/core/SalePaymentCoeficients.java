@@ -39,7 +39,7 @@ interface SalePaymentCoeficients {
 			return 0;
 	}
 
-	static double getCoeficient(Product product, String status, int delay){
+	static double getCoeficient(Product product, Status status, int delay){
 
 		int tolerance;
 		int period;
@@ -58,9 +58,9 @@ interface SalePaymentCoeficients {
         else // tolerance < delay
             period = 4;
 
-		if (status.equals("NORMAL"))
+		if (status == Status.NORMAL)
 			return getNormalCoeficients(period, delay);
-		if (status.equals("SELECTION"))
+		if (status == Status.SELECTION)
 			return getSelectionCoeficients(period, delay);
 		else // status.equals("ELITE")
 			return getEliteCoeficients(period, delay);
