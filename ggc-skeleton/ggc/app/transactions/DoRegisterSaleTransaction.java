@@ -35,7 +35,7 @@ public class DoRegisterSaleTransaction extends Command<WarehouseManager> {
       _receiver.addSale(partner, product, deadline, amount);
 
     } catch(NotEnoughProductException ex){
-      throw new UnavailableProductException(product, amount, ex.getAvailable());
+      throw new UnavailableProductException(product, amount, ex.getAvailableUnits());
 
     } catch(NoSuchPartnerException exPartner){
       throw new UnknownPartnerKeyException(partner);

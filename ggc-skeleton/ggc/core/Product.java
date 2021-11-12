@@ -162,6 +162,10 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		return price;
 	}
 
+	public double gatherUnitsSimple(int quantity) throws NotEnoughProductException{
+		return 0;
+	}
+
 	public Recipe getRecipe(){
 		return null;
 	}
