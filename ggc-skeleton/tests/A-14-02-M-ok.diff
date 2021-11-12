@@ -1,22 +1,5 @@
 *** tests/A-14-02-M-ok.out	2021-11-07 13:04:59.250420400 -0300
---- tests/A-14-02-M-ok.outhyp	2021-11-11 18:28:45.294969200 -0300
-***************
-*** 48,54 ****
-  4 - Registar compra
-  5 - Receber pagamento de venda
-  0 - Sair
-! Escolha uma opção: Identificador da transacção: COMPRA|0|M1|SAL|10|100|0
-  Gestão de Transacções
-  1 - Visualizar
-  2 - Registar desagregação
---- 48,54 ----
-  4 - Registar compra
-  5 - Receber pagamento de venda
-  0 - Sair
-! Escolha uma opção: Identificador da transacção: COMPRA|0|M1|SAL|10|10|0
-  Gestão de Transacções
-  1 - Visualizar
-  2 - Registar desagregação
+--- tests/A-14-02-M-ok.outhyp	2021-11-11 22:31:26.295273100 -0300
 ***************
 *** 71,80 ****
   1 - Produtos com Preço Abaixo de Limite

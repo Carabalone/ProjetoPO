@@ -1,5 +1,5 @@
 *** tests/A-12-02-M-ok.out	2021-11-07 13:04:59.222891200 -0300
---- tests/A-12-02-M-ok.outhyp	2021-11-11 18:28:43.302624800 -0300
+--- tests/A-12-02-M-ok.outhyp	2021-11-11 22:31:24.293312400 -0300
 ***************
 *** 34,41 ****
   8 - Menu de Consultas
@@ -10,11 +10,12 @@
   Menu Principal
   1 - Abrir
   2 - Guardar
---- 34,40 ----
+--- 34,41 ----
   8 - Menu de Consultas
   9 - Ver Saldo Global
   0 - Sair
-! Escolha uma opção: -1000
+! Escolha uma opção: Saldo disponível: -1000
+! Saldo contabilístico: -1000
   Menu Principal
   1 - Abrir
   2 - Guardar

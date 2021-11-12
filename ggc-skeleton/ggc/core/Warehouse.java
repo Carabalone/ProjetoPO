@@ -22,14 +22,16 @@ public class Warehouse implements Serializable {
   private TreeSet<Product> _products;
   private TreeSet<Partner> _partners;
   private List<Transaction> _transactions;
-  private double _balance;
+  private double _availableBalance;
+  private double _accountingBalance;
 
 
   protected Warehouse(){
     _products = new TreeSet<Product>();
     _partners = new TreeSet<Partner>();
     _transactions = new ArrayList<Transaction>();
-    _balance = 0;
+    _availableBalance = 0;
+    _accountingBalance = 0;
   }
 
   protected List<Transaction> getTransactions(){
@@ -42,6 +44,10 @@ public class Warehouse implements Serializable {
 
   protected static void advanceTransactionId(){
     _nextTransactionId += 1;
+  }
+
+  protected static void setTransactionId(int id){
+    _nextTransactionId = id;
   }
 
   protected void addTransaction(Transaction transaction){
@@ -100,12 +106,17 @@ public class Warehouse implements Serializable {
     return batches;
   }
 
-  protected int getBalance(){
-    return (int) Math.round(_balance);
+  protected int getAvailableBalance(){
+    return (int) Math.round(_availableBalance);
+  }
+
+  protected int getAccountingBalance(){
+    return (int) Math.round(_accountingBalance);
   }
 
   protected void removeFunds(double price){
-    _balance -= price;
+    _accountingBalance -= price;
+    _availableBalance -=price;
   }
 
   /**

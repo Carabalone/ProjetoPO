@@ -40,9 +40,13 @@ public class WarehouseManager {
     _alteredSinceLastSave = true;
   }
 
-  public int displayGlobalBalance(){
-    return _warehouse.getBalance();
+  public int[] displayGlobalBalance(){
+    int[] balances = new int[2];
+    balances[0] = _warehouse.getAvailableBalance();
+    balances[1] = _warehouse.getAccountingBalance();
+    return balances;
   }
+
 
   public boolean productExists(String id){
     for (Product p : _warehouse.getProducts()){
@@ -257,6 +261,7 @@ public class WarehouseManager {
       obOut = new ObjectOutputStream(dOut);
       obOut.writeObject(_warehouse);
       obOut.writeObject((Integer) Date.showNow());
+      obOut.writeObject((Integer) Warehouse.getNextTransactionId());
     } finally {
       if (obOut != null)
         obOut.close();
@@ -288,6 +293,8 @@ public class WarehouseManager {
       _warehouse = (Warehouse)obIn.readObject();
       int data = (Integer)obIn.readObject();
       Date.addNow(data);
+      int transactionId = (Integer)obIn.readObject();
+      Warehouse.setTransactionId(transactionId);
       _filename = filename;
 
     } catch (FileNotFoundException ex){
