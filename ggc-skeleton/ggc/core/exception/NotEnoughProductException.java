@@ -3,12 +3,24 @@ package ggc.core.exception;
 public class NotEnoughProductException extends Exception{
 
     private int _available;
+    private int _requested;
+    private String _productId;
 
-    public NotEnoughProductException(int availableUnits){
+    public NotEnoughProductException(String productId, int requestedUnits, int availableUnits){
         _available = availableUnits;
+        _requested = requestedUnits;
+        _productId = productId;
     }
 
     public int getAvailableUnits(){
         return _available;
+    }
+
+    public String getId(){
+        return _productId;
+    }
+
+    public int getRequestedUnits(){
+        return _requested;
     }
 }
