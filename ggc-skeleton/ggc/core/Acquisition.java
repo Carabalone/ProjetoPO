@@ -6,11 +6,11 @@ public class Acquisition extends Transaction implements Serializable{
     
 
 
-    public Acquisition(Product product, int quantity, double value, Partner partner){
+    protected Acquisition(Product product, int quantity, double value, Partner partner){
         super(quantity, new Date(Date.showNow()), product, partner, value);
     }
 
-    public double getValue(){
+    protected double getValue(){
         return getBaseValue()*getQuantity();
     }
 

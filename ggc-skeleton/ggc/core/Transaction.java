@@ -28,20 +28,19 @@ public abstract class Transaction implements Serializable{
         _id = Warehouse.getNextTransactionId();
         Warehouse.advanceTransactionId();
     }
-    //TODO
-    public boolean isPaid(){
+    protected boolean isPaid(){
         return true;
     }
 
-    public int getDeadline(){
+    protected int getDeadline(){
         return 0;
     }
     
-    public Date getPaymentDate(){
+    protected Date getPaymentDate(){
         return _paymentDate;
     }
 
-    public int receivePayment(){
+    protected int receivePayment(){
         return 0;
     }
 
@@ -54,23 +53,23 @@ public abstract class Transaction implements Serializable{
         return String.format("%d|%s|%s|%d", _id, _partner.getId(), _product.getId(), _quantity);
     }
 
-    public int getId(){
+    protected int getId(){
         return _id;
     }
 
-    public Product getProduct(){
+    protected Product getProduct(){
         return _product;
     }
 
-    public Partner getPartner(){
+    protected Partner getPartner(){
         return _partner;
     }
 
-    public int getQuantity(){
+    protected int getQuantity(){
         return _quantity;
     }
 
-    public double getBaseValue(){
+    protected double getBaseValue(){
         return _baseValue;
     }
 }

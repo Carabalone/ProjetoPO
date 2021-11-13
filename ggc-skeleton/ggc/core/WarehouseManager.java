@@ -1,6 +1,5 @@
 package ggc.core;
 
-//FIXME import classes (cannot import from pt.tecnico or ggc.app)
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -62,7 +61,7 @@ public class WarehouseManager {
 
   public void addProduct(String id, String componentsStr, double comission){
     TreeSet<Observer> observers = new TreeSet<>(_warehouse.getPartners());
-    List<Component> components = new ArrayList();
+    List<Component> components = new ArrayList<>();
     String[] componentsStrArray = componentsStr.split("#");
     for (String c : componentsStrArray){
       String[] attributes = c.split(":");

@@ -7,20 +7,20 @@ public class Component implements Serializable{
 	private int _quantity;
 	private Product _product;
 
-	public Component(int quantity, Product product) {
+	protected Component(int quantity, Product product) {
 		_quantity = quantity;
 		_product = product;
 	}
 
-	public int getQuantity() {
+	protected int getQuantity() {
 		return _quantity;
 	}
 
-	public String getProductId(){
+	protected String getProductId(){
 		return _product.getId();
 	}
 
-	public Product getProduct(){
+	protected Product getProduct(){
 		return _product;
 	}
 

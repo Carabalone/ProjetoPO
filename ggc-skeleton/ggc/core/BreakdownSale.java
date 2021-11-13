@@ -18,14 +18,9 @@ public class BreakdownSale extends Sale implements Serializable{
         setPaymentDate(new Date(Date.showNow()));
     }
 
-    /*private String toStringComponents(){
-
-    }*/
-
-    //TODO add components field in the end
 
     @Override
-    public double getAmountPaid(){
+    protected double getAmountPaid(){
         return _baseValue;
     }
 

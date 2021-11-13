@@ -19,7 +19,7 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @param product this batch has units of this product.
    * @param supplier partner that provided this batch.
    */
-	public Batch(double unitPrice, int quantity, Product product, Partner supplier){
+	protected Batch(double unitPrice, int quantity, Product product, Partner supplier){
 		_quantity = quantity;
 		_product = product;
 		_supplier = supplier;
@@ -45,23 +45,23 @@ public class Batch implements Comparable<Batch>, Serializable{
         return Double.compare(_quantity, b.getAvailableQuantity());
     }
 
-	public int getAvailableQuantity(){
+	protected int getAvailableQuantity(){
 		return _quantity;
 	}
 
-	public double getPrice(){
+	protected double getPrice(){
 		return _unitPrice;
 	}
 
-	public double getPriceOfUnits(int units){
+	protected double getPriceOfUnits(int units){
 		return _unitPrice * units; 
 	}
 
-	public Product getProduct(){
+	protected Product getProduct(){
 		return _product;
 	}
 
-	public Partner getSupplier(){
+	protected Partner getSupplier(){
 		return _supplier;
 	}
 
@@ -70,7 +70,7 @@ public class Batch implements Comparable<Batch>, Serializable{
    * @param ammount number of units to remove.
    * @return quantity still available.
    */
-	public int removeUnits(int amount){
+	protected int removeUnits(int amount){
 		_quantity -= amount;
 		return _quantity;
 	}

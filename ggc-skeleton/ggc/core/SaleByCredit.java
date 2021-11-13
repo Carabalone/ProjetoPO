@@ -1,7 +1,6 @@
 package ggc.core;
 
 import java.io.Serializable;
-import java.util.*;
 
 public class SaleByCredit extends Sale implements Serializable{
     private Date _deadline;
@@ -25,7 +24,7 @@ public class SaleByCredit extends Sale implements Serializable{
         return getPaymentDate() != null;
     }
 
-    public void updateAmount(){
+    protected void updateAmount(){
         if (getPaymentDate() == null)
             _amountPaid = _baseValue * (1 + SalePaymentCoeficients.getCoeficient(getProduct(), getPartner().getStatus(), Date.showNow() - _deadline.getDay()));
     }
@@ -34,7 +33,7 @@ public class SaleByCredit extends Sale implements Serializable{
         return _deadline.getDay();
     }
 
-    public double getAmountPaid(){
+    protected double getAmountPaid(){
         return _amountPaid;
     }
 

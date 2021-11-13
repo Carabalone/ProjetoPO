@@ -9,24 +9,24 @@ public class Recipe implements Serializable{
 	private List<Component> _components;
 	private DerivedProduct _product;
 
-	public Recipe(List<Component> components, double commission) {
+	protected Recipe(List<Component> components, double commission) {
 		_commission = commission;
 		_components = components;
 	}
 
-	public void addProduct(DerivedProduct product){
+	protected void addProduct(DerivedProduct product){
 		_product = product;
 	}
 
-	public DerivedProduct getProduct(){
+	protected DerivedProduct getProduct(){
 		return _product;
 	}
 
-	public List <Component> getComponents(){
+	protected List <Component> getComponents(){
 		return _components;
 	}
 
-	public double getCommission() {
+	protected double getCommission() {
 		return _commission;
 	}
 

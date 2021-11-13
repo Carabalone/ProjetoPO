@@ -1,7 +1,6 @@
 package ggc.core;
 
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.io.Serializable;
 
 public class Partner implements Comparable<Partner>, Serializable, Observer{
@@ -33,27 +32,27 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
     }
 
     
-    public String getId(){
+    protected String getId(){
         return _id;
     }
 
-    public Status getStatus(){
+    protected Status getStatus(){
         return _status;
     }
 
-    public Set<Batch> getBatches(){
+    protected Set<Batch> getBatches(){
         return new TreeSet<>(_batches);
     }
 
-    public void addBatch(Batch batch){
+    protected void addBatch(Batch batch){
         _batches.add(batch);
     }
 
-    public void addSale(Sale sale){
+    protected void addSale(Sale sale){
         _sales.add(sale);
     }
 
-    public int getSalesValue(){
+    protected int getSalesValue(){
         double value = 0;
         for (Sale s: _sales){
             if (s instanceof SaleByCredit){
@@ -63,7 +62,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return (int) value;
     }
 
-    public int getPaidSalesValue(){
+    protected int getPaidSalesValue(){
         double value = 0;
         for (Sale s: _sales){
             if (s instanceof SaleByCredit && s.isPaid()){
@@ -73,7 +72,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return (int) value;
     }
 
-    public List<Sale> getSales(){
+    protected List<Sale> getSales(){
         return _sales;
     }
 
@@ -81,7 +80,7 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         _acquisitions.add(acq);
     }
 
-    public int getAcquisitionValue(){
+    protected int getAcquisitionValue(){
         double value = 0;
         for (Acquisition a: _acquisitions){
             value += a.getValue();
@@ -89,11 +88,11 @@ public class Partner implements Comparable<Partner>, Serializable, Observer{
         return (int) value;
     }
 
-    public List<Acquisition> getAcquisitions(){
+    protected List<Acquisition> getAcquisitions(){
         return new ArrayList<>(_acquisitions);
     }
 
-    public List<Notification> getNotifications(){
+    protected List<Notification> getNotifications(){
         return _notifications;
     }
 

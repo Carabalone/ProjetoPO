@@ -11,14 +11,14 @@ public class Date  implements Serializable{
     private static int _now;
 
     static{ _now = 0; }
-    public Date(int day){
+    protected Date(int day){
         _days = day;
     }
 
     /*
     * @@param days the days to advance in the _days variable
     **/
-    public Date add(int days){
+    protected Date add(int days){
         _days += days;
         return this;
     }
@@ -26,21 +26,21 @@ public class Date  implements Serializable{
     /*
     * @@param days the days to advance in the _now variable
     **/
-    public static void addNow(int days){
+    protected static void addNow(int days){
         _now += days;
     }
 
-    public static Date now(){
+    protected static Date now(){
         return new Date(_now);
     }
     /*
     * return The current date but as an int
     */
-    public static int showNow(){
+    protected static int showNow(){
         return Date._now;
     }
     
-    public int getDay(){
+    protected int getDay(){
         return _days;
     }
 

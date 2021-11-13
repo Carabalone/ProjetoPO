@@ -18,8 +18,8 @@ public class Warehouse implements Serializable {
 
   private Date _date = Date.now();
   private static int _nextTransactionId = 0;
-  private TreeSet<Product> _products;
-  private TreeSet<Partner> _partners;
+  private Set<Product> _products;
+  private Set<Partner> _partners;
   private List<Transaction> _transactions;
   private double _availableBalance;
   private double _accountingBalance;
@@ -130,7 +130,7 @@ public class Warehouse implements Serializable {
     double income = product.gatherUnitsSimple(amount);
     double loss = 0;
 
-    List<Batch> batches = new ArrayList();
+    List<Batch> batches = new ArrayList<>();
 
     for (Component c : product.getRecipe().getComponents()){
       Product pro = c.getProduct();
@@ -173,7 +173,7 @@ public class Warehouse implements Serializable {
           if (tokens[0].equals("BATCH_S"))
             newProduct = new SimpleProduct(tokens[1], new TreeSet<Observer>(_partners));
           else{
-            List<Component> components = new ArrayList();
+            List<Component> components = new ArrayList<>();
             String[] cmp = tokens[6].split("#");
             for (String c : cmp){
               String[] attributes = c.split(":");

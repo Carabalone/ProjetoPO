@@ -15,18 +15,18 @@ public class DerivedProduct extends Product implements Serializable{
    * @param id Product Id.
    * @param recipe Recipe object that includes components necessary to make a unit of this product
    */
-	public DerivedProduct(String id, Recipe recipe, TreeSet<Observer> observers){
+	public DerivedProduct(String id, Recipe recipe, Set<Observer> observers){
 		super(id, observers);
 		_recipe = recipe;
 	}
 
 	@Override
-	public Recipe getRecipe(){
+	protected Recipe getRecipe(){
 		return _recipe;
 	}
 
 	@Override
-	public void checkQuantity(int amount) throws NotEnoughProductException{
+	protected void checkQuantity(int amount) throws NotEnoughProductException{
 
 		int available = checkQuantity();
 		if (amount > available){
@@ -39,7 +39,7 @@ public class DerivedProduct extends Product implements Serializable{
 	}
 
 	@Override
-	public double gatherUnits(int quantity) throws NotEnoughProductException{
+	protected double gatherUnits(int quantity) throws NotEnoughProductException{
 		
 		checkQuantity(quantity);
 
@@ -47,7 +47,7 @@ public class DerivedProduct extends Product implements Serializable{
 	}
 
 	@Override
-	public double gatherUnitsSimple(int quantity) throws NotEnoughProductException{
+	protected double gatherUnitsSimple(int quantity) throws NotEnoughProductException{
 		return super.gatherUnits(quantity);
 	}
 

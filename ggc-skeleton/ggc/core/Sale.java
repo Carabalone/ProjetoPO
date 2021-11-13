@@ -1,7 +1,6 @@
 package ggc.core;
 
 import java.io.Serializable;
-import java.nio.file.ProviderNotFoundException;
 
 public abstract class Sale extends Transaction implements Serializable{
 
@@ -14,7 +13,7 @@ public abstract class Sale extends Transaction implements Serializable{
         return 0;
     }
 
-    public double getBaseValue(){
+    protected double getBaseValue(){
         return _baseValue;
     }
 

@@ -15,15 +15,14 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 	private double _lowestPrice;
 	private String _id;
 	private Set<Batch> _batches;
-	//TODO we can substitute this arrayList to a HashMap, since we are going to be removing/adding partners a lot of times
-	private TreeSet<Observer> _observers;
+	private Set<Observer> _observers;
 	private DeliveryMethod _deliveryMethod;
 	private boolean _newProduct;
 
 	/**
    * @param id Product Id.
    */
-	public Product(String id, TreeSet<Observer> observers) {
+	public Product(String id, Set<Observer> observers) {
 		_id = id;
 		_maxPrice = 0;
 		_lowestPrice = 0;
@@ -32,7 +31,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		_deliveryMethod = new RegisterInApp(_observers);
 		_newProduct = true;
 	}
-	public Product(String id, TreeSet<Observer> observers, DeliveryMethod dMethod) {
+	public Product(String id, Set<Observer> observers, DeliveryMethod dMethod) {
 		_id = id;
 		_maxPrice = 0;
 		_lowestPrice = 0;
@@ -52,19 +51,19 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
         return _id.compareToIgnoreCase(p.getId());
     }
 
-	public Set<Batch> getBatches(){
+	protected Set<Batch> getBatches(){
 		return _batches;
 	}
 
-	public String getId() {
+	protected String getId() {
 		return _id;
 	}
 
-	public double getMaxPrice() {
+	protected double getMaxPrice() {
 		return _maxPrice;
 	}
 
-	public double getLowestPrice(){
+	protected double getLowestPrice(){
 		if (!_batches.isEmpty())
 			return _lowestPrice;
 		else
@@ -122,13 +121,13 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * Checks how many availble units there are in all batches of this product.
    * @return total available units.
    */
-	public void checkQuantity(int quantity) throws NotEnoughProductException{
+	protected void checkQuantity(int quantity) throws NotEnoughProductException{
 		int available = checkQuantity();
 		if (available < quantity)
 			throw new NotEnoughProductException(_id, quantity, available);
 	}
 
-	public int checkQuantity(){
+	protected int checkQuantity(){
 		int qAvailable = 0;
 		for(Batch batch : _batches){
 			qAvailable += batch.getAvailableQuantity();
@@ -141,7 +140,7 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
    * @param quantity number of units to allocate
    * @return price of buying allocated units (0 if there weren't enough units).
    */
-	public double gatherUnits(int quantity) throws NotEnoughProductException{
+	protected double gatherUnits(int quantity) throws NotEnoughProductException{
 		double price = 0;
 		Iterator<Batch> it = getBatches().iterator();
 
@@ -167,11 +166,11 @@ public abstract class Product implements Comparable<Product>, Serializable, Subj
 		return price;
 	}
 
-	public double gatherUnitsSimple(int quantity) throws NotEnoughProductException{
+	protected double gatherUnitsSimple(int quantity) throws NotEnoughProductException{
 		return 0;
 	}
 
-	public Recipe getRecipe(){
+	protected Recipe getRecipe(){
 		return null;
 	}
 
